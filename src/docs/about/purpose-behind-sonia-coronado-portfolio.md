@@ -1,4 +1,4 @@
-# The Purpose Behind Sonia Coronado's 3D Portfolio
+# Purpose Behind Sonia Coronado's 3D Portfolio
 
 ## Introduction
 
