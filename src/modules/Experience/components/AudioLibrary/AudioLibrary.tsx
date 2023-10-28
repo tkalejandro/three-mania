@@ -1,6 +1,5 @@
-import { createRoot } from 'react-dom/client'
 import React, { useRef, useState } from 'react'
-import { Canvas, MeshProps, useFrame, Vector3 } from '@react-three/fiber'
+import { useFrame, Vector3 } from '@react-three/fiber'
 import { Text } from '@react-three/drei';
 
 
