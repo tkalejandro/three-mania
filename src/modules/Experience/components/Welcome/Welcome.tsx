@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import { useFrame, Vector3 } from '@react-three/fiber'
-import { Text } from '@react-three/drei';
+import { Center, Html, Text, useGLTF } from '@react-three/drei';
 
 
 interface WelcomeProps {
@@ -13,6 +13,10 @@ const Welcome = ({ position }: WelcomeProps) => {
   // Set up state for the hovered and active state
   const [hovered, setHover] = useState<boolean>(false)
   const [active, setActive] = useState<boolean>(false)
+
+  // Import the guitar
+  const guitar = useGLTF<string>('https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/guitar/model.gltf')
+
   // Subscribe this component to the render-loop, rotate the mesh every frame
   useFrame((state, delta) => {
     if (meshRef.current) { // Check if meshRef.current is defined
@@ -24,16 +28,30 @@ const Welcome = ({ position }: WelcomeProps) => {
     <group
     position={position}
     >
-      <mesh
-        
+      {/* <mesh
         ref={meshRef}
         scale={active ? 1.5 : 1}
         onClick={(event) => setActive(!active)}
         onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}>
+        onPointerOut={(event) => setHover(false)}
+      >
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-      </mesh>
+      </mesh> */}
+      <Center>
+        <primitive
+          object={guitar.scene}
+          position={[0.1, 0, 0]}
+        />
+        <Html
+          occlude
+          wrapperClass='play-button'
+          position={[0, -0.75, 0]}
+          scale={0}
+        >
+          Play
+        </Html>
+      </Center>
       <Text
         position={[0, -1, 0]}
         scale={0.2}
