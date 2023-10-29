@@ -2,10 +2,17 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 interface DeveloperSettingsState {
+    
+    // Variables
+    
     /**
      * Global mode
      */
-    developerMode: boolean;
+    debugMode: boolean;
+
+
+   // Actions
+   setDebugMode: () => void;
 }
 
 /**
@@ -17,9 +24,14 @@ const useDeveloperSettingsStore = create<DeveloperSettingsState>()(
         (set, get) => {
             // Here we can add some logics
 
+            /**
+             * Toggles the debug mode.
+             */
+            const setDebugMode = () => set({debugMode: !get().debugMode}) 
             return ({
                 // Our State
-                developerMode: false
+                debugMode: false,
+                setDebugMode,
             })
         },
         {
