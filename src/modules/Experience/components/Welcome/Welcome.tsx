@@ -19,25 +19,15 @@ const Welcome = ({ position }: WelcomeProps) => {
 
   // Subscribe this component to the render-loop, rotate the mesh every frame
   useFrame((state, delta) => {
-    if (meshRef.current) { // Check if meshRef.current is defined
-      meshRef.current.rotation.x += delta
-    }
+    // if (meshRef.current) { // Check if meshRef.current is defined
+    //   meshRef.current.rotation.x += delta
+    // }
   })
   // Return view, these are regular three.js elements expressed in JSX
   return (
     <group
     position={position}
     >
-      {/* <mesh
-        ref={meshRef}
-        scale={active ? 1.5 : 1}
-        onClick={(event) => setActive(!active)}
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}
-      >
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-      </mesh> */}
       <Center>
         <primitive
           object={guitar.scene}
@@ -52,12 +42,6 @@ const Welcome = ({ position }: WelcomeProps) => {
           Play
         </Html>
       </Center>
-      <Text
-        position={[0, -1, 0]}
-        scale={0.2}
-      >
-        Welcome Sonia Coronado
-      </Text>
     </group>
   )
 }
