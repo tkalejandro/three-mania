@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { useFrame, Vector3 } from '@react-three/fiber'
 import { Text } from '@react-three/drei';
-
+import { useControls } from 'leva';
 
 interface AboutProps {
   position: Vector3
@@ -19,13 +19,13 @@ const About = ({ position }: AboutProps) => {
       meshRef.current.rotation.x += delta
     }
   })
-  // Return view, these are regular three.js elements expressed in JSX
+  
+
   return (
     <group
     position={position}
     >
-      <mesh
-        
+      <mesh     
         ref={meshRef}
         scale={active ? 1.5 : 1}
         onClick={(event) => setActive(!active)}

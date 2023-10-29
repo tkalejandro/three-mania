@@ -1,10 +1,8 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
 
 interface DeveloperSettingsState {
     
     // Variables
-    
     /**
      * Global mode
      */
@@ -19,8 +17,6 @@ interface DeveloperSettingsState {
  * All related to the App X Developer. Debugger Settings and more
  */
 const useDeveloperSettingsStore = create<DeveloperSettingsState>()(
-    // Save data in local storage
-    persist(
         (set, get) => {
             // Here we can add some logics
 
@@ -34,11 +30,6 @@ const useDeveloperSettingsStore = create<DeveloperSettingsState>()(
                 setDebugMode,
             })
         },
-        {
-            // This is how persist will find and save the state in LocalStorage
-            name: 'app-settings-storage',
-        }
-    )
 )
 
 const useDeveloperSettings = useDeveloperSettingsStore

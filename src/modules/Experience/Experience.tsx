@@ -26,7 +26,7 @@ const Experience = () => {
             welcomePosition: { value: [0, 0, 0], step: 0.5 },
             aboutPosition: { value: [4, -2, 0], step: 0.5 },
             projectsAwardsPosition: { value: [0, -4, 0], step: 0.5 },
-            audioLibraryPosition: { value: [-4, 6, 0], step: 0.5 },
+            audioLibraryPosition: { value: [-4, -6, 0], step: 0.5 },
             mediaCoveragePosition: { value: [0, -8, 0], step: 0.5 },
             contactPosition: { value: [4, -10, 0], step: 0.5 },
         })
