@@ -43,7 +43,7 @@ GitHub is a web-based platform for version control and collaboration. It's widel
 ### `git restore`
 
 - **Purpose**: This command is used to discard changes in your working directory or unstage changes from the staging area.
-- **Usage**: 
+- **Usage**:
   - `git restore --staged <file>` untracks a file previously added to the staging area.
   - `git restore <file>` discards changes made to a file in your working directory.
 - **Example**: If you mistakenly add a file to the staging area and want to unstage it, you can use `git restore --staged <file>`. To discard changes in a file you no longer wish to keep, you can use `git restore <file>`.

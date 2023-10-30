@@ -28,3 +28,4 @@ Here are the steps to use NVM:
 
    ```bash
    nvm install 18.18.2
+   ```
