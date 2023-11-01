@@ -1,1 +1,1 @@
-export { default as soniaCoronado} from './soniaCoronado'
+export { default as soniaCoronado } from './soniaCoronado';

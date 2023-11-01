@@ -11,7 +11,6 @@ GitHub issues are a way to track and manage tasks, enhancements, and bugs in a r
 
 1. Search for portfolio-sonia-coronado.
 
-
 ## Step 3: Access the "Issues" Tab
 
 1. Once you're inside the repository, click on the "Issues" tab at the top of the repository's page.
@@ -28,6 +27,5 @@ GitHub issues are a way to track and manage tasks, enhancements, and bugs in a r
 4. In the "Labels" field, assign what is this ticket related. Most use probably feature, bug or Three.
 5. In the "Projects" field, assing to "tkalejandros portfolio-sonia-coronado" (this way the issue will be visible in the board).
 6. Submit new issue.
-
 
 Congratulations now the issue is visible in the board and in the repo issues section.

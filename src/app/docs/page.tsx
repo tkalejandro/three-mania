@@ -4,10 +4,7 @@ import fs, { readFileSync, readdirSync } from 'fs';
 import { join } from 'path';
 import DocApp from '@/modules/DocApp/DocApp';
 
-
-
 const DocsPage = () => {
-
   const markdownContent = readFileSync('src/docs/index.md', 'utf-8');
 
   const readDocsPath = (directory: string) => {
@@ -30,7 +27,7 @@ const DocsPage = () => {
     });
 
     return paths;
-  }
+  };
 
   const directory = 'src/docs'; // Specify the root directory
   const paths = readDocsPath(directory);
@@ -51,8 +48,8 @@ const DocsPage = () => {
     });
 
     return sections;
-  }
-  const content = organizePathsBySections(paths)
+  };
+  const content = organizePathsBySections(paths);
 
   return (
     <DocApp

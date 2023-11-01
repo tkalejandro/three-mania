@@ -2,13 +2,7 @@
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
-import {
-  About,
-  AudioLibrary,
-  Contact,
-  MediaCoverage,
-  Welcome,
-} from './components';
+import { About, AudioLibrary, Contact, MediaCoverage, Welcome } from './components';
 import ProjectsAwards from './components/ProjectsAwards/ProjectsAwards';
 import { Perf } from 'r3f-perf';
 import { useDeveloperSettings } from '@/store';

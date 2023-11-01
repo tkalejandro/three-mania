@@ -1,1 +1,1 @@
-export type { default as ContentSection } from './ContentSection'
+export type { default as ContentSection } from './ContentSection';
