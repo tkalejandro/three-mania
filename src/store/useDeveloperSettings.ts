@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 interface DeveloperSettingsState {
   // Variables
@@ -14,10 +14,7 @@ interface DeveloperSettingsState {
 /**
  * All related to the App X Developer. Debugger Settings and more
  */
-const useDeveloperSettingsStore = create<DeveloperSettingsState>()((
-  set,
-  get,
-) => {
+const useDeveloperSettingsStore = create<DeveloperSettingsState>()((set, get) => {
   // Here we can add some logics
 
   /**

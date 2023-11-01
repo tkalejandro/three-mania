@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
-import { useFrame, Vector3 } from "@react-three/fiber";
-import { Center, Html, Text, useGLTF } from "@react-three/drei";
+import React, { useRef, useState } from 'react';
+import { useFrame, Vector3 } from '@react-three/fiber';
+import { Center, Html, Text, useGLTF } from '@react-three/drei';
 
 interface WelcomeProps {
   position: Vector3;
@@ -15,7 +15,7 @@ const Welcome = ({ position }: WelcomeProps) => {
 
   // Import the guitar
   const guitar = useGLTF<string>(
-    "https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/guitar/model.gltf",
+    'https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/models/guitar/model.gltf',
   );
 
   // Subscribe this component to the render-loop, rotate the mesh every frame
@@ -29,12 +29,7 @@ const Welcome = ({ position }: WelcomeProps) => {
     <group position={position}>
       <Center>
         <primitive object={guitar.scene} position={[0.1, 0, 0]} />
-        <Html
-          occlude
-          wrapperClass="play-button"
-          position={[0, -0.75, 0]}
-          scale={0}
-        >
+        <Html occlude wrapperClass="play-button" position={[0, -0.75, 0]} scale={0}>
           Play
         </Html>
       </Center>

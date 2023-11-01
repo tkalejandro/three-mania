@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { soniaCoronado } from "@/data";
-import { useAppSettings } from "@/store";
-import React from "react";
+import { soniaCoronado } from '@/data';
+import { useAppSettings } from '@/store';
+import React from 'react';
 
 const Resume = () => {
   // Dummy use

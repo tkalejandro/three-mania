@@ -1,6 +1,6 @@
-import React, { useRef, useState } from "react";
-import { useFrame, Vector3 } from "@react-three/fiber";
-import { Text } from "@react-three/drei";
+import React, { useRef, useState } from 'react';
+import { useFrame, Vector3 } from '@react-three/fiber';
+import { Text } from '@react-three/drei';
 
 interface ProjectAwardsProps {
   position: Vector3;
@@ -30,7 +30,7 @@ const ProjectsAwards = ({ position }: ProjectAwardsProps) => {
         onPointerOut={(event) => setHover(false)}
       >
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
+        <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
       </mesh>
       <Text position={[0, -1, 0]} scale={0.2}>
         Im Projects Awards

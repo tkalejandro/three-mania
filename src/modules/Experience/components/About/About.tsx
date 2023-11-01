@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
-import { useFrame, Vector3 } from "@react-three/fiber";
-import { Text } from "@react-three/drei";
-import { useControls } from "leva";
+import React, { useRef, useState } from 'react';
+import { useFrame, Vector3 } from '@react-three/fiber';
+import { Text } from '@react-three/drei';
+import { useControls } from 'leva';
 
 interface AboutProps {
   position: Vector3;
@@ -31,7 +31,7 @@ const About = ({ position }: AboutProps) => {
         onPointerOut={(event) => setHover(false)}
       >
         <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
+        <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
       </mesh>
       <Text position={[0, -1, 0]} scale={0.2}>
         Im About

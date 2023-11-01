@@ -1,4 +1,4 @@
-import { LifeHighlights, Skill } from ".";
+import { LifeHighlights, Skill } from '.';
 
 interface Resume {
   /**
