@@ -1,5 +1,5 @@
-import Resume from "@/modules/Resume/Resume";
-import React from "react";
+import Resume from '@/modules/Resume/Resume';
+import React from 'react';
 
 const ResumePage = () => {
   return (

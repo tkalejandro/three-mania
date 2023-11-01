@@ -1,18 +1,12 @@
-"use client";
-import React from "react";
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import {
-  About,
-  AudioLibrary,
-  Contact,
-  MediaCoverage,
-  Welcome,
-} from "./components";
-import ProjectsAwards from "./components/ProjectsAwards/ProjectsAwards";
-import { Perf } from "r3f-perf";
-import { useDeveloperSettings } from "@/store";
-import { useControls } from "leva";
+'use client';
+import React from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import { About, AudioLibrary, Contact, MediaCoverage, Welcome } from './components';
+import ProjectsAwards from './components/ProjectsAwards/ProjectsAwards';
+import { Perf } from 'r3f-perf';
+import { useDeveloperSettings } from '@/store';
+import { useControls } from 'leva';
 
 /**
  * Heart of the 3D App
@@ -28,7 +22,7 @@ const Experience = () => {
     audioLibraryPosition,
     mediaCoveragePosition,
     contactPosition,
-  } = useControls("Layout Location", {
+  } = useControls('Layout Location', {
     welcomePosition: { value: [0, 0, 0], step: 0.5 },
     aboutPosition: { value: [4, -2, 0], step: 0.5 },
     projectsAwardsPosition: { value: [0, -4, 0], step: 0.5 },
@@ -55,7 +49,7 @@ const Experience = () => {
       <button
         onClick={setDebugMode}
         style={{
-          position: "absolute",
+          position: 'absolute',
           bottom: 20,
           right: 20,
           padding: 15,

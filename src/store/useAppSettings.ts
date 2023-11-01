@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
 interface AppSettingsState {
   /**
@@ -24,7 +24,7 @@ const useAppSettingsStore = create<AppSettingsState>()(
     },
     {
       // This is how persist will find and save the state in LocalStorage
-      name: "app-settings-storage",
+      name: 'app-settings-storage',
     },
   ),
 );
