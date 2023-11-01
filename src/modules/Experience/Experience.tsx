@@ -15,6 +15,9 @@ const Experience = () => {
   const debugMode = useDeveloperSettings((state) => state.debugMode);
   const setDebugMode = useDeveloperSettings((state) => state.setDebugMode);
 
+  const blue = 'blue';
+  const pink = 'pink';
+  const yellow = 'yellow';
   const {
     welcomePosition,
     aboutPosition,
