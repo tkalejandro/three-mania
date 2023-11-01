@@ -1,6 +1,6 @@
 # About the project
 
-The goal of this project is to build a portfolio for the client Sonia Coronado, who is a music composer from the video game industry. 
+The goal of this project is to build a portfolio for the client Sonia Coronado, who is a music composer from the video game industry.
 
 ## Purpose
 
@@ -8,7 +8,7 @@ The goal of this project is to build a portfolio for the client Sonia Coronado, 
 
 - Highlight Experience: Share their experience, collaborations, and achievements in the video game industry.
 
-- Attract Collaborations: Attract potential clients, game developers, and industry professionals for future collaborations. 
+- Attract Collaborations: Attract potential clients, game developers, and industry professionals for future collaborations.
 
 ## Keywords
 
@@ -20,7 +20,6 @@ The goal of this project is to build a portfolio for the client Sonia Coronado, 
 - Music
 - Films
 - Clean
-
 
 ## Technical requirements
 
@@ -37,10 +36,6 @@ The project should be able to be render in Safari (HIGH PRIORITY) and Google Chr
 
 Mobile First Approach.
 
-
 ## 3D World requirments
 
 ...
-
-
-
