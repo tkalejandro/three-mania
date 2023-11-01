@@ -29,17 +29,17 @@ body {
 html,
 body,
 #root {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: ivory;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: ivory;
 }
 
-.play-button>div {
-    padding: 10px;
-    border: 1px solid;
-    border-color: black;
-    cursor: pointer;
+.play-button > div {
+  padding: 10px;
+  border: 1px solid;
+  border-color: black;
+  cursor: pointer;
 }
