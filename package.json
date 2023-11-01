@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev & npm run prettier-watch",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "prettier": "npx prettier . --write '**/*.{ts,tsx,js,jsx}'",
-    "prettier-watch": "onchange \"**/*\" -- prettier --write --ignore-unknown {{changed}}"
+    "prettier-watch": "onchange 'src/**/*.{js,jsx,ts,tsx}' -- prettier --write --ignore-unknown {{changed}}"
   },
   "dependencies": {
     "@react-three/drei": "^9.86.3",
