@@ -7,6 +7,7 @@ import ProjectsAwards from './components/ProjectsAwards/ProjectsAwards';
 import { Perf } from 'r3f-perf';
 import { useDeveloperSettings } from '@/store';
 import { useControls } from 'leva';
+import { Models } from './models';
 
 /**
  * Heart of the 3D App
@@ -35,6 +36,7 @@ const Experience = () => {
     <>
       <Canvas>
         {debugMode && <Perf position="top-left" />}
+        <Models />
         <OrbitControls />
         <ambientLight />
         <pointLight position={[10, 10, 10]} />
