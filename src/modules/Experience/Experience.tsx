@@ -1,8 +1,8 @@
 'use client';
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
-import { About, AudioLibrary, Contact, MediaCoverage, Welcome } from './components';
+import { OrbitControls, useProgress } from '@react-three/drei';
+import { About, AudioLibrary, Contact, Loader, MediaCoverage, Welcome } from './components';
 import ProjectsAwards from './components/ProjectsAwards/ProjectsAwards';
 import { Perf } from 'r3f-perf';
 import { useDeveloperSettings } from '@/store';
@@ -16,6 +16,8 @@ const Experience = () => {
   const debugMode = useDeveloperSettings((state) => state.debugMode);
   const setDebugMode = useDeveloperSettings((state) => state.setDebugMode);
 
+  const { progress } = useProgress();
+  console.log(progress);
   const {
     welcomePosition,
     aboutPosition,
@@ -35,17 +37,19 @@ const Experience = () => {
   return (
     <>
       <Canvas>
-        {debugMode && <Perf position="top-left" />}
-        <Models />
-        <OrbitControls />
-        <ambientLight />
-        <pointLight position={[10, 10, 10]} />
-        <Welcome position={welcomePosition} />
-        <About position={aboutPosition} />
-        <ProjectsAwards position={projectsAwardsPosition} />
-        <AudioLibrary position={audioLibraryPosition} />
-        <MediaCoverage position={mediaCoveragePosition} />
-        <Contact position={contactPosition} />
+        <Suspense fallback={<Loader />}>
+          {debugMode && <Perf position="top-left" />}
+          <Models />
+          <OrbitControls />
+          <ambientLight />
+          <pointLight position={[10, 10, 10]} />
+          <Welcome position={welcomePosition} />
+          <About position={aboutPosition} />
+          <ProjectsAwards position={projectsAwardsPosition} />
+          <AudioLibrary position={audioLibraryPosition} />
+          <MediaCoverage position={mediaCoveragePosition} />
+          <Contact position={contactPosition} />
+        </Suspense>
       </Canvas>
       {/* TEMPORARY BUTTON FIX MY STYLE */}
       <button
