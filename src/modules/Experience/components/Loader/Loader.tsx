@@ -7,6 +7,7 @@ import React from 'react';
  */
 const Loader = () => {
   const { active, progress, errors, item, loaded, total } = useProgress();
+
   return <Html center>{progress.toFixed(0)} % loaded</Html>;
 };
 

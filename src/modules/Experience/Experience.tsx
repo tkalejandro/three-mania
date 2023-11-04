@@ -7,7 +7,6 @@ import ProjectsAwards from './components/ProjectsAwards/ProjectsAwards';
 import { Perf } from 'r3f-perf';
 import { useDeveloperSettings } from '@/store';
 import { useControls } from 'leva';
-import { Models } from './models';
 
 /**
  * Heart of the 3D App
@@ -16,8 +15,7 @@ const Experience = () => {
   const debugMode = useDeveloperSettings((state) => state.debugMode);
   const setDebugMode = useDeveloperSettings((state) => state.setDebugMode);
 
-  const { progress } = useProgress();
-  console.log(progress);
+  // console.log(progress);
   const {
     welcomePosition,
     aboutPosition,
@@ -39,7 +37,6 @@ const Experience = () => {
       <Canvas>
         <Suspense fallback={<Loader />}>
           {debugMode && <Perf position="top-left" />}
-          <Models />
           <OrbitControls />
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
