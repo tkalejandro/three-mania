@@ -3,6 +3,7 @@ import React from 'react';
 
 /**
  * First Thing to appear :-)
+ * This might dissapear in the future.
  * @returns
  */
 const Loader = () => {
