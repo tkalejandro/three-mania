@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Vector3 } from '@react-three/fiber';
 import { Center, Html, Text, useGLTF } from '@react-three/drei';
 import { GuitarModel } from '../../models';
