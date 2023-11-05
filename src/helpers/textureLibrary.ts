@@ -1,4 +1,4 @@
-// TO DO - To think about this
+// TO DO - To think about this Standarize some textures formats
 import { TextureMaps } from '@/types/ExperienceTypes';
 
 /**

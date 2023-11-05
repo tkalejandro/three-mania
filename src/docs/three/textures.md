@@ -15,7 +15,7 @@ This helper what it does is to initiate a texture and make it easy to find when 
 Aditionally, having the configuration of the texture, its very easy to added to a mesh.
 
 ```
-const texture = textureHelpers.brick()
+const texture = useTexture(textureLibrary.pavingStones());
 
 ...
 

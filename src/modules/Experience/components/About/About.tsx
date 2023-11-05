@@ -40,7 +40,7 @@ const About = ({ position }: AboutProps) => {
         onPointerOver={(event) => setHover(true)}
         onPointerOut={(event) => setHover(false)}
       >
-        <sphereGeometry args={[1, 32, 32]} />
+        <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial {...dummyTexture} color={hovered ? 'hotpink' : 'orange'} />
       </mesh>
       <Text position={[0, -1, 0]} scale={0.2}>
