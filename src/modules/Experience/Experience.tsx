@@ -8,6 +8,7 @@ import { Perf } from 'r3f-perf';
 import { useDeveloperSettings } from '@/store';
 import { useControls } from 'leva';
 import { envMapLibrary } from '@/helpers';
+import { Button } from '@nextui-org/button';
 
 /**
  * Heart of the 3D App
@@ -33,7 +34,7 @@ const Experience = () => {
   });
 
   return (
-    <>
+    <div id="experience">
       <Canvas>
         <Suspense fallback={<Loader />}>
           {debugMode && <Perf position="top-left" />}
@@ -49,19 +50,19 @@ const Experience = () => {
           <Contact position={contactPosition} />
         </Suspense>
       </Canvas>
-      {/* TEMPORARY BUTTON FIX MY STYLE */}
-      <button
+      <Button
+        variant="shadow"
+        color="warning"
         onClick={setDebugMode}
         style={{
           position: 'absolute',
           bottom: 20,
           right: 20,
-          padding: 15,
         }}
       >
         Debug Mode
-      </button>
-    </>
+      </Button>
+    </div>
   );
 };
 
