@@ -21,3 +21,21 @@ const texture = textureHelpers.brick()
 
 <mesh {...texture}  />
 ```
+
+## Normal GL vs Normal DX
+
+In the world of 3D graphics and rendering, "normal DX" and "normal GL" maps refer to two distinct conventions for encoding surface normals in textures. These normal maps are used to enhance the appearance of 3D models by simulating fine surface detail. Let's explore the differences:
+
+### Normal DX (DirectX)
+
+- Used in Windows applications.
+- Colors represent surface directions.
+- Range typically [0, 1] or [0, 255].
+
+### Normal GL (OpenGL)
+
+- Used in cross-platform applications.
+- Colors also represent surface directions.
+- Range might be [-1, 1] or [-128, 127].
+
+For this project, we'll use "Normal GL" maps. They work well for cross-platform applications, making them compatible with various systems like Windows, macOS, and Linux.

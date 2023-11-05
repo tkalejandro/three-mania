@@ -1,20 +1,20 @@
+// TO DO - To think about this
 import { TextureMaps } from '@/types/ExperienceTypes';
 
 /**
  * Library to import quickly textures.
- * - https://polyhaven.com/textures
  */
 class TextureLibrary {
   /**
    * Stones, useful for a floor, mimic arid zones, bright and more.
    */
-  pavingStones(): TextureMaps {
+  pavingStones() {
     return {
-      map: 'textures/PavingStones092_1K_Color.jpg',
-      displacementMap: 'textures/PavingStones092_1K_Displacement.jpg',
-      normalMap: 'textures/PavingStones092_1K_Normal.jpg',
-      roughnessMap: 'textures/PavingStones092_1K_Roughness.jpg',
-      aoMap: 'textures/PavingStones092_1K_AmbientOcclusion.jpg',
+      map: 'textures/pavingStones1K/pavingStones_color.png',
+      // displacementMap: 'textures/pavingStones1K/pavingStones_displacement.png',
+      normalMap: 'textures/pavingStones1K/pavingStones_normalGL.png',
+      roughnessMap: 'textures/pavingStones1K/pavingStones_roughness.png',
+      aoMap: 'textures/pavingStones1K/pavingStones_ambientOcclusion.png',
     };
   }
 }

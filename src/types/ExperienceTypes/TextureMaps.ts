@@ -19,6 +19,7 @@ interface TextureMaps {
    * Ambient occlusion map (optional)
    */
   aoMap?: string;
+
   /**
    * Metalness map (optional)
    */

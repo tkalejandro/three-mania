@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { useFrame, Vector3 } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
+import { Text, useTexture } from '@react-three/drei';
 import { useControls } from 'leva';
-import { audioLibrary } from '@/helpers';
+import { audioLibrary, textureLibrary } from '@/helpers';
 
 interface AboutProps {
   position: Vector3;
@@ -22,6 +22,8 @@ const About = ({ position }: AboutProps) => {
     }
   });
 
+  const dummyTexture = useTexture(textureLibrary.pavingStones());
+
   const hitSound = audioLibrary.hit();
   const dummyAudio = () => {
     hitSound.currentTime = 0;
@@ -38,8 +40,8 @@ const About = ({ position }: AboutProps) => {
         onPointerOver={(event) => setHover(true)}
         onPointerOut={(event) => setHover(false)}
       >
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
+        <sphereGeometry args={[1, 32, 32]} />
+        <meshStandardMaterial {...dummyTexture} color={hovered ? 'hotpink' : 'orange'} />
       </mesh>
       <Text position={[0, -1, 0]} scale={0.2}>
         Im About

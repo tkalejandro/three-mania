@@ -13,3 +13,21 @@ If you need quality sounds, then you should use `wav`. But take in count is real
 
 All audios need to be reusable, therefore it needs to be added to the `audioLibrary` inside the `helpers` folder.
 This helper what it does is to initiate an audio and make it easy to find when needed. Also it make it safe, because the new developer dont need to change the path everytime to use a new audio. And if the audio path change for some reason, it only needs to be change once. 
+
+## Example using an audio
+
+Here you can find a dummy use of an audio. Please adapt to your circunstances
+
+```
+import { audioLibrary } from '@/helpers';
+...
+
+const hitSound = audioLibrary.hit();
+  const dummyAudio = () => {
+    hitSound.currentTime = 0;
+    hitSound.volume = 1;
+    hitSound.play();
+  };
+```
+
+

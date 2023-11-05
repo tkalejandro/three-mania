@@ -1,6 +1,10 @@
 import React, { useMemo } from 'react';
 import { useGLTF } from '@react-three/drei';
 
+/**
+ * Heavy resource Guitar Model.
+ * Requires light.
+ */
 const GuitarModel = ({ ...props }) => {
   const guitarModel = useGLTF('/models/guitar.gltf');
 
