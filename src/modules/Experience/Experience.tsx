@@ -1,12 +1,13 @@
 'use client';
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls, useProgress } from '@react-three/drei';
+import { Environment, OrbitControls, useProgress, useTexture } from '@react-three/drei';
 import { About, AudioLibrary, Contact, Loader, MediaCoverage, Welcome } from './components';
 import ProjectsAwards from './components/ProjectsAwards/ProjectsAwards';
 import { Perf } from 'r3f-perf';
 import { useDeveloperSettings } from '@/store';
 import { useControls } from 'leva';
+import { envMapLibrary } from '@/helpers';
 
 /**
  * Heart of the 3D App
@@ -15,7 +16,6 @@ const Experience = () => {
   const debugMode = useDeveloperSettings((state) => state.debugMode);
   const setDebugMode = useDeveloperSettings((state) => state.setDebugMode);
 
-  // console.log(progress);
   const {
     welcomePosition,
     aboutPosition,
@@ -37,6 +37,7 @@ const Experience = () => {
       <Canvas>
         <Suspense fallback={<Loader />}>
           {debugMode && <Perf position="top-left" />}
+          <Environment background files={envMapLibrary.default()} />
           <OrbitControls />
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
