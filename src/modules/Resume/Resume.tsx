@@ -2,6 +2,7 @@
 
 import { soniaCoronado } from '@/data';
 import { useAppSettings } from '@/store';
+import { Button } from '@nextui-org/react';
 import React from 'react';
 
 const Resume = () => {
@@ -11,6 +12,9 @@ const Resume = () => {
   return (
     <div>
       Portfolio - {sonia.name} and I am loading {loading.toString()}
+      <div>
+        <Button color="warning">Hello Button</Button>
+      </div>
     </div>
   );
 };

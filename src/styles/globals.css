@@ -1,6 +1,8 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -27,8 +29,10 @@ body {
 } */
 
 html,
-body,
-#root {
+body {
+  background-color: ivory;
+}
+#experience {
   position: fixed;
   top: 0;
   left: 0;
