@@ -1,7 +1,7 @@
 'use client';
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { Environment, OrbitControls, useProgress, useTexture } from '@react-three/drei';
+import { Environment, OrbitControls } from '@react-three/drei';
 import {
   AboutScene,
   AudioLibraryScene,
@@ -15,14 +15,13 @@ import { Perf } from 'r3f-perf';
 import { useDeveloperSettings } from '@/store';
 import { useControls } from 'leva';
 import { envMapLibrary } from '@/helpers';
-import { Button } from '@nextui-org/button';
+import { DebugButton } from './components';
 
 /**
  * Heart of the 3D App
  */
 const Experience = () => {
   const debugMode = useDeveloperSettings((state) => state.debugMode);
-  const setDebugMode = useDeveloperSettings((state) => state.setDebugMode);
 
   const {
     welcomePosition,
@@ -57,18 +56,7 @@ const Experience = () => {
           <ContactScene position={contactPosition} />
         </Suspense>
       </Canvas>
-      <Button
-        variant="shadow"
-        color="warning"
-        onClick={setDebugMode}
-        style={{
-          position: 'absolute',
-          bottom: 20,
-          right: 20,
-        }}
-      >
-        Debug Mode
-      </Button>
+      <DebugButton />
     </div>
   );
 };
