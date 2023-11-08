@@ -3,11 +3,11 @@ import { Vector3 } from '@react-three/fiber';
 import { Center, Html, Text, useGLTF } from '@react-three/drei';
 import { GuitarModel } from '../../models';
 
-interface WelcomeProps {
+interface WelcomeSceneProps {
   position: Vector3;
 }
 
-const Welcome = ({ position }: WelcomeProps) => {
+const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   return (
     <group position={position}>
       <Center>
@@ -20,4 +20,4 @@ const Welcome = ({ position }: WelcomeProps) => {
   );
 };
 
-export default Welcome;
+export default WelcomeScene;

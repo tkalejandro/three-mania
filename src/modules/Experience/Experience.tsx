@@ -2,8 +2,15 @@
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Environment, OrbitControls, useProgress, useTexture } from '@react-three/drei';
-import { About, AudioLibrary, Contact, Loader, MediaCoverage, Welcome } from './components';
-import ProjectsAwards from './components/ProjectsAwards/ProjectsAwards';
+import {
+  AboutScene,
+  AudioLibraryScene,
+  ContactScene,
+  LoaderScene,
+  MediaCoverageScene,
+  WelcomeScene,
+} from './scenes';
+import ProjectsAwardsScene from './scenes/ProjectsAwardsScene/ProjectsAwardsScene';
 import { Perf } from 'r3f-perf';
 import { useDeveloperSettings } from '@/store';
 import { useControls } from 'leva';
@@ -36,18 +43,18 @@ const Experience = () => {
   return (
     <div id="experience">
       <Canvas>
-        <Suspense fallback={<Loader />}>
+        <Suspense fallback={<LoaderScene />}>
           {debugMode && <Perf position="top-left" />}
           <Environment background files={envMapLibrary.default()} />
           <OrbitControls />
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
-          <Welcome position={welcomePosition} />
-          <About position={aboutPosition} />
-          <ProjectsAwards position={projectsAwardsPosition} />
-          <AudioLibrary position={audioLibraryPosition} />
-          <MediaCoverage position={mediaCoveragePosition} />
-          <Contact position={contactPosition} />
+          <WelcomeScene position={welcomePosition} />
+          <AboutScene position={aboutPosition} />
+          <ProjectsAwardsScene position={projectsAwardsPosition} />
+          <AudioLibraryScene position={audioLibraryPosition} />
+          <MediaCoverageScene position={mediaCoveragePosition} />
+          <ContactScene position={contactPosition} />
         </Suspense>
       </Canvas>
       <Button
