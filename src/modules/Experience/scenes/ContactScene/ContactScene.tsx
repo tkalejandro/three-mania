@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react';
 import { useFrame, Vector3 } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
 
-interface ContactProps {
+interface ContactSceneProps {
   position: Vector3;
 }
 
-const Contact = ({ position }: ContactProps) => {
+const ContactScene = ({ position }: ContactSceneProps) => {
   // This reference will give us direct access to the mesh
   const meshRef = useRef<THREE.Mesh>(null);
   // Set up state for the hovered and active state
@@ -39,4 +39,4 @@ const Contact = ({ position }: ContactProps) => {
   );
 };
 
-export default Contact;
+export default ContactScene;

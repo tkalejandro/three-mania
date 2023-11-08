@@ -2,11 +2,11 @@ import React, { useRef, useState } from 'react';
 import { useFrame, Vector3 } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
 
-interface AudioLibraryProps {
+interface MediaCoverageSceneProps {
   position: Vector3;
 }
 
-const AudioLibrary = ({ position }: AudioLibraryProps) => {
+const MediaCoverageScene = ({ position }: MediaCoverageSceneProps) => {
   // This reference will give us direct access to the mesh
   const meshRef = useRef<THREE.Mesh>(null);
   // Set up state for the hovered and active state
@@ -33,10 +33,10 @@ const AudioLibrary = ({ position }: AudioLibraryProps) => {
         <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
       </mesh>
       <Text position={[0, -1, 0]} scale={0.2}>
-        Im Audio Library
+        Im Media Coverage
       </Text>
     </group>
   );
 };
 
-export default AudioLibrary;
+export default MediaCoverageScene;
