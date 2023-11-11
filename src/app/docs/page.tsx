@@ -55,9 +55,6 @@ const DocsPage = () => {
   return (
     <DocApp
       markdownContent={markdownContent}
-      // When I remove the 'src.docs'
-      // I was able to get the index.md
-      // when I visited 'localhost:3000/docs
       docStructure={content}
       paths={paths}
       directory={directory}
