@@ -1,7 +1,7 @@
 import React from 'react';
 import Markdown from 'markdown-to-jsx';
 import fs, { readFileSync, readdirSync } from 'fs';
-import path, { join } from 'path';
+import { join } from 'path';
 import DocApp from '@/modules/DocApp/DocApp';
 
 const DocsPage = () => {
