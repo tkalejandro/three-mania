@@ -1,7 +1,7 @@
 import React from 'react';
 import Markdown from 'markdown-to-jsx';
 import fs, { readFileSync, readdirSync } from 'fs';
-import { join } from 'path';
+import path, { join } from 'path';
 import DocApp from '@/modules/DocApp/DocApp';
 
 const DocsPage = () => {
@@ -51,10 +51,14 @@ const DocsPage = () => {
   };
   const content = organizePathsBySections(paths);
 
+
   return (
     <DocApp
       markdownContent={markdownContent}
-      docStructure={content.src.docs}
+      // When I remove the 'src.docs'
+      // I was able to get the index.md
+      // when I visited 'localhost:3000/docs
+      docStructure={content}
       paths={paths}
       directory={directory}
     />
