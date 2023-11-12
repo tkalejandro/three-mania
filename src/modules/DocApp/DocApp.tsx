@@ -30,9 +30,15 @@ const DocApp = ({ markdownContent, docStructure, paths, directory }: DocAppProps
       <ul>
         {keys.map((key) => {
           const finalUrl = assignUrl(key) ?? '';
+
           return (
             <li key={key}>
-              <Link href={finalUrl.endsWith(key) ? finalUrl : ''}>{key}</Link>
+              {/*
+                This will add the url to paths
+                while removing 'src/' from paths
+                to make it accessible
+               */}
+              <Link href={finalUrl + key.slice(3)}>{key.slice(4)}</Link>
               {/* This will loop the code until nested is finished */}
               {generateNestedList(content[key] as ContentSection)}
             </li>
