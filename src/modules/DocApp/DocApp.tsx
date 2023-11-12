@@ -38,7 +38,7 @@ const DocApp = ({ markdownContent, docStructure, paths, directory }: DocAppProps
                 while removing 'src/' from paths
                 to make it accessible
                */}
-              <Link href={finalUrl + key.slice(3)}>{key.slice(4)}</Link>
+              <Link href={finalUrl + key.slice(3)}>{key}</Link>
               {/* This will loop the code until nested is finished */}
               {generateNestedList(content[key] as ContentSection)}
             </li>
