@@ -10,7 +10,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <NextUIProvider>
       <Leva hidden={!debugMode} />
-      <div className="w-full border-2 max-w-lg md:margin-auto ">{children}</div>
+      {children}
     </NextUIProvider>
   );
 }
