@@ -49,13 +49,18 @@ const DocsPage = () => {
 
     return sections;
   };
-  const content = organizePathsBySections(paths);
+  // const content = organizePathsBySections(paths);
+  const content = {
+    src: {
+      docs: organizePathsBySections(paths)
+    }
+  }
 
 
   return (
     <DocApp
       markdownContent={markdownContent}
-      docStructure={content}
+      docStructure={content.src.docs}
       paths={paths}
       directory={directory}
     />
