@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import React from 'react';
 import { Providers } from './providers';
 import '../theme/globals.css';
+import { Footer, Header } from '@/components';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -14,7 +15,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="light">
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <main className="flex-1 overflow-y-auto p-4 max-w-screen-2xl  md:mx-auto">
+            <Providers>{children}</Providers>
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

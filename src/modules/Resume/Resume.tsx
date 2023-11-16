@@ -6,9 +6,9 @@ import { Button } from '@nextui-org/react';
 import React from 'react';
 
 const Resume = () => {
-  // Dummy use
   const loading = useAppSettings((state) => state.loading);
   const sonia = soniaCoronado;
+
   return (
     <div>
       Portfolio - {sonia.name} and I am loading {loading.toString()}
