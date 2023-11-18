@@ -34,9 +34,9 @@ const DocsPage = () => {
 
   const organizePathsBySections = (paths: string[]) => {
     const sections: Record<string, any> = {};
-
+    const platform = os.platform() === 'win32' ? '\\' : '/'
     paths.forEach((path) => {
-      const parts = path.split('/');
+      const parts = path.split(platform);
       let currentSection: any = sections;
 
       for (const part of parts) {
@@ -50,6 +50,7 @@ const DocsPage = () => {
     return sections as { src: { docs: Record<string, any> } };
   };
   const content = organizePathsBySections(paths);
+  console.log(content);
 
   return (
     <DocApp
@@ -57,6 +58,7 @@ const DocsPage = () => {
       docStructure={content.src.docs}
       paths={paths}
       directory={directory}
+      os={os.platform()}
     />
   );
 };
