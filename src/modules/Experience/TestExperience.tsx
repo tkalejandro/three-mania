@@ -12,7 +12,7 @@ import {
 } from './scenes';
 
 import { Perf } from 'r3f-perf';
-import { useDeveloperSettings } from '@/store';
+import { useCamera, useDeveloperSettings } from '@/store';
 import { DebugButton } from './components';
 
 /**
@@ -24,16 +24,23 @@ const TestExperience = () => {
   // ****** DONT DELETE
   const debugMode = useDeveloperSettings((state) => state.debugMode);
   // ******************
-
+  const cameraPosition = useCamera((state) => state.cameraPosition);
   return (
     <div id="experience">
       <Canvas>
         {debugMode && <Perf position="top-left" />}
         {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
 
-        <OrbitControls />
+        <perspectiveCamera
+          fov={175}
+          aspect={window.innerWidth / window.innerHeight}
+          near={0.1}
+          far={1000}
+          position={cameraPosition}
+        />
+
         <ambientLight />
-        <AboutScene position={[0, 0, 0]} />
+        <WelcomeScene position={[0, 0, 0]} />
 
         {/* UNTIL HERE */}
       </Canvas>

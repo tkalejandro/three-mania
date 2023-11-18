@@ -1,7 +1,7 @@
 'use client';
-import React, { Suspense } from 'react';
-import { Canvas } from '@react-three/fiber';
-import { Environment, OrbitControls } from '@react-three/drei';
+import React, { Suspense, useEffect, useRef } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { Environment, OrbitControls, PerspectiveCamera, useHelper } from '@react-three/drei';
 import {
   AboutScene,
   AudioLibraryScene,
@@ -12,10 +12,13 @@ import {
 } from './scenes';
 import ProjectsAwardsScene from './scenes/ProjectsAwardsScene/ProjectsAwardsScene';
 import { Perf } from 'r3f-perf';
-import { useDeveloperSettings } from '@/store';
+import { useCamera, useDeveloperSettings } from '@/store';
 import { useControls } from 'leva';
 import { envMapLibrary } from '@/helpers';
 import { DebugButton } from './components';
+import { PerspectiveCamera as TPerspectiveCamera } from 'three';
+import * as THREE from 'three';
+import { MainCamera } from './camera';
 
 /**
  * Heart of the 3D App
@@ -41,11 +44,13 @@ const Experience = () => {
 
   return (
     <div id="experience">
-      <Canvas>
+      <Canvas
+      // camera={{ position: cameraPosition, fov: 90, near: 0.1, far: 20 }}
+      >
         <Suspense fallback={<LoaderScene />}>
+          <MainCamera />
           {debugMode && <Perf position="top-left" />}
           <Environment background files={envMapLibrary.default()} />
-          <OrbitControls />
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           <WelcomeScene position={welcomePosition} />
