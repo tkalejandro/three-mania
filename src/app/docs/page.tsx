@@ -46,7 +46,7 @@ const DocsPage = () => {
         currentSection = currentSection[part];
       }
     });
-
+    console.log(sections);
     return sections;
   };
   // const content = organizePathsBySections(paths);
