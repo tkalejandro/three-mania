@@ -19,7 +19,6 @@ const DocApp = ({ markdownContent, docStructure, paths, directory, os }: DocAppP
   // Or change directory but wont affect logic
   const assignUrl = (file: string) =>
   {
-    console.log(file);
     // Windows
     if (os === 'win32')
     {

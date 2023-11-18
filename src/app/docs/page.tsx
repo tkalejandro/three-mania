@@ -50,7 +50,6 @@ const DocsPage = () => {
     return sections as { src: { docs: Record<string, any> } };
   };
   const content = organizePathsBySections(paths);
-  console.log(content);
 
   return (
     <DocApp
