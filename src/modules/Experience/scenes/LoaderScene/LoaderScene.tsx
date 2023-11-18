@@ -8,7 +8,7 @@ import React from 'react';
  */
 const LoaderScene = () => {
   const { active, progress, errors, item, loaded, total } = useProgress();
-  console.log(item);
+
   return <Html center>{progress.toFixed(0)} % loaded</Html>;
 };
 
