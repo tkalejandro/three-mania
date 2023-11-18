@@ -21,7 +21,7 @@ const useCameraStore = create<CameraState>((set) => {
   };
 
   return {
-    cameraPosition: [0, 0, 3.5],
+    cameraPosition: [0, 0, 2],
     moveCameraCloser,
   };
 });

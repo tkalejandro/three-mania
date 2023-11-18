@@ -1,10 +1,13 @@
 import { useCamera } from '@/store';
 import { useRef } from 'react';
-import { PerspectiveCamera, useHelper } from '@react-three/drei';
+import { PerspectiveCamera, useHelper, useAspect } from '@react-three/drei';
 import * as THREE from 'three';
 const MainCamera = () => {
   const cameraPosition = useCamera((state) => state.cameraPosition);
   const cameraRef = useRef<any>(null);
+
+  const t = useAspect(window.screen.width, window.screen.height);
+  console.log(t);
 
   useHelper(cameraRef, THREE.CameraHelper);
 
@@ -17,7 +20,7 @@ const MainCamera = () => {
         fov={90}
         aspect={1}
         near={0.1}
-        far={1000}
+        far={4}
       />
     </group>
   );
