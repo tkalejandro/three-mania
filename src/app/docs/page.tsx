@@ -1,9 +1,9 @@
 import React from 'react';
 import Markdown from 'markdown-to-jsx';
 import fs, { readFileSync, readdirSync } from 'fs';
-import { join } from 'path';
+import { join, normalize } from 'path';
 import DocApp from '@/modules/DocApp/DocApp';
-
+import os from 'os';
 const DocsPage = () => {
   const markdownContent = readFileSync('src/docs/index.md', 'utf-8');
 
@@ -13,7 +13,7 @@ const DocsPage = () => {
     const files = fs.readdirSync(directory);
 
     files.forEach((item) => {
-      const currentPath = join(directory, item);
+      const currentPath = normalize(join(directory, item));
       const stats = fs.statSync(currentPath);
 
       if (stats.isDirectory()) {
@@ -46,16 +46,10 @@ const DocsPage = () => {
         currentSection = currentSection[part];
       }
     });
-    console.log(sections);
-    return sections;
+    // Shady fix!
+    return sections as { src: { docs: Record<string, any> } };
   };
-  // const content = organizePathsBySections(paths);
-  const content = {
-    src: {
-      docs: organizePathsBySections(paths)
-    }
-  }
-
+  const content = organizePathsBySections(paths);
 
   return (
     <DocApp
