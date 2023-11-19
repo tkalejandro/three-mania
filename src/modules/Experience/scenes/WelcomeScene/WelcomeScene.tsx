@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { act, useFrame, Vector3 } from '@react-three/fiber';
+import { act, GroupProps, ThreeElements, useFrame, Vector3 } from '@react-three/fiber';
 import { Center, Html, OrbitControls } from '@react-three/drei';
 import { GuitarModel } from '../../models';
 import { Button } from '@nextui-org/button';
 import { useCamera } from '@/store';
+import { Group } from 'three';
+import { Navigation } from './components';
 
 interface WelcomeSceneProps {
   position: Vector3;
@@ -21,9 +23,10 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   // 10 is default
   const [distanceFactor, setDistanceFactor] = useState<undefined | number>(10);
 
-  const guitarRef = useRef<any>();
+  const guitarRef = useRef<Group>(null!);
 
   const [action, setAction] = useState<Phase>(Phase.Ready);
+  const [navigationOpen, setNavigationOpen] = useState<boolean>(false);
 
   useEffect(() => {
     if (!distanceFactor) return;
@@ -45,10 +48,20 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
     if (action === Phase.Playing) {
       // This rotates 360 max
       if (guitarRef.current.rotation.y >= 6.24) {
+        // This means just a little inclination to the left
+        if (guitarRef.current.rotation.z >= 0.1) {
+          // Our animation finished lets open the navigation
+          if (navigationOpen) return;
+          setNavigationOpen(true);
+          return;
+        }
+        guitarRef.current.position.x -= delta * 0.1;
+        guitarRef.current.rotation.z += delta * 0.1;
         return;
       }
+      guitarRef.current.position.z -= delta * 0.09;
       guitarRef.current.position.x -= delta * 0.09;
-      guitarRef.current.rotation.y += delta * 3;
+      guitarRef.current.rotation.y += delta * 3.5;
       console.log(guitarRef.current.rotation.y);
     }
   });
@@ -59,11 +72,15 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           <GuitarModel />
         </group>
         <OrbitControls />
-        <Html prepend center occlude position={[0, -0.8, 0]}>
-          <Button size="lg" onClick={playButton} variant="faded">
-            Play
-          </Button>
-        </Html>
+        {navigationOpen ? (
+          <Navigation />
+        ) : (
+          <Html prepend center occlude position={[0, -0.8, 0]}>
+            <Button size="lg" onClick={playButton} variant="faded">
+              Play
+            </Button>
+          </Html>
+        )}
       </group>
     </Center>
   );
