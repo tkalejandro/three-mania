@@ -1,5 +1,6 @@
 'use client';
 import {
+  Chip,
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
@@ -14,23 +15,27 @@ import {
 import { soniaCoronado } from '@/data';
 import { useAppSettings } from '@/store';
 import { Button } from '@nextui-org/react';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 const Resume = () => {
   const loading = useAppSettings((state) => state.loading);
   const sonia = soniaCoronado;
 
+  const Section = ({ children }: any) => {
+    return <section className="py-5">{children}</section>;
+  };
+
   return (
-    <div>
+    <div className="w-full border-2 ">
       <section className="hero my-64">
         Portfolio - {sonia.name} and I am loading {loading.toString()}
         <div>
           <Button color="warning">Hello Button</Button>
         </div>
       </section>
-      <section className="about-me flex gap-12 " style={{ margin: '2.5vh 0' }}>
+      <section className="about-me flex gap-12 ">
         <div className="flex-1 bg-slate-400">
-          <p>
+          <p className="my-20">
             Sonia Coronado is a film composer and guitarist from Cartagena, Colombia currently
             living in Los Angeles.
           </p>
@@ -64,17 +69,15 @@ const Resume = () => {
         />
         {/* <Link href="">Contact</Link> */}
       </section>
-      <section className="skills bg-red-500" style={{ margin: '2.5vh auto', width: '33vw' }}>
+      <Section>
         <h2>Skills</h2>
-        <Listbox>
-          <ListboxItem key="">Skill 1</ListboxItem>
-          <ListboxItem key="">Skill 2</ListboxItem>
-          <ListboxItem key="">Skill 3</ListboxItem>
-          <ListboxItem key="">Skill 4</ListboxItem>
-          <ListboxItem key="">Skill 5</ListboxItem>
-        </Listbox>
-      </section>
-      <section className="other-tools" style={{ margin: '2.5vh auto', width: '33vw' }}>
+        <Chip key="1">Skill 1</Chip>
+        <Chip key="2">Skill 2</Chip>
+        <Chip key="3">Skill 3</Chip>
+        <Chip key="43">Skill 4</Chip>
+        <Chip key="5">Skill 5</Chip>
+      </Section>
+      <section className="other-tools py-10">
         <h2>Tools</h2>
         <Listbox aria-label="Actions" onAction={(key) => alert(key)}>
           {/* do you prefer this, or to map from a const toolsData array? */}
@@ -84,7 +87,7 @@ const Resume = () => {
           <ListboxItem key="">Sibelius</ListboxItem>
         </Listbox>
       </section>
-      <section className="projects" style={{ margin: '2.5vh auto', width: '33vw' }}>
+      <section className="projects py-10">
         <h2>Projects</h2>
         {/* do you prefer this, or to map from a const projectsData array? */}
         <Listbox>
