@@ -15,6 +15,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="light">
       <body className={inter.className}>
+        {/* maybe we can delete flex? */}
         <div className="min-h-screen flex flex-col">
           <Header />
           <main className="flex-1 overflow-y-auto p-4 max-w-screen-2xl  md:mx-auto">
