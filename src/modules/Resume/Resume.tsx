@@ -22,7 +22,7 @@ const Resume = () => {
   const sonia = soniaCoronado;
 
   const Section = ({ children }: any) => {
-    return <section className="my-20 p-10 border-2 flex flex-wrap">{children}</section>;
+    return <section className="flex flex-wrap justify-center">{children}</section>;
   };
 
   const Subtitle = ({ content }: any) => {
@@ -30,17 +30,11 @@ const Resume = () => {
   };
 
   return (
-    <div className="w-full border-2">
+    <div className="w-full">
+      {loading && <p>...loading</p>}
+      <h2 className="text-primary">Portfolio - {sonia.name}</h2>
       <Section>
-        Portfolio - {sonia.name} and I am loading {loading.toString()}
-        <div>
-          <Button color="warning">Hello Button</Button>
-        </div>
-      </Section>
-      <Section>
-        <div className="flex-1 bg-slate-400">
-          <p className="my-20">{sonia.summary}</p>
-        </div>
+        <p className="flex-1">{sonia.summary}</p>
         <Image
           /* width={300} */
           alt="NextUI hero Image"
@@ -50,11 +44,13 @@ const Resume = () => {
       </Section>
       <Section>
         <Subtitle content="Skills" />
-        {sonia.skills.map((skill, i) => (
-          <Chip key={i} variant="bordered">
-            {skill.title}
-          </Chip>
-        ))}
+        <div className="flex flex-wrap skills">
+          {sonia.skills.map((skill, i) => (
+            <Chip key={i} variant="bordered">
+              {skill.title}
+            </Chip>
+          ))}
+        </div>
       </Section>
       <Section>
         <Subtitle content="Experience" />
@@ -82,15 +78,15 @@ const Resume = () => {
       </Section>
       <Section>
         <Subtitle content="Contact" />
-        <address className="flex flex-col">
-          <Link href={`mailto:${sonia.email}`} color="foreground">
+        <address className="">
+          <Link href={`mailto:${sonia.email}`} color="foreground" >
             {sonia.email}
           </Link>
           <Link href={`phone:${sonia.phone}`} color="foreground">
             {sonia.phone}
           </Link>
         </address>
-        <form className="flex w-full flex-wrap md:flex-nowrap gap-4">
+        <form className="flex w-1/2 flex-wrap md: gap-4">
           <Input type="text" label="Full Name" />
           <Input type="email" label="Your Email" />
           <Textarea label="Description" placeholder="Enter your description" />
