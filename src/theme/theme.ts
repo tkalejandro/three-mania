@@ -1,79 +1,82 @@
-import { NextUIPluginConfig } from '@nextui-org/theme';
-import { ThemeConfig } from 'tailwindcss/types/config';
-import { useState } from 'react';
+import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react';
+
 /**
- * This is a tailwind nextui config.
- * - https://nextui.org/docs/customization/customize-theme
+ * TO extend the Theme is very simple.
+ * Console.log useTheme() for more info.
  */
-export const nextUIConfig: NextUIPluginConfig = {
-  layout: {
-    spacingUnit: 4, // in px
-    disabledOpacity: 0.5, // this value is applied as opacity-[value] when the component is disabled
-    dividerWeight: '1px', // h-divider the default height applied to the divider component
-    fontSize: {
-      tiny: '0.75rem', // text-tiny
-      small: '0.875rem', // text-small
-      medium: '1rem', // text-medium
-      large: '1.125rem', // text-large
-    },
-    lineHeight: {
-      tiny: '1rem', // text-tiny
-      small: '1.25rem', // text-small
-      medium: '1.5rem', // text-medium
-      large: '1.75rem', // text-large
-    },
-    radius: {
-      small: '8px', // rounded-small
-      medium: '12px', // rounded-medium
-      large: '14px', // rounded-large
-    },
-    borderWidth: {
-      small: '1px', // border-small
-      medium: '2px', // border-medium (default)
-      large: '3px', // border-large
-    },
-  },
-  defaultTheme: 'light',
-  themes: {
-    light: {
-      colors: {
-        primary: '#007BFF',
-        secondary: '#6C757D',
-        warning: '#FFC107',
-        success: '#28A745',
-        danger: '#DC3545',
+const theme = extendTheme(
+  {
+    colors: {
+      black: '#1C1C1C', // A dark, elegant black
+      white: '#F5F5F5', // A slightly off-white for elegance
+      primary: {
+        50: '#e6f2ff',
+        100: '#b3d9ff',
+        200: '#80c2ff',
+        300: '#4da6ff',
+        400: '#1a8cff',
+        500: '#007BFF',
+        600: '#0066cc',
+        700: '#0052b3',
+        800: '#004080',
+        900: '#002633',
+        main: '#007BFF',
+      },
+      secondary: {
+        50: '#f2f2f2',
+        100: '#e6e6e6',
+        200: '#cccccc',
+        300: '#b3b3b3',
+        400: '#999999',
+        500: '#6C757D',
+        600: '#595e66',
+        700: '#474d55',
+        800: '#353b44',
+        900: '#23282f',
+        main: '#6C757D',
+      },
+      warning: {
+        50: '#fff7e6',
+        100: '#ffecbf',
+        200: '#ffe099',
+        300: '#ffd366',
+        400: '#ffcc33',
+        500: '#FFC107',
+        600: '#e69900',
+        700: '#cc8800',
+        800: '#b37700',
+        900: '#995c00',
+        main: '#FFC107',
+      },
+      success: {
+        50: '#e6f7e6',
+        100: '#cceccc',
+        200: '#b3e6b3',
+        300: '#99d699',
+        400: '#80c780',
+        500: '#28A745',
+        600: '#248f3b',
+        700: '#1f7d32',
+        800: '#1a6b29',
+        900: '#14591f',
+        main: '#28A745',
+      },
+      danger: {
+        50: '#ffe6e6',
+        100: '#ffcccc',
+        200: '#ff9999',
+        300: '#ff6666',
+        400: '#ff3333',
+        500: '#DC3545',
+        600: '#c42f3e',
+        700: '#ad2936',
+        800: '#961f2f',
+        900: '#7f1a29',
+        main: '#DC3545',
       },
     },
-    dark: {
-      colors: {
-        primary: '#007BFF',
-        secondary: '#6C757D',
-        warning: '#FFC107',
-        success: '#28A745',
-        danger: '#DC3545',
-      },
-    },
   },
-};
+  withDefaultColorScheme({ colorScheme: 'primary' }),
+);
 
-//Extend new CSS propertiess here.
-export const tailwindConfig: Partial<ThemeConfig> = {
-  screens: {
-    sm: '640px',
-    md: '768px',
-    lg: '1024px',
-    xl: '1280px',
-  },
-};
-
-//** THIS IS JUST A HOOK */
-const useTheme = () => {
-  const [theme] = useState({
-    ...nextUIConfig,
-    ...tailwindConfig,
-  });
-
-  return theme;
-};
-
-export default useTheme;
+export default theme;
