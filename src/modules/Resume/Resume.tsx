@@ -1,21 +1,8 @@
 'use client';
-import {
-  Chip,
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownItem,
-  Image,
-  Input,
-  Textarea,
-  Link,
-  Listbox,
-  ListboxItem,
-} from '@nextui-org/react';
 import { soniaCoronado } from '@/data';
 import { useAppSettings } from '@/store';
-import { Button } from '@nextui-org/react';
 import React, { ReactNode } from 'react';
+import { Heading, Link, Text } from '@radix-ui/themes/dist/cjs/components';
 
 const Resume = () => {
   const loading = useAppSettings((state) => state.loading);
@@ -25,75 +12,69 @@ const Resume = () => {
     return <section className="flex flex-wrap justify-center">{children}</section>;
   };
 
-  const Subtitle = ({ content }: any) => {
-    return <h2 className="text-primary text-xl w-full">{content}</h2>;
-  };
-
   return (
     <div className="w-full">
       {loading && <p>...loading</p>}
-      <h2 className="text-primary">Portfolio - {sonia.name}</h2>
+      <Heading as="h1">Portfolio - {sonia.name}</Heading>
       <Section>
-        <p className="flex-1">{sonia.summary}</p>
-        <Image
-          /* width={300} */
-          alt="NextUI hero Image"
-          src="https://uscscoring.com/images/students/794f2284-776b-42bc-9ae0-7acba40a0ae0.png?v=201701"
-        />
-        {/* <Link href="">Contact</Link> */}
+        <Text>{sonia.summary}</Text>
       </Section>
       <Section>
-        <Subtitle content="Skills" />
-        <div className="flex flex-wrap skills">
+        <Heading as="h2" content="Skills" />
+        <ul className="flex flex-wrap skills">
           {sonia.skills.map((skill, i) => (
-            <Chip key={i} variant="bordered">
-              {skill.title}
-            </Chip>
+            <li key={i}>{skill.title}</li>
           ))}
-        </div>
+        </ul>
       </Section>
       <Section>
-        <Subtitle content="Experience" />
-        <Listbox aria-label="Actions" onAction={(key) => alert(key)}>
+        <Heading as="h2">Experience</Heading>
+        <ul>
           {sonia.experience.map((xp) => (
-            <ListboxItem key={xp.id}>{xp.title}</ListboxItem>
+            <li key={xp.id}>{xp.title}</li>
           ))}
-        </Listbox>
+        </ul>
       </Section>
       <Section>
-        <Subtitle content="Education" />
-        <Listbox>
+        <Heading as="h2">Education</Heading>
+        <ul>
           {sonia.education.map((project) => (
-            <ListboxItem key={project.id}>{project.title}</ListboxItem>
+            <li key={project.id}>{project.title}</li>
           ))}
-        </Listbox>
+        </ul>
       </Section>
       <Section>
-        <Subtitle content="Projects" />
-        <Listbox>
+        <Heading as="h2">Projects</Heading>
+        <ul>
           {sonia.projects.map((project) => (
-            <ListboxItem key={project.id}>{project.title}</ListboxItem>
+            <li key={project.id}>{project.title}</li>
           ))}
-        </Listbox>
+        </ul>
       </Section>
       <Section>
-        <Subtitle content="Contact" />
+        <Heading as="h2">Contact</Heading>
         <address className="">
-          <Link href={`mailto:${sonia.email}`} color="foreground" >
-            {sonia.email}
-          </Link>
-          <Link href={`phone:${sonia.phone}`} color="foreground">
-            {sonia.phone}
-          </Link>
+          <Link href={`mailto:${sonia.email}`}>{sonia.email}</Link>
+          <Link href={`phone:${sonia.phone}`}>{sonia.phone}</Link>
         </address>
+        {/* there's a radix.ui form that must be installed sepparatedly https://www.radix-ui.com/primitives/docs/components/form, although I'm not sure how that works with next.js form*/}
         <form className="flex w-1/2 flex-wrap md: gap-4">
-          <Input type="text" label="Full Name" />
-          <Input type="email" label="Your Email" />
-          <Textarea label="Description" placeholder="Enter your description" />
-          <Button color="primary">Send</Button>
+          <label htmlFor="">
+            Full Name
+            <input type="text" />
+          </label>
+          <label htmlFor="">
+            Your Email
+            <input type="email" />
+          </label>
+          <label htmlFor="">
+            Description
+            <textarea placeholder="Enter your description" />
+          </label>
+          <button color="primary">Send</button>
         </form>
       </Section>
-      <Dropdown>
+      {/* <Dropdown>
         <DropdownTrigger>
           <Button variant="bordered">Open Menu</Button>
         </DropdownTrigger>
@@ -105,7 +86,7 @@ const Resume = () => {
             Delete file
           </DropdownItem>
         </DropdownMenu>
-      </Dropdown>
+      </Dropdown> */}
     </div>
   );
 };
