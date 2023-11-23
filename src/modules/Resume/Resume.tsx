@@ -1,7 +1,6 @@
 'use client';
 import { soniaCoronado } from '@/data';
-import { useAppSettings } from '@/store';
-import React, { ReactNode } from 'react';
+import React from 'react';
 import {
   Button,
   Heading,
@@ -12,27 +11,24 @@ import {
   FormLabel,
   Input,
   Textarea,
-  Container,
+  Container as Box,
   Link,
+  Container,
   VStack,
 } from '@chakra-ui/react';
 
-
-
 const Resume = () => {
-  const loading = useAppSettings((state) => state.loading);
   const sonia = soniaCoronado;
 
   return (
-    <div className="w-full">
-      {loading && <p>...loading</p>}
-      <Container maxW="container.lg" py={8}>
+    <>
+      <Box maxW="100%" py={8}>
         <Heading as="h1" mb={16}>
           Portfolio - {sonia.name}
         </Heading>
         <Text>{sonia.summary}</Text>
-      </Container>
-      <Container maxW="container.lg" py={8}>
+      </Box>
+      <Box maxW="100%" py={8}>
         <Heading as="h2" size="lg">
           Skills
         </Heading>
@@ -41,8 +37,8 @@ const Resume = () => {
             <ListItem key={i}>{skill.title}</ListItem>
           ))}
         </UnorderedList>
-      </Container>
-      <Container maxW="container.lg" py={8}>
+      </Box>
+      <Box maxW="100%" py={8}>
         <Heading as="h2" size="lg">
           Experience
         </Heading>
@@ -51,8 +47,8 @@ const Resume = () => {
             <ListItem key={xp.id}>{xp.title}</ListItem>
           ))}
         </UnorderedList>
-      </Container>
-      <Container maxW="container.lg" py={8}>
+      </Box>
+      <Box maxW="100%" py={8}>
         <Heading as="h2" size="lg">
           Education
         </Heading>
@@ -61,8 +57,8 @@ const Resume = () => {
             <ListItem key={project.id}>{project.title}</ListItem>
           ))}
         </UnorderedList>
-      </Container>
-      <Container maxW="container.lg" py={8}>
+      </Box>
+      <Box maxW="100%" py={8}>
         <Heading as="h2" size="lg">
           Projects
         </Heading>
@@ -71,8 +67,8 @@ const Resume = () => {
             <ListItem key={project.id}>{project.title}</ListItem>
           ))}
         </UnorderedList>
-      </Container>
-      <Container maxW="container.lg" py={8}>
+      </Box>
+      <Box maxW="100%" py={8}>
         <Heading as="h2" size="lg">
           Contact
         </Heading>
@@ -99,7 +95,7 @@ const Resume = () => {
             Send
           </Button>
         </form>
-      </Container>
+      </Box>
       {/* <Dropdown>
         <DropdownTrigger>
           <Button variant="bordered">Open Menu</Button>
@@ -113,7 +109,7 @@ const Resume = () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown> */}
-    </div>
+    </>
   );
 };
 
