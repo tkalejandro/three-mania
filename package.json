@@ -11,12 +11,15 @@
     "prettier-watch": "onchange 'src/**/*.{js,jsx,ts,tsx}' -- prettier --write --ignore-unknown {{changed}}"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.8.2",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
     "@nextui-org/react": "^2.1.13",
     "@radix-ui/themes": "^2.0.1",
     "@react-three/drei": "^9.86.3",
     "@react-three/fiber": "^8.14.4",
     "@types/three": "^0.156.0",
-    "framer-motion": "^10.16.4",
+    "framer-motion": "^10.16.5",
     "leva": "^0.9.35",
     "markdown-to-jsx": "^7.3.2",
     "next": "^14.0.1",
