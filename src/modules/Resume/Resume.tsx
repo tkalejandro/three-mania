@@ -16,6 +16,9 @@ import {
   Link,
   VStack,
 } from '@chakra-ui/react';
+
+
+
 const Resume = () => {
   const loading = useAppSettings((state) => state.loading);
   const sonia = soniaCoronado;

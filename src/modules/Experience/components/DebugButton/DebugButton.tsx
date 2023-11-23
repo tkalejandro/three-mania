@@ -1,13 +1,14 @@
 import { useDeveloperSettings } from '@/store';
-import { Button } from '@nextui-org/react';
 import React from 'react';
-
+import { Button, useTheme } from '@chakra-ui/react';
 const DebugButton = () => {
   const setDebugMode = useDeveloperSettings((state) => state.setDebugMode);
+
+  const theme = useTheme();
+  console.log(theme);
   return (
     <Button
-      variant="shadow"
-      color="warning"
+      colorScheme="warning"
       onClick={setDebugMode}
       style={{
         position: 'absolute',
