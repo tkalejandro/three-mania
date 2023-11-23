@@ -1,5 +1,4 @@
 'use client';
-
 import { useDeveloperSettings } from '@/store';
 import { Leva } from 'leva';
 import { CacheProvider } from '@chakra-ui/next-js';
