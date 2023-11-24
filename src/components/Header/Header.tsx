@@ -1,5 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
+import { Box, Flex, Heading } from '@chakra-ui/layout';
+import { Button, ButtonGroup } from '@chakra-ui/react';
 
 /**
  * THIS HEADER IS DUMMY. IT WILL CHANGE.
@@ -7,22 +9,22 @@ import Link from 'next/link';
  */
 const Header = () => {
   return (
-    <header className="bg-gray-100  ">
-      <div className="flex p-4 max-w-screen-2xl md:mx-auto">
-        <div>Header Content</div>
-        <ul className="flex flex-row">
-          <li>
-            <Link href="/">Home</Link>
-          </li>
-          <li>
-            <Link href="/resume">Resume</Link>
-          </li>
-          <li>
-            <Link href="/docs">Docs</Link>
-          </li>
-        </ul>
-      </div>
-    </header>
+    <Flex as="header" justify="space-between" gap="2">
+      <Box>
+        <Heading size="md">Sonia Coronado</Heading>
+      </Box>
+      <ButtonGroup gap="2">
+        <Button colorScheme="primary">
+          <Link href="/">Home </Link>
+        </Button>
+        <Button colorScheme="primary">
+          <Link href="/resume">Resume </Link>
+        </Button>
+        <Button colorScheme="primary">
+          <Link href="/docs">Docs </Link>
+        </Button>
+      </ButtonGroup>
+    </Flex>
   );
 };
 

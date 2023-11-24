@@ -1,16 +1,19 @@
 'use client';
-
-import { NextUIProvider } from '@nextui-org/react';
 import { useDeveloperSettings } from '@/store';
 import { Leva } from 'leva';
+import { CacheProvider } from '@chakra-ui/next-js';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from '../theme/theme';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const debugMode = useDeveloperSettings((state) => state.debugMode);
 
   return (
-    <NextUIProvider>
-      <Leva hidden={!debugMode} />
-      {children}
-    </NextUIProvider>
+    <CacheProvider>
+      <ChakraProvider theme={theme}>
+        <Leva hidden={!debugMode} />
+        {children}
+      </ChakraProvider>
+    </CacheProvider>
   );
 }
