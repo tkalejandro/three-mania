@@ -2,10 +2,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { act, GroupProps, ThreeElements, useFrame, Vector3 } from '@react-three/fiber';
 import { Center, Html, OrbitControls } from '@react-three/drei';
 import { GuitarModel } from '../../models';
-import { Button } from '@nextui-org/button';
 import { useCamera } from '@/store';
 import { Group } from 'three';
 import { Navigation } from './components';
+import { Button } from '@chakra-ui/react';
 
 interface WelcomeSceneProps {
   position: Vector3;
@@ -76,7 +76,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           <Navigation />
         ) : (
           <Html prepend center occlude position={[0, -0.8, 0]}>
-            <Button size="lg" onClick={playButton} variant="faded">
+            <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
               Play
             </Button>
           </Html>

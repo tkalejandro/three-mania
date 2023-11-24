@@ -1,4 +1,4 @@
-import { Button } from '@nextui-org/button';
+import { Button } from '@chakra-ui/react';
 import { Html } from '@react-three/drei';
 import React from 'react';
 
@@ -16,7 +16,9 @@ const Navigation = () => {
           }}
         >
           <div>
-            <Button size="md">About</Button>
+            <Button size="md" variant="outlined">
+              About
+            </Button>
           </div>
           <div>
             <Button size="md">Project and Awards</Button>
