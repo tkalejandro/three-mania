@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { act, GroupProps, ThreeElements, useFrame, Vector3 } from '@react-three/fiber';
-import { Center, Html, OrbitControls, Sparkles } from '@react-three/drei';
+import { Center, Float, Html, OrbitControls, Sparkles } from '@react-three/drei';
 import { GuitarModel } from '../../models';
 import { useCamera } from '@/store';
 import { Group } from 'three';
@@ -82,22 +82,35 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
     }
   });
   return (
-    <Center>
-      <group position={position} scale={2}>
-        <group ref={guitarRef}>
-          <GuitarModel />
+    <>
+      <Center>
+        <group position={position} scale={2}>
+          <Float
+            speed={5}
+            rotationIntensity={navigationOpen ? 0.1 : 0}
+            floatIntensity={navigationOpen ? 0.05 : 0}
+            floatingRange={[-0.1, 0.1]}
+          >
+            <group ref={guitarRef}>
+              <GuitarModel />
+            </group>
+          </Float>
+          {navigationOpen ? (
+            <>
+              <Navigation />
+            </>
+          ) : (
+            <>
+              <ChakraHtml ref={htmlRef} prepend center occlude position={[0, -0.8, 0]}>
+                <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
+                  Play
+                </Button>
+              </ChakraHtml>
+            </>
+          )}
         </group>
-        {navigationOpen ? (
-          <Navigation />
-        ) : (
-          <ChakraHtml ref={htmlRef} prepend center occlude position={[0, -0.8, 0]}>
-            <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
-              Play
-            </Button>
-          </ChakraHtml>
-        )}
-      </group>
-    </Center>
+      </Center>
+    </>
   );
 };
 

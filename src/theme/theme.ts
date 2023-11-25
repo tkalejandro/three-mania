@@ -15,20 +15,20 @@ const theme = extendTheme(
         200: '#80c2ff',
         300: '#4da6ff',
         400: '#1a8cff',
-        500: '#007BFF',
-        600: '#0066cc',
-        700: '#0052b3',
-        800: '#004080',
-        900: '#002633',
-        main: '#007BFF',
+        500: '#0056b3', // Dark and elegant blue shade
+        600: '#004080',
+        700: '#003366',
+        800: '#002633',
+        900: '#001a40',
+        main: '#0056b3',
       },
       secondary: {
-        50: '#f2f2f2',
+        50: '#f2f2f2', // Light gray for light backgrounds
         100: '#e6e6e6',
         200: '#cccccc',
         300: '#b3b3b3',
         400: '#999999',
-        500: '#6C757D',
+        500: '#6C757D', // Your dark gray for dark backgrounds
         600: '#595e66',
         700: '#474d55',
         800: '#353b44',
