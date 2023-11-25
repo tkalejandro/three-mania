@@ -7,14 +7,11 @@ import { Group } from 'three';
 import { Navigation } from './components';
 import { Button } from '@chakra-ui/react';
 import { ChakraHtml } from '../../components';
+import { Phase } from '@/enums/Experience';
+import { audioLibrary } from '@/helpers';
 
 interface WelcomeSceneProps {
   position: Vector3;
-}
-enum Phase {
-  Ready,
-  Playing,
-  End,
 }
 
 const WelcomeScene = ({ position }: WelcomeSceneProps) => {
@@ -30,6 +27,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   const [opacity, setOpacity] = useState<number>(1);
   const [action, setAction] = useState<Phase>(Phase.Ready);
   const [navigationOpen, setNavigationOpen] = useState<boolean>(false);
+  const mainSound = audioLibrary.omnisphereExperiment();
 
   useEffect(() => {
     if (!distanceFactor) return;
@@ -38,10 +36,12 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
 
   const playButton = () => {
     // Lets animate the guitar
+    mainSound.currentTime = 0;
+    mainSound.volume = 1;
+    mainSound.loop = true;
+
+    mainSound.play();
     setAction(Phase.Playing);
-  };
-  const endButton = () => {
-    setAction(Phase.Ready);
   };
 
   useFrame((state, delta) => {
@@ -56,9 +56,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           const speed = 3;
           setOpacity((prevOpacity) => {
             const newOpacity = Math.max(prevOpacity - delta * speed, targetOpacity);
-
             htmlRef.current.style.opacity = newOpacity.toString();
-
             return newOpacity;
           });
         }
