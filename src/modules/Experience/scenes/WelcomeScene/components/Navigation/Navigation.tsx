@@ -1,3 +1,4 @@
+import { ChakraHtml } from '@/modules/Experience/components';
 import { Button } from '@chakra-ui/react';
 import { Html } from '@react-three/drei';
 import React from 'react';
@@ -5,7 +6,7 @@ import React from 'react';
 const Navigation = () => {
   return (
     <group>
-      <Html position={[0, 0.1, 0]}>
+      <ChakraHtml position={[0, 0.1, 0]}>
         <div
           style={{
             height: '30vh',
@@ -16,26 +17,26 @@ const Navigation = () => {
           }}
         >
           <div>
-            <Button size="md" variant="outlined">
+            <Button size="sm" variant="outlined">
               About
             </Button>
           </div>
           <div>
-            <Button size="md">Project and Awards</Button>
+            <Button size="sm">Project and Awards</Button>
           </div>
           <div>
-            <Button size="md">Media Cover</Button>
+            <Button size="sm">Media Cover</Button>
           </div>
           <div>
-            <Button size="md">Audio Library</Button>
+            <Button size="sm">Audio Library</Button>
           </div>
           <div>
-            <Button size="md" color="secondary">
+            <Button size="sm" colorScheme="secondary">
               Contact
             </Button>
           </div>
         </div>
-      </Html>
+      </ChakraHtml>
     </group>
   );
 };

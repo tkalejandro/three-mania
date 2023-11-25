@@ -6,6 +6,10 @@ import { useCamera } from '@/store';
 import { Group } from 'three';
 import { Navigation } from './components';
 import { Button } from '@chakra-ui/react';
+import ThreeDButton from '../../components/ThreeDButton/ThreeDButton';
+import { ChakraProvider } from '@chakra-ui/react';
+import theme from '@/theme/theme';
+import { ChakraHtml } from '../../components';
 
 interface WelcomeSceneProps {
   position: Vector3;
@@ -71,15 +75,14 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
         <group ref={guitarRef}>
           <GuitarModel />
         </group>
-        <OrbitControls />
         {navigationOpen ? (
           <Navigation />
         ) : (
-          <Html prepend center occlude position={[0, -0.8, 0]}>
-            <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
+          <ChakraHtml prepend center occlude position={[0, -0.8, 0]}>
+            <Button colorScheme="primary" onClick={playButton} size="lg">
               Play
             </Button>
-          </Html>
+          </ChakraHtml>
         )}
       </group>
     </Center>

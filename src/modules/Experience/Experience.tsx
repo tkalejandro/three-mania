@@ -1,7 +1,7 @@
 'use client';
 import React, { Suspense, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment, OrbitControls, PerspectiveCamera, useHelper } from '@react-three/drei';
+import { Environment } from '@react-three/drei';
 import {
   AboutScene,
   AudioLibraryScene,
@@ -16,8 +16,7 @@ import { useCamera, useDeveloperSettings } from '@/store';
 import { useControls } from 'leva';
 import { envMapLibrary } from '@/helpers';
 import { DebugButton } from './components';
-import { PerspectiveCamera as TPerspectiveCamera } from 'three';
-import * as THREE from 'three';
+
 import { MainCamera } from './camera';
 
 /**
