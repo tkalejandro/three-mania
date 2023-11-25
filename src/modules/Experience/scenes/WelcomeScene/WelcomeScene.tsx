@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { act, GroupProps, ThreeElements, useFrame, Vector3 } from '@react-three/fiber';
-import { Center, Html, OrbitControls } from '@react-three/drei';
+import { Center, Html, OrbitControls, Sparkles } from '@react-three/drei';
 import { GuitarModel } from '../../models';
 import { useCamera } from '@/store';
 import { Group } from 'three';
 import { Navigation } from './components';
-import { Button } from '@chakra-ui/react';
+import { Button, useTheme } from '@chakra-ui/react';
 import { ChakraHtml } from '../../components';
 import { Phase } from '@/enums/Experience';
 import { audioLibrary } from '@/helpers';
@@ -17,6 +17,7 @@ interface WelcomeSceneProps {
 const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   const moveCameraCloser = useCamera((state) => state.moveCameraCloser);
 
+  const theme = useTheme();
   //Tweek! to keep distance factor and solve bug of button
   // 10 is default
   const [distanceFactor, setDistanceFactor] = useState<undefined | number>(10);
