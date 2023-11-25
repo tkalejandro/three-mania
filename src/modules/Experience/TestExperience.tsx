@@ -31,14 +31,6 @@ const TestExperience = () => {
         {debugMode && <Perf position="top-left" />}
         {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
 
-        {/* <perspectiveCamera
-          fov={175}
-          aspect={window.innerWidth / window.innerHeight}
-          near={0.1}
-          far={1000}
-          position={cameraPosition}
-        /> */}
-
         <ambientLight />
         <WelcomeScene position={[0, 0, 0]} />
 
