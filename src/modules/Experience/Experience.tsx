@@ -47,7 +47,7 @@ const Experience = () => {
         <Suspense fallback={<LoaderScene />}>
           <MainCamera />
           {debugMode && <Perf position="top-left" />}
-          <Environment background files={envMapLibrary.gradient()} blur={0.9} />
+          <Environment background files={envMapLibrary.gradient()} />
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           <WelcomeScene position={welcomePosition} />
