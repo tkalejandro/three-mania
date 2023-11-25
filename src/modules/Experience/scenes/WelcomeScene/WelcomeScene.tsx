@@ -28,6 +28,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   const [distanceFactor, setDistanceFactor] = useState<undefined | number>(10);
 
   const guitarRef = useRef<Group>(null!);
+  const htmlRef = useRef<Group>(null!);
 
   const [action, setAction] = useState<Phase>(Phase.Ready);
   const [navigationOpen, setNavigationOpen] = useState<boolean>(false);
@@ -78,11 +79,13 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
         {navigationOpen ? (
           <Navigation />
         ) : (
-          <ChakraHtml prepend center occlude position={[0, -0.8, 0]}>
-            <Button colorScheme="primary" onClick={playButton} size="lg">
-              Play
-            </Button>
-          </ChakraHtml>
+          <group ref={htmlRef}>
+            <ChakraHtml prepend center occlude position={[0, -0.8, 0]}>
+              <Button colorScheme="primary" onClick={playButton} size="lg">
+                Play
+              </Button>
+            </ChakraHtml>
+          </group>
         )}
       </group>
     </Center>
