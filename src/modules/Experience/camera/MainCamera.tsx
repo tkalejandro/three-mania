@@ -7,7 +7,6 @@ const MainCamera = () => {
   const cameraRef = useRef<any>(null);
 
   const t = useAspect(window.screen.width, window.screen.height);
-  console.log(t);
 
   useHelper(cameraRef, THREE.CameraHelper);
 

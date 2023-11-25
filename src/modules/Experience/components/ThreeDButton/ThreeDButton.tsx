@@ -13,7 +13,7 @@ interface ThreeDButtonProps extends GroupProps {
 
 const ThreeDButton = ({ size = 'md', color, text, ...props }: ThreeDButtonProps) => {
   const theme = useTheme();
-  console.log(theme);
+
   const buttonRef = useRef<Mesh>(null);
   const textRef = useRef<Group>(null);
   const [buttonSize, setButtonSize] = useState<ThreeSize>({
