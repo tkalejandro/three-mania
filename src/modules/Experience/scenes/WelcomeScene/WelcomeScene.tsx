@@ -6,9 +6,6 @@ import { useCamera } from '@/store';
 import { Group } from 'three';
 import { Navigation } from './components';
 import { Button } from '@chakra-ui/react';
-import ThreeDButton from '../../components/ThreeDButton/ThreeDButton';
-import { ChakraProvider } from '@chakra-ui/react';
-import theme from '@/theme/theme';
 import { ChakraHtml } from '../../components';
 
 interface WelcomeSceneProps {
@@ -28,8 +25,9 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   const [distanceFactor, setDistanceFactor] = useState<undefined | number>(10);
 
   const guitarRef = useRef<Group>(null!);
-  const htmlRef = useRef<Group>(null!);
+  const htmlRef = useRef<HTMLDivElement>(null!);
 
+  const [opacity, setOpacity] = useState<number>(1);
   const [action, setAction] = useState<Phase>(Phase.Ready);
   const [navigationOpen, setNavigationOpen] = useState<boolean>(false);
 
@@ -51,6 +49,21 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
 
     if (guitarRef.current == null) return;
     if (action === Phase.Playing) {
+      if (htmlRef.current != null) {
+        if (opacity !== 0) {
+          // If user clicks the navigation lets dissapear the button quickly
+          const targetOpacity = 0;
+          const speed = 3;
+          setOpacity((prevOpacity) => {
+            const newOpacity = Math.max(prevOpacity - delta * speed, targetOpacity);
+
+            htmlRef.current.style.opacity = newOpacity.toString();
+
+            return newOpacity;
+          });
+        }
+      }
+
       // This rotates 360 max
       if (guitarRef.current.rotation.y >= 6.24) {
         // This means just a little inclination to the left
@@ -67,7 +80,6 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
       guitarRef.current.position.z -= delta * 0.09;
       guitarRef.current.position.x -= delta * 0.09;
       guitarRef.current.rotation.y += delta * 3.5;
-      console.log(guitarRef.current.rotation.y);
     }
   });
   return (
@@ -79,13 +91,11 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
         {navigationOpen ? (
           <Navigation />
         ) : (
-          <group ref={htmlRef}>
-            <ChakraHtml prepend center occlude position={[0, -0.8, 0]}>
-              <Button colorScheme="primary" onClick={playButton} size="lg">
-                Play
-              </Button>
-            </ChakraHtml>
-          </group>
+          <ChakraHtml ref={htmlRef} prepend center occlude position={[0, -0.8, 0]}>
+            <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
+              Play
+            </Button>
+          </ChakraHtml>
         )}
       </group>
     </Center>
