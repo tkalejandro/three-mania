@@ -14,41 +14,48 @@ class AudioLibrary {
    * 132kb
    */
   alienTechnology() {
-    return new Audio('audio/alienTechnology');
+    return new Audio('audio/alienTechnology.mp3');
   }
 
   /**
    * 58kb
    */
   birdScreech() {
-    return new Audio('audio/birdScreech');
+    return new Audio('audio/birdScreech.mp3');
   }
 
   /**
    * 123kb
    */
   birdSingingFlapingWings() {
-    return new Audio('audio/birdSingingFlapingWings');
+    return new Audio('audio/birdSingingFlapingWings.mp3');
   }
 
   /**
    * 43kb
    */
   cockatooBird() {
-    return new Audio('audio/cockatooBird');
+    return new Audio('audio/cockatooBird.mp3');
   }
 
   /**
    * HEAVY MP3 1.2mb
    */
   forestAmbience() {
-    return new Audio('audio/forestAmbience');
+    return new Audio('audio/forestAmbience.mp3');
   }
   /**
    * HEAVY MP3 3.6mb
    */
   forestSteps() {
-    return new Audio('audio/forestSteps');
+    return new Audio('audio/forestSteps.mp3');
+  }
+
+  /**
+   * WAV song
+   */
+  omnisphereExperiment() {
+    return new Audio('audio/omnisphereExperiment.wav');
   }
 }
 

@@ -34,7 +34,7 @@ const DocsPage = () => {
 
   const organizePathsBySections = (paths: string[]) => {
     const sections: Record<string, any> = {};
-    const platform = os.platform() === 'win32' ? '\\' : '/'
+    const platform = os.platform() === 'win32' ? '\\' : '/';
     paths.forEach((path) => {
       const parts = path.split(platform);
       let currentSection: any = sections;
