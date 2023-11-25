@@ -30,6 +30,10 @@ class EnvMapLibrary {
   skyOnFire(): string {
     return 'envMaps/skyOnFire/the_sky_is_on_fire_2k.hdr';
   }
+
+  gradient(): string {
+    return 'envMaps/gradient/gradient.hdr';
+  }
 }
 
 const envMapLibrary = new EnvMapLibrary();

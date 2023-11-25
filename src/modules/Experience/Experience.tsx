@@ -1,7 +1,7 @@
 'use client';
 import React, { Suspense, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment } from '@react-three/drei';
+import { Environment, Lightformer, OrbitControls } from '@react-three/drei';
 import {
   AboutScene,
   AudioLibraryScene,
@@ -43,13 +43,11 @@ const Experience = () => {
 
   return (
     <div id="experience">
-      <Canvas
-      // camera={{ position: cameraPosition, fov: 90, near: 0.1, far: 20 }}
-      >
+      <Canvas>
         <Suspense fallback={<LoaderScene />}>
           <MainCamera />
           {debugMode && <Perf position="top-left" />}
-          <Environment background files={envMapLibrary.default()} />
+          <Environment background files={envMapLibrary.gradient()} blur={0.9} />
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
           <WelcomeScene position={welcomePosition} />
