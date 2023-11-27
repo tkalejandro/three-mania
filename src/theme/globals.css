@@ -1,7 +1,8 @@
 
 html,
 body {
-  background-color: ivory;
+  background-color: #fffff0;
+  font-family: 'Montserrat Variable', sans-serif !important;
 }
 #experience {
   position: fixed;
@@ -9,5 +10,5 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at top, #001a40 , #002633);
+  background: radial-gradient(circle at top, #FAFAFA , #fffff0);
 }

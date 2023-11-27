@@ -6,7 +6,12 @@ import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react';
  */
 const theme = extendTheme(
   {
+    fonts: {
+      heading: `'Montserrat Variable', sans-serif`,
+      body: `'Montserrat Variable', sans-serif`,
+    },
     colors: {
+      background: '#FFFFF0',
       black: '#1C1C1C', // A dark, elegant black
       white: '#F5F5F5', // A slightly off-white for elegance
       primary: {
@@ -15,25 +20,25 @@ const theme = extendTheme(
         200: '#80c2ff',
         300: '#4da6ff',
         400: '#1a8cff',
-        500: '#0056b3', // Dark and elegant blue shade
-        600: '#004080',
-        700: '#003366',
-        800: '#002633',
-        900: '#001a40',
-        main: '#0056b3',
+        500: '#220632', // Very dark purple (adjust as needed)
+        600: '#0066cc',
+        700: '#0052b3',
+        800: '#004080',
+        900: '#002633',
+        main: '#220632', // Use the same main shade for consistency
       },
       secondary: {
-        50: '#f2f2f2', // Light gray for light backgrounds
-        100: '#e6e6e6',
-        200: '#cccccc',
-        300: '#b3b3b3',
-        400: '#999999',
-        500: '#6C757D', // Your dark gray for dark backgrounds
-        600: '#595e66',
-        700: '#474d55',
-        800: '#353b44',
-        900: '#23282f',
-        main: '#6C757D',
+        50: '#f2f0f4', // Very light purple (adjust as needed)
+        100: '#e0ddee',
+        200: '#cdc3e9',
+        300: '#bba8e4',
+        400: '#a993e0',
+        500: '#9679db', // Light Secondary
+        600: '#816fd6',
+        700: '#6e64d2',
+        800: '#5b5acf',
+        900: '#494fcb',
+        main: '#9679db', // Use the same main shade for consistency
       },
       warning: {
         50: '#fff7e6',

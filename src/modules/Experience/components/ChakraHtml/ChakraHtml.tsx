@@ -3,7 +3,7 @@ import { ChakraProvider, Button } from '@chakra-ui/react';
 import { Html } from '@react-three/drei';
 import { HtmlProps } from '@react-three/drei/web/Html';
 import React, { forwardRef, PropsWithChildren } from 'react';
-
+// import '@fontsource-variable/montserrat';
 interface ChakraHtmlProps extends HtmlProps {
   children: React.ReactNode;
 }

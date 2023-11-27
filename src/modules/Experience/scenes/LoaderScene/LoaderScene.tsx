@@ -12,7 +12,7 @@ const LoaderScene = () => {
   const theme = useTheme();
   return (
     <ChakraHtml center>
-      <Text color={theme.colors.white}>{progress.toFixed(0)} % loaded</Text>
+      <Text>{progress.toFixed(0)} % loaded</Text>
     </ChakraHtml>
   );
 };
