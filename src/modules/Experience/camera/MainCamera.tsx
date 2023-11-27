@@ -6,9 +6,7 @@ const MainCamera = () => {
   const cameraPosition = useCamera((state) => state.cameraPosition);
   const cameraRef = useRef<any>(null);
 
-  const t = useAspect(window.screen.width, window.screen.height);
-
-  useHelper(cameraRef, THREE.CameraHelper);
+  // useHelper(cameraRef, THREE.CameraHelper);
 
   return (
     <group>

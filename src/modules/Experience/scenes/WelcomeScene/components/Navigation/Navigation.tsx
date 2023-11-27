@@ -38,7 +38,9 @@ const Navigation = () => {
       />
       <ChakraHtml ref={htmlRef} position={[0, 0.1, 0]}>
         <Flex minH="300px" height="30vh" justify="space-around" direction="column">
-          <Button size="sm">About</Button>
+          <Button size="sm" colorScheme="primary">
+            About
+          </Button>
           <Button size="sm">Project and Awards</Button>
           <Button size="sm">Media Cover</Button>
           <Button size="sm">Audio Library</Button>

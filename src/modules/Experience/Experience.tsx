@@ -1,7 +1,7 @@
 'use client';
 import React, { Suspense, useEffect, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import { Environment, Lightformer, OrbitControls } from '@react-three/drei';
+import { Environment, Lightformer, OrbitControls, SpotLight } from '@react-three/drei';
 import {
   AboutScene,
   AudioLibraryScene,
@@ -18,6 +18,7 @@ import { envMapLibrary } from '@/helpers';
 import { DebugButton } from './components';
 
 import { MainCamera } from './camera';
+import { MainLight } from './lights';
 
 /**
  * Heart of the 3D App
@@ -43,13 +44,14 @@ const Experience = () => {
 
   return (
     <div id="experience">
-      <Canvas>
+      <Canvas flat>
         <Suspense fallback={<LoaderScene />}>
           <MainCamera />
+          <MainLight />
+
           {debugMode && <Perf position="top-left" />}
-          <Environment background files={envMapLibrary.gradient()} />
-          <ambientLight />
-          <pointLight position={[10, 10, 10]} />
+          {/* <Environment background files={envMapLibrary.gradient()} /> */}
+
           <WelcomeScene position={welcomePosition} />
           <AboutScene position={aboutPosition} />
           <ProjectsAwardsScene position={projectsAwardsPosition} />
