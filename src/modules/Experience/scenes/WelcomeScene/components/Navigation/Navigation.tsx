@@ -1,18 +1,21 @@
 import { ChakraHtml } from '@/modules/Experience/components';
+import { useAppSettings } from '@/store';
 import { Button, Flex, useTheme } from '@chakra-ui/react';
 import { Sparkles } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const Navigation = () => {
   const theme = useTheme();
 
   const htmlRef = useRef<HTMLDivElement>(null!);
   const [opacity, setOpacity] = useState<number>(0);
-
+  const navigationLoaded = useAppSettings((state) => state.navigationLoaded);
+  const setNavigationLoaded = useAppSettings((state) => state.setNavigationLoaded);
   useFrame((state, delta) => {
     if (opacity >= 0.99) {
-      // Finish!
+      // Finish!;
+
       return;
     }
     const targetOpacity = 1; // Target opacity value
@@ -25,6 +28,14 @@ const Navigation = () => {
       return newOpacity;
     });
   });
+
+  useEffect(() => {
+    if (!navigationLoaded) {
+      setTimeout(() => {
+        setNavigationLoaded(true);
+      }, 250);
+    }
+  }, []);
 
   return (
     <>

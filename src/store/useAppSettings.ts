@@ -6,28 +6,25 @@ interface AppSettingsState {
    * Global loading
    */
   loading: boolean;
+  /**
+   * Indicates if navigation already load.
+   */
+  navigationLoaded: boolean;
+
+  setNavigationLoaded: (value: boolean) => void;
 }
 
 /**
  * All related to the APP x Client
  */
-const useAppSettingsStore = create<AppSettingsState>()(
-  // Save data in local storage
-  persist(
-    (set, get) => {
-      // Here we can add some logics
-
-      return {
-        // Our State
-        loading: false,
-      };
-    },
-    {
-      // This is how persist will find and save the state in LocalStorage
-      name: 'app-settings-storage',
-    },
-  ),
-);
+const useAppSettingsStore = create<AppSettingsState>((set) => {
+  const setNavigationLoaded = (value: boolean) => set({ navigationLoaded: value });
+  return {
+    loading: false,
+    navigationLoaded: false,
+    setNavigationLoaded: setNavigationLoaded,
+  };
+});
 
 const useAppSettings = useAppSettingsStore;
 

@@ -37,11 +37,12 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
 
   const playButton = () => {
     // Lets animate the guitar
-    mainSound.currentTime = 0;
-    mainSound.volume = 1;
-    mainSound.loop = true;
+    // REVERT ME
+    // mainSound.currentTime = 0;
+    // mainSound.volume = 1;
+    // mainSound.loop = true;
 
-    mainSound.play();
+    // mainSound.play();
     setAction(Phase.Playing);
   };
 
@@ -82,35 +83,33 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
     }
   });
   return (
-    <>
-      <Center>
-        <group position={position} scale={2}>
-          <Float
-            speed={5}
-            rotationIntensity={navigationOpen ? 0.1 : 0}
-            floatIntensity={navigationOpen ? 0.05 : 0}
-            floatingRange={[-0.1, 0.1]}
-          >
-            <group ref={guitarRef}>
-              <GuitarModel />
-            </group>
-          </Float>
-          {navigationOpen ? (
-            <>
-              <Navigation />
-            </>
-          ) : (
-            <>
-              <ChakraHtml ref={htmlRef} prepend center occlude position={[0, -0.8, 0]}>
-                <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
-                  Play
-                </Button>
-              </ChakraHtml>
-            </>
-          )}
-        </group>
-      </Center>
-    </>
+    <Center>
+      <group position={position} scale={2}>
+        <Float
+          speed={5}
+          rotationIntensity={navigationOpen ? 0.1 : 0}
+          floatIntensity={navigationOpen ? 0.05 : 0}
+          floatingRange={[-0.1, 0.1]}
+        >
+          <group ref={guitarRef}>
+            <GuitarModel />
+          </group>
+        </Float>
+        {navigationOpen ? (
+          <>
+            <Navigation />
+          </>
+        ) : (
+          <>
+            <ChakraHtml ref={htmlRef} prepend center occlude position={[0, -0.8, 0]}>
+              <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
+                Play
+              </Button>
+            </ChakraHtml>
+          </>
+        )}
+      </group>
+    </Center>
   );
 };
 
