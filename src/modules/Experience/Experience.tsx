@@ -1,13 +1,7 @@
 'use client';
-import React, { Suspense, useEffect, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
-import {
-  Environment,
-  Lightformer,
-  OrbitControls,
-  ScrollControls,
-  SpotLight,
-} from '@react-three/drei';
+import { ScrollControls } from '@react-three/drei';
 import {
   AboutScene,
   AudioLibraryScene,
@@ -20,9 +14,7 @@ import ProjectsAwardsScene from './scenes/ProjectsAwardsScene/ProjectsAwardsScen
 import { Perf } from 'r3f-perf';
 import { useAppSettings, useCamera, useDeveloperSettings } from '@/store';
 import { useControls } from 'leva';
-import { envMapLibrary } from '@/helpers';
 import { DebugButton } from './components';
-
 import { MainCamera } from './camera';
 import { MainLight } from './lights';
 
@@ -52,20 +44,20 @@ const Experience = () => {
   useEffect(() => {
     if (!navigationLoaded) return;
     setDistance(1);
-    console.log('i happen');
   }, [navigationLoaded]);
 
+  const scrollControls = useControls('Scroll Controls', {
+    pages: { value: 4, step: 0.1 },
+    eps: { value: 0.00001, step: 0.00001 },
+  });
   return (
     <div id="experience">
       <Canvas flat>
-        <ScrollControls pages={2} distance={distance}>
+        <ScrollControls pages={scrollControls.pages} distance={distance} eps={scrollControls.eps}>
           <Suspense fallback={<LoaderScene />}>
             <MainCamera />
             <MainLight />
-
             {debugMode && <Perf position="top-left" />}
-            {/* <Environment background files={envMapLibrary.gradient()} /> */}
-
             <WelcomeScene position={welcomePosition} />
             <AboutScene position={aboutPosition} />
             <ProjectsAwardsScene position={projectsAwardsPosition} />

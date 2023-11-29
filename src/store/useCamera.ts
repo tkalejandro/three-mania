@@ -3,11 +3,7 @@ import { create } from 'zustand';
 
 interface CameraState {
   cameraPosition: [number, number, number];
-  aboutPosition: Vector3;
-
-  nextPosition?: Vector3;
   moveCameraCloser: () => void;
-  moveTo: (value: string) => void;
 }
 
 /**
@@ -24,11 +20,9 @@ const useCameraStore = create<CameraState>((set) => {
     }));
   };
 
-  const moveTo = (value: string) => set({ nextPosition: [4, -2, 0] });
-
   return {
     cameraPosition: [0, 0, 2],
-    aboutPosition: [4, -2, 0],
+
     moveCameraCloser,
   };
 });

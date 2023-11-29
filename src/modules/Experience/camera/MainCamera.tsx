@@ -1,25 +1,22 @@
-import { useAppSettings, useCamera } from '@/store';
-import { useEffect, useRef } from 'react';
-import { PerspectiveCamera, ScrollControlsState, useScroll } from '@react-three/drei';
+import { useCamera } from '@/store';
+import { useRef } from 'react';
+import { PerspectiveCamera, useScroll } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
-
-// Extend the existing ScrollControlsState type to include the scroll property
-interface ExtendedScrollControlsState extends ScrollControlsState {
-  scroll: {
-    current: number;
-  };
-}
 
 const MainCamera = () => {
   const cameraPosition = useCamera((state) => state.cameraPosition);
   const cameraRef = useRef<any>(null);
 
-  const scroll = useScroll() as ExtendedScrollControlsState;
+  const scroll = useScroll();
 
   useFrame((state) => {
-    console.log(scroll.scroll);
-
-    state.camera.position.y = -scroll.scroll.current * 500;
+    let value = scroll.offset;
+    if (!isFinite(value)) {
+      //Fix the bug when the number is infinity.
+      value = 0;
+    }
+    // 20.5 Match perfectly for each section that
+    state.camera.position.y = -value * 20.5;
   });
 
   return (
