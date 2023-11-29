@@ -1,4 +1,3 @@
-import { Vector3 } from '@react-three/fiber';
 import { create } from 'zustand';
 
 interface CameraState {

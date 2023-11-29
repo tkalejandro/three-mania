@@ -25,7 +25,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   const [action, setAction] = useState<Phase>(Phase.Ready);
   const [navigationOpen, setNavigationOpen] = useState<boolean>(false);
 
-  const mainSound = audioLibrary.forestAmbience();
+  const mainSound = audioLibrary.omnisphereExperiment();
 
   useEffect(() => {
     if (!distanceFactor) return;
