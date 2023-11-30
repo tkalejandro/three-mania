@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { act, GroupProps, ThreeElements, useFrame, Vector3 } from '@react-three/fiber';
-import { Center, Float, Html, OrbitControls, Sparkles } from '@react-three/drei';
+import { useFrame, Vector3 } from '@react-three/fiber';
+import { Center, Float, useScroll } from '@react-three/drei';
 import { GuitarModel } from '../../models';
-import { useCamera } from '@/store';
 import { Group } from 'three';
 import { Navigation } from './components';
 import { Button, useTheme } from '@chakra-ui/react';
@@ -15,9 +14,6 @@ interface WelcomeSceneProps {
 }
 
 const WelcomeScene = ({ position }: WelcomeSceneProps) => {
-  const moveCameraCloser = useCamera((state) => state.moveCameraCloser);
-
-  const theme = useTheme();
   //Tweek! to keep distance factor and solve bug of button
   // 10 is default
   const [distanceFactor, setDistanceFactor] = useState<undefined | number>(10);
@@ -28,6 +24,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   const [opacity, setOpacity] = useState<number>(1);
   const [action, setAction] = useState<Phase>(Phase.Ready);
   const [navigationOpen, setNavigationOpen] = useState<boolean>(false);
+
   const mainSound = audioLibrary.omnisphereExperiment();
 
   useEffect(() => {
@@ -36,18 +33,17 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   }, []);
 
   const playButton = () => {
-    // Lets animate the guitar
     mainSound.currentTime = 0;
     mainSound.volume = 1;
     mainSound.loop = true;
 
     mainSound.play();
+    // Lets animate the guitar
     setAction(Phase.Playing);
   };
 
   useFrame((state, delta) => {
     // Rotate the guitar over time
-
     if (guitarRef.current == null) return;
     if (action === Phase.Playing) {
       if (htmlRef.current != null) {
@@ -81,36 +77,37 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
       guitarRef.current.rotation.y += delta * 3.5;
     }
   });
+
+  useScroll();
+
   return (
-    <>
-      <Center>
-        <group position={position} scale={2}>
-          <Float
-            speed={5}
-            rotationIntensity={navigationOpen ? 0.1 : 0}
-            floatIntensity={navigationOpen ? 0.05 : 0}
-            floatingRange={[-0.1, 0.1]}
-          >
-            <group ref={guitarRef}>
-              <GuitarModel />
-            </group>
-          </Float>
-          {navigationOpen ? (
-            <>
-              <Navigation />
-            </>
-          ) : (
-            <>
-              <ChakraHtml ref={htmlRef} prepend center occlude position={[0, -0.8, 0]}>
-                <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
-                  Play
-                </Button>
-              </ChakraHtml>
-            </>
-          )}
-        </group>
-      </Center>
-    </>
+    <Center>
+      <group position={position} scale={2}>
+        <Float
+          speed={5}
+          rotationIntensity={navigationOpen ? 0.1 : 0}
+          floatIntensity={navigationOpen ? 0.05 : 0}
+          floatingRange={[-0.1, 0.1]}
+        >
+          <group ref={guitarRef}>
+            <GuitarModel />
+          </group>
+        </Float>
+        {navigationOpen ? (
+          <>
+            <Navigation />
+          </>
+        ) : (
+          <>
+            <ChakraHtml ref={htmlRef} prepend center occlude position={[0, -0.8, 0]}>
+              <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
+                Play
+              </Button>
+            </ChakraHtml>
+          </>
+        )}
+      </group>
+    </Center>
   );
 };
 
