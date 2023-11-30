@@ -1,8 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { useFrame, Vector3 } from '@react-three/fiber';
-import { Text, useTexture } from '@react-three/drei';
+import { Center, Text, useTexture } from '@react-three/drei';
 import { useControls } from 'leva';
 import { audioLibrary, textureLibrary } from '@/helpers';
+import { MovingFace } from './components';
+import { ChakraHtml } from '../../components';
 
 interface AboutSceneProps {
   position: Vector3;
@@ -32,21 +34,14 @@ const AboutScene = ({ position }: AboutSceneProps) => {
   };
 
   return (
-    <group position={position}>
-      <mesh
-        ref={meshRef}
-        scale={active ? 1.5 : 1}
-        onClick={dummyAudio}
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}
-      >
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial {...dummyTexture} color={hovered ? 'hotpink' : 'orange'} />
-      </mesh>
-      <Text position={[0, -1, 0]} scale={0.2}>
-        Im About
-      </Text>
-    </group>
+    <Center>
+      <group position={position}>
+        <MovingFace />
+        <ChakraHtml>
+          <p>Hello</p>
+        </ChakraHtml>
+      </group>
+    </Center>
   );
 };
 
