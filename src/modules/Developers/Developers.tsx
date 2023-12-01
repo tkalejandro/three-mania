@@ -11,6 +11,7 @@ import {
   Flex,
   Container,
 } from '@chakra-ui/react';
+
 const devTeamInfo = [
   {
     id: 0,
@@ -54,7 +55,9 @@ const tools = [
 export const Developers = () => {
   return (
     <>
-      <Heading as="h1">About Development</Heading>
+      <Heading as="h1" my={10}>
+        About Development
+      </Heading>
       <Text>
         If you've found your way to this section, it's probably because you're curious about the
         brilliant minds behind the creation of this composer portfolio. Below, you'll find an
@@ -65,14 +68,16 @@ export const Developers = () => {
         to you! Take a moment to delve into the details and discover more about our team and the
         collaborative efforts that have shaped this composer portfolio.
       </Text>
-      <Flex justify="space-between" my="12">
+      <Flex justify="space-between" my="12" gap="10" direction={{ base: 'column', md: 'row' }}>
         {devTeamInfo.map((member) => (
-          <Card key={member.id} w="30vw" boxShadow="md">
+          <Card key={member.id} w={{ base: '100%', md: '30vw' }} boxShadow="md">
             <CardBody padding="0">
               <Image src={member.img} alt={`${member.fullName} portrait`} mb="5" />
               <UnorderedList mx="4" listStyleType="none">
                 {member.role.map((task, i) => (
-                  <ListItem key={i}>{task}</ListItem>
+                  <ListItem key={i} mb="2" mx={{ base: '0', md: '4' }}>
+                    {task}
+                  </ListItem>
                 ))}
               </UnorderedList>
             </CardBody>
@@ -83,12 +88,14 @@ export const Developers = () => {
         ))}
       </Flex>
       <Container my={10}>
-        <Heading as="h2" size="lg">
+        <Heading as="h2" size="lg" my={10}>
           Tools
         </Heading>
         <UnorderedList listStyleType="none">
           {tools.map((tool, i) => (
-            <ListItem key={i}>{tool}</ListItem>
+            <ListItem key={i} m={4}>
+              {tool}
+            </ListItem>
           ))}
         </UnorderedList>
       </Container>
