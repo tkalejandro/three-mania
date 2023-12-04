@@ -89,7 +89,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
     let animation = gsap.timeline();
     animation.to(loaderShaderRef.current.uniforms.uFull, {
       value: 1.01,
-      duration: 1.55,
+      duration: 1,
       ease: 'back.inOut'
     });
   }
