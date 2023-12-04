@@ -19,13 +19,7 @@ const LoaderScene = () => {
       </ChakraHtml>
       <mesh scale={20}>
         <planeGeometry />
-        <shaderMaterial
-          vertexShader={loaderVertexShader}
-          fragmentShader={loaderFragmentShader}
-          uniforms={{
-            uFull: { value: 0.0 },
-          }}
-        />
+        <meshBasicMaterial color='#a8fff0' />
       </mesh>
     </>
   );
