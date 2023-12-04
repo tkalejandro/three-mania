@@ -1,13 +1,8 @@
 import { Html, shaderMaterial, useProgress } from '@react-three/drei';
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { ChakraHtml } from '../../components';
 import { Text, useTheme } from '@chakra-ui/react';
-// @ts-ignore
-import loaderVertexShader from '../../shaders/LoaderShader/vertex.glsl';
-// @ts-ignore
-import loaderFragmentShader from '../../shaders/LoaderShader/fragment.glsl';
-import gsap from 'gsap';
-import { extend } from '@react-three/fiber';
+import { loaderFragmentShader, loaderVertexShader } from '../../shaders/loaderShader';
 /**
  * First Thing to appear :-)
  * This might dissapear in the future.

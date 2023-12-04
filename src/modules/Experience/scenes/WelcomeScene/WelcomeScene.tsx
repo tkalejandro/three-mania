@@ -8,11 +8,8 @@ import { Button, useTheme } from '@chakra-ui/react';
 import { ChakraHtml } from '../../components';
 import { Phase } from '@/enums/Experience';
 import { audioLibrary } from '@/helpers';
-// @ts-ignore
-import loaderVertexShader from '../../shaders/LoaderShader/vertex.glsl';
-// @ts-ignore
-import loaderFragmentShader from '../../shaders/LoaderShader/fragment.glsl';
 import gsap from 'gsap';
+import { loaderFragmentShader, loaderVertexShader } from '../../shaders/loaderShader';
 
 interface WelcomeSceneProps {
   position: Vector3;
