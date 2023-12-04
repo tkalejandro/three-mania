@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useFrame, Vector3 } from '@react-three/fiber';
 import { Center, Float, Html, useProgress, useScroll } from '@react-three/drei';
 import { GuitarModel } from '../../models';
-import { Group } from 'three';
+import { Group, ShaderMaterial } from 'three';
 import { Navigation } from './components';
 import { Button, useTheme } from '@chakra-ui/react';
 import { ChakraHtml } from '../../components';
@@ -23,10 +23,9 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   // 10 is default
   const [distanceFactor, setDistanceFactor] = useState<undefined | number>(10);
 
-
   const guitarRef = useRef<Group>(null!);
   const htmlRef = useRef<HTMLDivElement>(null!);
-  const loaderShaderRef = useRef<any>()
+  const loaderShaderRef = useRef<ShaderMaterial>(null!);
 
   const [opacity, setOpacity] = useState<number>(1);
   const [action, setAction] = useState<Phase>(Phase.Ready);
@@ -89,65 +88,65 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
 
   // If the loaderShaderRef and HtmlRef
   // are loaded
-  if(loaderShaderRef.current && htmlRef.current)
-  {
-      let animation = gsap.timeline()
-      animation.to(loaderShaderRef.current.uniforms.uFull, {value: 1.0, duration: 2, ease: 'ease.in'})
+  if (loaderShaderRef.current && htmlRef.current) {
+    let animation = gsap.timeline();
+    animation.to(loaderShaderRef.current.uniforms.uFull, {
+      value: 1.0,
+      duration: 2,
+      ease: 'ease.in',
+    });
   }
 
   return (
     <>
-    <mesh
-      scale={5}
-      position={[0, 0, 1]}
-    >
-      <planeGeometry />
-      <shaderMaterial
-        ref={loaderShaderRef}
-        vertexShader={loaderVertexShader}
-        fragmentShader={loaderFragmentShader}
-        uniforms={{
-          uFull: { value: 0.0 }
-        }}
-      />
-    </mesh>
+      <mesh scale={5} position={[0, 0, 1]}>
+        <planeGeometry />
+        <shaderMaterial
+          ref={loaderShaderRef}
+          vertexShader={loaderVertexShader}
+          fragmentShader={loaderFragmentShader}
+          uniforms={{
+            uFull: { value: 0.0 },
+          }}
+        />
+      </mesh>
 
-    <Center>
-      <group position={position} scale={2}>
-        <Float
-          speed={2}
-          rotationIntensity={navigationOpen ? 0.1 : 0}
-          floatIntensity={navigationOpen ? 0.05 : 0}
-          floatingRange={[-0.1, 0.1]}
-        >
-          <group ref={guitarRef}>
-            <GuitarModel />
-          </group>
-        </Float>
-        {navigationOpen ? (
-          <>
-            <Navigation />
-          </>
-        ) : (
-          <>
-            <ChakraHtml
-              ref={htmlRef}
-              occlude="blending"
-              prepend
-              center
-              position={[0, -0.8, 0]}
-              style={{
-                opacity: 1
-              }}
-            >
-              <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
-                Play
-              </Button>
-            </ChakraHtml>
-          </>
-        )}
-      </group>
-    </Center>
+      <Center>
+        <group position={position} scale={2}>
+          <Float
+            speed={2}
+            rotationIntensity={navigationOpen ? 0.1 : 0}
+            floatIntensity={navigationOpen ? 0.05 : 0}
+            floatingRange={[-0.1, 0.1]}
+          >
+            <group ref={guitarRef}>
+              <GuitarModel />
+            </group>
+          </Float>
+          {navigationOpen ? (
+            <>
+              <Navigation />
+            </>
+          ) : (
+            <>
+              <ChakraHtml
+                ref={htmlRef}
+                occlude="blending"
+                prepend
+                center
+                position={[0, -0.8, 0]}
+                style={{
+                  opacity: 1,
+                }}
+              >
+                <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
+                  Play
+                </Button>
+              </ChakraHtml>
+            </>
+          )}
+        </group>
+      </Center>
     </>
   );
 };
