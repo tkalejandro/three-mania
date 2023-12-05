@@ -15,11 +15,11 @@ const LoaderScene = () => {
   return (
     <>
       <ChakraHtml center>
-        <Text>{progress.toFixed(0)} % loaded</Text>
+        <Text color={theme.colors.white}>{progress.toFixed(0)} % loaded</Text>
       </ChakraHtml>
       <mesh scale={20}>
         <planeGeometry />
-        <meshBasicMaterial color='#a8fff0' />
+        <meshBasicMaterial color={theme.colors.black} />
       </mesh>
     </>
   );

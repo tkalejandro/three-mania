@@ -20,6 +20,8 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   // 10 is default
   const [distanceFactor, setDistanceFactor] = useState<undefined | number>(10);
 
+  const theme = useTheme()
+
   const guitarRef = useRef<Group>(null!);
   const htmlRef = useRef<HTMLDivElement>(null!);
   const loaderShaderRef = useRef<ShaderMaterial>(null!);
@@ -104,6 +106,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           fragmentShader={loaderFragmentShader}
           uniforms={{
             uFull: { value: -1.01 },
+            uColor: {value: theme.colors.black.replace('#', '0x')}
           }}
         />
       </mesh>

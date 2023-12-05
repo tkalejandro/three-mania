@@ -1,7 +1,8 @@
 varying vec2 vUv;
 uniform float uFull;
+uniform int uColor;
 
-//	Classic Perlin 2D Noise 
+//	Classic Perlin 2D Noise
 //	by Stefan Gustavson
 //
 vec2 fade(vec2 t)
@@ -49,15 +50,22 @@ float cnoise(vec2 P)
 
 void main()
 {
-    vec3 blackColor = vec3(0.0);
-    vec3 uvColor = vec3(0.66, 1.0, 0.94);
+    // White
+    vec3 firstColor = vec3(1.);
 
-    float strength = sin(cnoise(vUv * 10.0) * 20.0);
+    float rValue = float(uColor / 256 / 256);
+    float gValue = float(uColor / 256 - int(rValue * 256.));
+    float bValue = float(uColor - int(rValue * 256. * 256.) - int(gValue * 256.));
+    vec3 secondColor = vec3(rValue / 255., gValue / 255., bValue / 255.);
+
+    float strength = sin(cnoise(vUv * 10.) * 20.);
     strength = step(uFull, strength);
 
-    vec3 colorShape = mix(blackColor, uvColor, strength);
+    vec3 colorShape = mix(firstColor, secondColor, strength);
 
-    if (colorShape.z < 0.5)
+    // If the part is white
+    // do not render it
+    if (colorShape.z > 0.5)
     {
       discard;
     }
