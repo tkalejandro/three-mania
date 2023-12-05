@@ -20,6 +20,8 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   // 10 is default
   const [distanceFactor, setDistanceFactor] = useState<undefined | number>(10);
 
+  const theme = useTheme()
+
   const guitarRef = useRef<Group>(null!);
   const htmlRef = useRef<HTMLDivElement>(null!);
   const loaderShaderRef = useRef<ShaderMaterial>(null!);
@@ -88,9 +90,9 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   if (loaderShaderRef.current && htmlRef.current) {
     let animation = gsap.timeline();
     animation.to(loaderShaderRef.current.uniforms.uFull, {
-      value: 1.0,
-      duration: 2,
-      ease: 'ease.in',
+      value: 1.01,
+      duration: 1,
+      ease: 'back.inOut'
     });
   }
 
@@ -103,7 +105,8 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           vertexShader={loaderVertexShader}
           fragmentShader={loaderFragmentShader}
           uniforms={{
-            uFull: { value: 0.0 },
+            uFull: { value: -1.01 },
+            uColor: {value: theme.colors.black.replace('#', '0x')}
           }}
         />
       </mesh>
@@ -132,9 +135,6 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
                 prepend
                 center
                 position={[0, -0.8, 0]}
-                style={{
-                  opacity: 1,
-                }}
               >
                 <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
                   Play
