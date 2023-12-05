@@ -106,7 +106,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           fragmentShader={loaderFragmentShader}
           uniforms={{
             uFull: { value: -1.01 },
-            uColor: {value: theme.colors.black.replace('#', '0x')}
+            uColor: {value: theme.colors.primary.main.replace('#', '0x')}
           }}
         />
       </mesh>
