@@ -10,6 +10,7 @@ import { Phase } from '@/enums/Experience';
 import { audioLibrary } from '@/helpers';
 import gsap from 'gsap';
 import { loaderFragmentShader, loaderVertexShader } from '../../shaders/loaderShader';
+import { useColorManagement } from '@/store';
 
 interface WelcomeSceneProps {
   position: Vector3;
@@ -21,6 +22,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   const [distanceFactor, setDistanceFactor] = useState<undefined | number>(10);
 
   const theme = useTheme()
+  const { loadingBackgroundColor } = useColorManagement()
 
   const guitarRef = useRef<Group>(null!);
   const htmlRef = useRef<HTMLDivElement>(null!);
@@ -106,7 +108,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           fragmentShader={loaderFragmentShader}
           uniforms={{
             uFull: { value: -1.01 },
-            uColor: {value: theme.colors.primary.main.replace('#', '0x')}
+            uColor: {value: loadingBackgroundColor.replace('#', '0x')}
           }}
         />
       </mesh>

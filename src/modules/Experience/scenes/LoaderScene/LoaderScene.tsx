@@ -3,6 +3,7 @@ import React from 'react';
 import { ChakraHtml } from '../../components';
 import { Text, useTheme } from '@chakra-ui/react';
 import { loaderFragmentShader, loaderVertexShader } from '../../shaders/loaderShader';
+import { useColorManagement } from '@/store';
 /**
  * First Thing to appear :-)
  * This might dissapear in the future.
@@ -11,6 +12,7 @@ import { loaderFragmentShader, loaderVertexShader } from '../../shaders/loaderSh
 const LoaderScene = () => {
   const { active, progress, errors, item, loaded, total } = useProgress();
   const theme = useTheme();
+  const { loadingBackgroundColor } = useColorManagement()
 
   return (
     <>
@@ -19,7 +21,7 @@ const LoaderScene = () => {
       </ChakraHtml>
       <mesh scale={20}>
         <planeGeometry />
-        <meshBasicMaterial color={theme.colors.primary.main} />
+        <meshBasicMaterial color={loadingBackgroundColor} />
       </mesh>
     </>
   );
