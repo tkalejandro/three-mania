@@ -19,7 +19,7 @@ const LoaderScene = () => {
       </ChakraHtml>
       <mesh scale={20}>
         <planeGeometry />
-        <meshBasicMaterial color={theme.colors.black} />
+        <meshBasicMaterial color={theme.colors.primary.main} />
       </mesh>
     </>
   );
