@@ -4,7 +4,7 @@ import { Center, Text, useTexture } from '@react-three/drei';
 import { useControls } from 'leva';
 import { audioLibrary, textureLibrary } from '@/helpers';
 import { MovingFace } from './components';
-import { ChakraHtml } from '../../components';
+import { ChakraHtml, ThreeDButton } from '../../components';
 
 interface AboutSceneProps {
   position: Vector3;
@@ -13,6 +13,8 @@ interface AboutSceneProps {
 const AboutScene = ({ position }: AboutSceneProps) => {
   // This reference will give us direct access to the mesh
   const meshRef = useRef<THREE.Mesh>(null);
+  const [selectedColor, setSelectedColor] = useState<string>();
+
   // Set up state for the hovered and active state
   const [hovered, setHover] = useState<boolean>(false);
   const [active, setActive] = useState<boolean>(false);
@@ -34,14 +36,22 @@ const AboutScene = ({ position }: AboutSceneProps) => {
   };
 
   return (
-    <Center>
-      <group position={position}>
-        <MovingFace />
-        <ChakraHtml>
-          <p>Hello</p>
-        </ChakraHtml>
-      </group>
-    </Center>
+    <>
+      <Center>
+        <group position={position}>
+          <MovingFace />
+          <ChakraHtml>
+            <p>Hello</p>
+          </ChakraHtml>
+          <group position={[0, -1, 0]}>
+            <ThreeDButton position={[-0.7, 0.5, 0]} text="Succcess" color="success" size="xl" />
+            <ThreeDButton position={[0.7, 0.5, 0]} text="Warning" color="warning" size="xl" />
+            <ThreeDButton position={[-0.7, 0, 0]} text="Danger" color="danger" size="xl" />
+            <ThreeDButton position={[0.7, 0, 0]} text="Info" color="info" size="xl" />
+          </group>
+        </group>
+      </Center>
+    </>
   );
 };
 

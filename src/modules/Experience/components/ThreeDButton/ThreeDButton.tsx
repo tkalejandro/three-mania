@@ -6,7 +6,7 @@ import { useTheme } from '@chakra-ui/system';
 import { ThreeColor, ThreeSize } from '@/types/ExperienceTypes';
 
 interface ThreeDButtonProps extends GroupProps {
-  size?: 'sm' | 'md' | 'lg';
+  size?: ThreeSize;
   color?: ThreeColor;
   text: string;
 }
@@ -16,21 +16,38 @@ const ThreeDButton = ({ size = 'md', color, text, ...props }: ThreeDButtonProps)
 
   const buttonRef = useRef<Mesh>(null);
   const textRef = useRef<Group>(null);
-  const [buttonSize, setButtonSize] = useState<ThreeSize>({
-    sm: [0.25, 0.09, 0.05],
-    md: [0.3, 0.12, 0.05],
-    lg: [0.4, 0.14, 0.05],
-  });
+  const [buttonScale, setButtonScale] = useState<number | null>(null);
   const [buttonColor, setButtonColor] = useState<string>();
   const [textColor, setTextColor] = useState<string>();
-  const [fontSize, setFontSize] = useState<number>();
 
   useEffect(() => {
     colorToUse();
-    setButtonSize((prev) => ({ ...prev, [size]: buttonSize[size] }));
+    scaleToUse();
   }, [size, color]);
 
-  const colorToUse = () => {
+  const scaleToUse = (): void => {
+    switch (size) {
+      case 'xs':
+        setButtonScale(0.4);
+        break;
+      case 'sm':
+        setButtonScale(0.7);
+        break;
+      case 'md':
+        setButtonScale(1);
+        break;
+      case 'lg':
+        setButtonScale(1.3);
+        break;
+      case 'xl':
+        setButtonScale(1.6);
+        break;
+      default:
+        setButtonScale(null);
+    }
+  };
+
+  const colorToUse = (): void => {
     switch (color) {
       case 'primary':
         setButtonColor(theme.colors.primary.main);
@@ -48,8 +65,8 @@ const ThreeDButton = ({ size = 'md', color, text, ...props }: ThreeDButtonProps)
         setButtonColor(theme.colors.info.main);
         setTextColor(theme.colors.white);
         break;
-      case 'error':
-        setButtonColor(theme.colors.error.main);
+      case 'danger':
+        setButtonColor(theme.colors.danger.main);
         setTextColor(theme.colors.white);
         break;
       case 'success':
@@ -69,22 +86,13 @@ const ThreeDButton = ({ size = 'md', color, text, ...props }: ThreeDButtonProps)
         setButtonColor(theme.colors.primary.main);
     }
   };
-
-  const assignFontSize = () => {
-    if (size === 'sm') {
-      return 0.06;
-    } else if (size === 'md') {
-      return 0.065;
-    }
-    return 0.07;
-  };
-
+  if (!buttonScale) return null;
   return (
-    <group {...props}>
+    <group {...props} scale={buttonScale}>
       {/* Button */}
 
       <mesh ref={buttonRef} position={[0, 0, 0]}>
-        <boxGeometry args={[...buttonSize[size], 1, 1, 1]} />
+        <boxGeometry args={[0.4, 0.14, 0.05, 1, 1, 1]} />
         <meshStandardMaterial color={buttonColor} />
       </mesh>
 
@@ -92,7 +100,7 @@ const ThreeDButton = ({ size = 'md', color, text, ...props }: ThreeDButtonProps)
       <Text
         position={[0, -0.005, 0.028]}
         ref={textRef}
-        fontSize={assignFontSize()}
+        fontSize={0.07}
         font="Arial"
         color={textColor}
       >

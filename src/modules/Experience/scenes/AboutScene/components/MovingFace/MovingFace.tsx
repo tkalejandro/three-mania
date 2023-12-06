@@ -1,9 +1,13 @@
 import React, { useRef } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useFrame, useThree, Vector3 } from '@react-three/fiber';
 import { Mesh } from 'three';
 import { useControls } from 'leva';
 
-const MovingFace = () => {
+interface MovingFaceProps {
+  scenePositionY?: number;
+}
+
+const MovingFace = ({ scenePositionY }: MovingFaceProps) => {
   const faceRef = useRef<Mesh>(null!);
 
   const { positionIntensityX, positionIntensityY, lookAtIntensity, positionY } = useControls(
@@ -28,7 +32,6 @@ const MovingFace = () => {
       faceRef.current.position.x = mouseX * positionIntensityX;
       // PositionY is to correct the position of the face.
       faceRef.current.position.y = positionY + mouseY * positionIntensityY;
-
       // Make the face look at the mouse
       faceRef.current.lookAt(mouseX * lookAtIntensity, mouseY * lookAtIntensity, Math.PI * 0.5);
     }
