@@ -1,4 +1,6 @@
-import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react';
+import { ChakraTheme, extendTheme, withDefaultColorScheme } from '@chakra-ui/react';
+import { AppTheme } from './theme.d';
+// Define the type for your theme
 
 /**
  * TO extend the Theme is very simple.
@@ -6,6 +8,14 @@ import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react';
  */
 const theme = extendTheme(
   {
+    breakpoints: {
+      base: '0px',
+      sm: '320px',
+      md: '768px',
+      lg: '960px',
+      xl: '1200px',
+      '2xl': '1536px',
+    },
     fonts: {
       heading: `'Montserrat Variable', sans-serif`,
       body: `'Montserrat Variable', sans-serif`,

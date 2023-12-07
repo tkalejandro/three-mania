@@ -5,12 +5,17 @@ import { useControls } from 'leva';
 import { audioLibrary, textureLibrary } from '@/helpers';
 import { MovingFace } from './components';
 import { ChakraHtml, ThreeDButton } from '../../components';
+import { useBreakpointValue, useMediaQuery } from '@chakra-ui/media-query';
+import { useTheme } from '@chakra-ui/react';
+import useAppBreakpoints from '@/hooks/useAppBreakpoints';
 
 interface AboutSceneProps {
   position: Vector3;
 }
 
 const AboutScene = ({ position }: AboutSceneProps) => {
+  const { isBigTablet } = useAppBreakpoints();
+  console.log(isBigTablet);
   // This reference will give us direct access to the mesh
   const meshRef = useRef<THREE.Mesh>(null);
   const [selectedColor, setSelectedColor] = useState<string>();
