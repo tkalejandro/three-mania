@@ -1,11 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { Color, useFrame, Vector3 } from '@react-three/fiber';
 import { Center, Text, useTexture } from '@react-three/drei';
-import { useControls } from 'leva';
 import { audioLibrary, textureLibrary } from '@/helpers';
 import { MovingFace } from './components';
 import { ChakraHtml, ThreeDButton } from '../../components';
-import { useBreakpointValue, useMediaQuery } from '@chakra-ui/media-query';
 import { useTheme } from '@chakra-ui/react';
 import { useAppBreakpoints } from '@/hooks';
 
@@ -52,9 +50,10 @@ const AboutScene = ({ position }: AboutSceneProps) => {
       <Center>
         <group position={position}>
           <MovingFace selectedColor={selectedColor} />
-          <ChakraHtml>
-            <p>Hello</p>
-          </ChakraHtml>
+          <Text fontSize={0.1}>
+            Bet on the magic of music: Switch the track, feel the vibe!
+            <meshNormalMaterial />
+          </Text>
           <group position={[0, -1, 0]}>
             <ThreeDButton
               onClick={() => selectButton(theme.colors.success.main)}
