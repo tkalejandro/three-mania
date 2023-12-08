@@ -24,6 +24,7 @@ const theme = extendTheme(
       background: '#FFFFF0',
       black: '#1C1C1C', // A dark, elegant black
       white: '#F5F5F5', // A slightly off-white for elegance
+      grey: '#CCCCCC',
       primary: {
         50: '#e6f2ff',
         100: '#b3d9ff',
@@ -106,5 +107,9 @@ const theme = extendTheme(
   },
   withDefaultColorScheme({ colorScheme: 'primary' }),
 );
+
+type TheTheme = typeof theme;
+
+const t: TheTheme = theme;
 
 export default theme;

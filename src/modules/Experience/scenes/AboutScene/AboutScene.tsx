@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useFrame, Vector3 } from '@react-three/fiber';
+import { Color, useFrame, Vector3 } from '@react-three/fiber';
 import { Center, Text, useTexture } from '@react-three/drei';
 import { useControls } from 'leva';
 import { audioLibrary, textureLibrary } from '@/helpers';
@@ -7,22 +7,21 @@ import { MovingFace } from './components';
 import { ChakraHtml, ThreeDButton } from '../../components';
 import { useBreakpointValue, useMediaQuery } from '@chakra-ui/media-query';
 import { useTheme } from '@chakra-ui/react';
-import useAppBreakpoints from '@/hooks/useAppBreakpoints';
+import { useAppBreakpoints } from '@/hooks';
 
 interface AboutSceneProps {
   position: Vector3;
 }
 
 const AboutScene = ({ position }: AboutSceneProps) => {
+  const theme = useTheme();
   const { isBigTablet } = useAppBreakpoints();
+
   console.log(isBigTablet);
   // This reference will give us direct access to the mesh
   const meshRef = useRef<THREE.Mesh>(null);
-  const [selectedColor, setSelectedColor] = useState<string>();
+  const [selectedColor, setSelectedColor] = useState<Color>(theme.colors.grey);
 
-  // Set up state for the hovered and active state
-  const [hovered, setHover] = useState<boolean>(false);
-  const [active, setActive] = useState<boolean>(false);
   // Subscribe this component to the render-loop, rotate the mesh every frame
   useFrame((state, delta) => {
     if (meshRef.current) {
@@ -40,19 +39,56 @@ const AboutScene = ({ position }: AboutSceneProps) => {
     hitSound.play();
   };
 
+  const selectButton = (value: Color) => {
+    if (value === selectedColor) {
+      //Same color was selected
+      setSelectedColor(theme.colors.grey);
+      return;
+    }
+    setSelectedColor(value);
+  };
   return (
     <>
       <Center>
         <group position={position}>
-          <MovingFace />
+          <MovingFace selectedColor={selectedColor} />
           <ChakraHtml>
             <p>Hello</p>
           </ChakraHtml>
           <group position={[0, -1, 0]}>
-            <ThreeDButton position={[-0.7, 0.5, 0]} text="Succcess" color="success" size="xl" />
-            <ThreeDButton position={[0.7, 0.5, 0]} text="Warning" color="warning" size="xl" />
-            <ThreeDButton position={[-0.7, 0, 0]} text="Danger" color="danger" size="xl" />
-            <ThreeDButton position={[0.7, 0, 0]} text="Info" color="info" size="xl" />
+            <ThreeDButton
+              onClick={() => selectButton(theme.colors.success.main)}
+              isSelected={selectedColor === theme.colors.success.main}
+              position={isBigTablet ? [-1.5, 0.5, 0] : [-0.7, 0.5, 0]}
+              text="Succcess"
+              color="primary"
+              size="xl"
+            />
+
+            <ThreeDButton
+              onClick={() => selectButton(theme.colors.warning.main)}
+              isSelected={selectedColor === theme.colors.warning.main}
+              position={isBigTablet ? [-0.5, 0.5, 0] : [0.7, 0.5, 0]}
+              text="Warning"
+              color="primary"
+              size="xl"
+            />
+            <ThreeDButton
+              onClick={() => selectButton(theme.colors.danger.main)}
+              isSelected={selectedColor === theme.colors.danger.main}
+              position={isBigTablet ? [0.5, 0.5, 0] : [-0.7, 0, 0]}
+              text="Danger"
+              color="primary"
+              size="xl"
+            />
+            <ThreeDButton
+              onClick={() => selectButton(theme.colors.info.main)}
+              isSelected={selectedColor === theme.colors.info.main}
+              position={isBigTablet ? [1.5, 0.5, 0] : [0.7, 0, 0]}
+              text="Info"
+              color="primary"
+              size="xl"
+            />
           </group>
         </group>
       </Center>

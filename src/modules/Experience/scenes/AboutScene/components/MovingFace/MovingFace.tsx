@@ -1,13 +1,14 @@
 import React, { useRef } from 'react';
-import { useFrame, useThree, Vector3 } from '@react-three/fiber';
+import { Color, useFrame, useThree, Vector3 } from '@react-three/fiber';
 import { Mesh } from 'three';
 import { useControls } from 'leva';
 
 interface MovingFaceProps {
   scenePositionY?: number;
+  selectedColor: Color;
 }
 
-const MovingFace = ({ scenePositionY }: MovingFaceProps) => {
+const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
   const faceRef = useRef<Mesh>(null!);
 
   const { positionIntensityX, positionIntensityY, lookAtIntensity, positionY } = useControls(
@@ -40,7 +41,7 @@ const MovingFace = ({ scenePositionY }: MovingFaceProps) => {
   return (
     <mesh ref={faceRef} position={[0, positionY, 0]}>
       <planeGeometry args={[2, 4]} />
-      <meshStandardMaterial color={'pink'} />
+      <meshStandardMaterial color={selectedColor} />
     </mesh>
   );
 };
