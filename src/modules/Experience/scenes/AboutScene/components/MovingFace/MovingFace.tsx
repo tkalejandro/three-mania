@@ -4,7 +4,7 @@ import { Mesh } from 'three';
 import { useControls } from 'leva';
 
 interface MovingFaceProps {
-  scenePositionY?: number;
+  scenePositionY: number;
   selectedColor: Color;
 }
 
@@ -31,8 +31,8 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
     // Update mesh position based on mouse position
     if (faceRef.current) {
       faceRef.current.position.x = mouseX * positionIntensityX;
-      // PositionY is to correct the position of the face.
-      faceRef.current.position.y = positionY + mouseY * positionIntensityY;
+      // ScenePositionY is to correct the position of the face.
+      faceRef.current.position.y = scenePositionY + positionY + mouseY * positionIntensityY;
       // Make the face look at the mouse
       faceRef.current.lookAt(mouseX * lookAtIntensity, mouseY * lookAtIntensity, Math.PI * 0.5);
     }
