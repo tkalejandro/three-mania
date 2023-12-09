@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Color, useFrame, useThree, Vector3 } from '@react-three/fiber';
+import { Color, useFrame } from '@react-three/fiber';
 import { Mesh } from 'three';
 import { useControls } from 'leva';
 
