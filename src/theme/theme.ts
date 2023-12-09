@@ -1,4 +1,6 @@
-import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react';
+import { ChakraTheme, extendTheme, withDefaultColorScheme } from '@chakra-ui/react';
+import { AppTheme } from './theme.d';
+// Define the type for your theme
 
 /**
  * TO extend the Theme is very simple.
@@ -6,6 +8,14 @@ import { extendTheme, withDefaultColorScheme } from '@chakra-ui/react';
  */
 const theme = extendTheme(
   {
+    breakpoints: {
+      base: '0px',
+      sm: '320px',
+      md: '768px',
+      lg: '960px',
+      xl: '1200px',
+      '2xl': '1536px',
+    },
     fonts: {
       heading: `'Montserrat Variable', sans-serif`,
       body: `'Montserrat Variable', sans-serif`,
@@ -14,6 +24,7 @@ const theme = extendTheme(
       background: '#FFFFF0',
       black: '#1C1C1C', // A dark, elegant black
       white: '#F5F5F5', // A slightly off-white for elegance
+      grey: '#CCCCCC',
       primary: {
         50: '#e6f2ff',
         100: '#b3d9ff',
@@ -79,9 +90,26 @@ const theme = extendTheme(
         900: '#7f1a29',
         main: '#DC3545',
       },
+      info: {
+        50: '#e6f7ff',
+        100: '#cce6ff',
+        200: '#99ccff',
+        300: '#66b2ff',
+        400: '#3399ff',
+        500: '#007bff',
+        600: '#0066cc',
+        700: '#0052b3',
+        800: '#004080',
+        900: '#002633',
+        main: '#007bff',
+      },
     },
   },
   withDefaultColorScheme({ colorScheme: 'primary' }),
 );
+
+type TheTheme = typeof theme;
+
+const t: TheTheme = theme;
 
 export default theme;

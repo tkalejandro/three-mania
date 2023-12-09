@@ -6,54 +6,93 @@ import { useTheme } from '@chakra-ui/system';
 import { ThreeColor, ThreeSize } from '@/types/ExperienceTypes';
 
 interface ThreeDButtonProps extends GroupProps {
-  size?: 'sm' | 'md' | 'lg';
+  /**
+   * Size of the button
+   */
+  size?: ThreeSize;
+  /**
+   * Color of the button. Only theme are allow
+   */
   color?: ThreeColor;
+
+  /**
+   * Text of the button
+   */
   text: string;
+
+  /**
+   * Color will change if is selected
+   */
+  isSelected?: boolean;
 }
 
-const ThreeDButton = ({ size = 'md', color, text, ...props }: ThreeDButtonProps) => {
+const ThreeDButton = ({
+  size = 'md',
+  isSelected = false,
+  color,
+  text,
+  ...props
+}: ThreeDButtonProps) => {
   const theme = useTheme();
 
   const buttonRef = useRef<Mesh>(null);
   const textRef = useRef<Group>(null);
-  const [buttonSize, setButtonSize] = useState<ThreeSize>({
-    sm: [0.25, 0.09, 0.05],
-    md: [0.3, 0.12, 0.05],
-    lg: [0.4, 0.14, 0.05],
-  });
+  const [buttonScale, setButtonScale] = useState<number | null>(null);
   const [buttonColor, setButtonColor] = useState<string>();
   const [textColor, setTextColor] = useState<string>();
-  const [fontSize, setFontSize] = useState<number>();
 
   useEffect(() => {
     colorToUse();
-    setButtonSize((prev) => ({ ...prev, [size]: buttonSize[size] }));
-  }, [size, color]);
+    scaleToUse();
+  }, [size, color, isSelected]);
 
-  const colorToUse = () => {
+  const scaleToUse = (): void => {
+    switch (size) {
+      case 'xs':
+        setButtonScale(0.4);
+        break;
+      case 'sm':
+        setButtonScale(0.7);
+        break;
+      case 'md':
+        setButtonScale(1);
+        break;
+      case 'lg':
+        setButtonScale(1.3);
+        break;
+      case 'xl':
+        setButtonScale(1.6);
+        break;
+      default:
+        setButtonScale(null);
+    }
+  };
+
+  const colorToUse = (): void => {
+    const shade = 900;
     switch (color) {
       case 'primary':
-        setButtonColor(theme.colors.primary.main);
+        setButtonColor(isSelected ? theme.colors.primary[shade] : theme.colors.primary.main);
         setTextColor(theme.colors.white);
         break;
       case 'secondary':
-        setButtonColor(theme.colors.secondary.main);
+        setButtonColor(isSelected ? theme.colors.secondary[shade] : theme.colors.secondary.main);
         setTextColor(theme.colors.white);
         break;
       case 'warning':
-        setButtonColor(theme.colors.warning.main);
+        setButtonColor(isSelected ? theme.colors.warning[shade] : theme.colors.warning.main);
         setTextColor(theme.colors.white);
         break;
       case 'info':
-        setButtonColor(theme.colors.info.main);
+        setButtonColor(isSelected ? theme.colors.info[shade] : theme.colors.info.main);
         setTextColor(theme.colors.white);
         break;
-      case 'error':
-        setButtonColor(theme.colors.error.main);
+      case 'danger':
+        setButtonColor(isSelected ? theme.colors.danger[shade] : theme.colors.danger.main);
         setTextColor(theme.colors.white);
         break;
       case 'success':
-        setButtonColor(theme.colors.success.main);
+        setButtonColor(isSelected ? theme.colors.success[shade] : theme.colors.success.main);
         setTextColor(theme.colors.white);
         break;
       case 'black':
@@ -69,22 +108,13 @@ const ThreeDButton = ({ size = 'md', color, text, ...props }: ThreeDButtonProps)
         setButtonColor(theme.colors.primary.main);
     }
   };
-
-  const assignFontSize = () => {
-    if (size === 'sm') {
-      return 0.06;
-    } else if (size === 'md') {
-      return 0.065;
-    }
-    return 0.07;
-  };
-
+  if (!buttonScale) return null;
   return (
-    <group {...props}>
+    <group {...props} scale={buttonScale}>
       {/* Button */}
 
       <mesh ref={buttonRef} position={[0, 0, 0]}>
-        <boxGeometry args={[...buttonSize[size], 1, 1, 1]} />
+        <boxGeometry args={[0.4, 0.14, 0.05, 1, 1, 1]} />
         <meshStandardMaterial color={buttonColor} />
       </mesh>
 
@@ -92,7 +122,7 @@ const ThreeDButton = ({ size = 'md', color, text, ...props }: ThreeDButtonProps)
       <Text
         position={[0, -0.005, 0.028]}
         ref={textRef}
-        fontSize={assignFontSize()}
+        fontSize={0.07}
         font="Arial"
         color={textColor}
       >
