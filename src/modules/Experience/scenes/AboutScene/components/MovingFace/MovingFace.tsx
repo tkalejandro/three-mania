@@ -11,15 +11,20 @@ interface MovingFaceProps {
 const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
   const faceRef = useRef<Mesh>(null!);
 
-  const { positionIntensityX, positionIntensityY, lookAtIntensity, positionY } = useControls(
-    'Face',
-    {
-      positionIntensityX: { value: 1.1, step: 0.001, min: 0, max: 2 },
-      positionIntensityY: { value: 0.5, step: 0.001, min: 0, max: 2 },
-      lookAtIntensity: { value: 2, step: 0.001, min: 0, max: 10 },
-      positionY: { value: 2 },
-    },
-  );
+  const {
+    positionIntensityX,
+    positionIntensityY,
+    rotationIntensityX,
+    rotationIntensityY,
+    positionY,
+  } = useControls('Face', {
+    positionIntensityX: { value: 1.1, step: 0.001, min: 0, max: 2 },
+    positionIntensityY: { value: 0.5, step: 0.001, min: 0, max: 2 },
+    lookAtIntensity: { value: 2, step: 0.001, min: 0, max: 10 },
+    positionY: { value: 4 },
+    rotationIntensityX: { value: 0.25, step: 0.001, min: 0.001, max: 2 },
+    rotationIntensityY: { value: 0.2, step: 0.001, min: 0.001, max: 2 },
+  });
 
   useFrame((state, delta) => {
     // Mouse coordinates from -1 to 1
@@ -32,15 +37,20 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
     if (faceRef.current) {
       faceRef.current.position.x = mouseX * positionIntensityX;
       // ScenePositionY is to correct the position of the face.
+
       faceRef.current.position.y = scenePositionY + positionY + mouseY * positionIntensityY;
+
       // Make the face look at the mouse
-      faceRef.current.lookAt(mouseX * lookAtIntensity, mouseY * lookAtIntensity, Math.PI * 0.5);
+      console.log(mouseX, mouseY);
+      faceRef.current.rotation.x = -mouseY * rotationIntensityX;
+      faceRef.current.rotation.y = mouseX * rotationIntensityY;
+      //faceRef.current.lookAt(mouseX * lookAtIntensity, mouseY * lookAtIntensity, 20);
     }
   });
 
   return (
-    <mesh ref={faceRef} position={[0, positionY, 0]}>
-      <planeGeometry args={[2, 4]} />
+    <mesh ref={faceRef} position={[0, scenePositionY + positionY, -0.3]}>
+      <planeGeometry args={[2, 3.5]} />
       <meshStandardMaterial color={selectedColor} />
     </mesh>
   );

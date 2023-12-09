@@ -43,8 +43,8 @@ const AboutScene = ({ position }: AboutSceneProps) => {
     setSelectedColor(value);
   };
   return (
-    <Center scale={0.4}>
-      <group position={position}>
+    <group position={position} scale={0.6}>
+      <Center disableX>
         <MovingFace selectedColor={selectedColor} scenePositionY={position.y} />
         <Text fontSize={0.1}>
           Bet on the magic of music: Switch the track, feel the vibe!
@@ -85,8 +85,8 @@ const AboutScene = ({ position }: AboutSceneProps) => {
             size="xl"
           />
         </group>
-      </group>
-    </Center>
+      </Center>
+    </group>
   );
 };
 
