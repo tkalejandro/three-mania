@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { GroupProps, useFrame } from '@react-three/fiber';
-import { Group, Mesh, MeshStandardMaterial } from 'three';
-import { Center, Text } from '@react-three/drei';
-import { useTheme } from '@chakra-ui/system';
+import { GroupProps } from '@react-three/fiber';
+import { Group, Mesh } from 'three';
+import { Text } from '@react-three/drei';
 import { ThreeColor, ThreeSize } from '@/types/ExperienceTypes';
+import { useAppTheme } from '@/hooks';
 
 interface ThreeDButtonProps extends GroupProps {
   /**
@@ -33,7 +33,7 @@ const ThreeDButton = ({
   text,
   ...props
 }: ThreeDButtonProps) => {
-  const theme = useTheme();
+  const theme = useAppTheme();
 
   const buttonRef = useRef<Mesh>(null);
   const textRef = useRef<Group>(null);
@@ -73,27 +73,27 @@ const ThreeDButton = ({
     switch (color) {
       case 'primary':
         setButtonColor(isSelected ? theme.colors.primary[shade] : theme.colors.primary.main);
-        setTextColor(theme.colors.white);
+        setTextColor(theme.colors.primary.contrastText);
         break;
       case 'secondary':
         setButtonColor(isSelected ? theme.colors.secondary[shade] : theme.colors.secondary.main);
-        setTextColor(theme.colors.white);
+        setTextColor(theme.colors.secondary.contrastText);
         break;
       case 'warning':
         setButtonColor(isSelected ? theme.colors.warning[shade] : theme.colors.warning.main);
-        setTextColor(theme.colors.white);
+        setTextColor(theme.colors.warning.contrastText);
         break;
       case 'info':
         setButtonColor(isSelected ? theme.colors.info[shade] : theme.colors.info.main);
-        setTextColor(theme.colors.white);
+        setTextColor(theme.colors.info.contrastText);
         break;
       case 'danger':
         setButtonColor(isSelected ? theme.colors.danger[shade] : theme.colors.danger.main);
-        setTextColor(theme.colors.white);
+        setTextColor(theme.colors.danger.contrastText);
         break;
       case 'success':
         setButtonColor(isSelected ? theme.colors.success[shade] : theme.colors.success.main);
-        setTextColor(theme.colors.white);
+        setTextColor(theme.colors.success.contrastText);
         break;
       case 'black':
         setButtonColor(theme.colors.black);
@@ -105,7 +105,8 @@ const ThreeDButton = ({
         break;
       default:
         // Handle any other cases or set a default color
-        setButtonColor(theme.colors.primary.main);
+        setButtonColor(theme.colors.grey);
+        setTextColor(theme.colors.black);
     }
   };
   if (!buttonScale) return null;

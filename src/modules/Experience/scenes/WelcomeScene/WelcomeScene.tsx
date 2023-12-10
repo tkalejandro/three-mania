@@ -4,12 +4,13 @@ import { Center, Float, Html, useProgress, useScroll } from '@react-three/drei';
 import { GuitarModel } from '../../models';
 import { Group, ShaderMaterial } from 'three';
 import { Navigation } from './components';
-import { Button, useTheme } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import { ChakraHtml } from '../../components';
 import { Phase } from '@/enums/Experience';
 import { audioLibrary } from '@/helpers';
 import gsap from 'gsap';
 import { loaderFragmentShader, loaderVertexShader } from '../../shaders/loaderShader';
+import { useAppTheme } from '@/hooks';
 
 interface WelcomeSceneProps {
   position: Vector3;
@@ -20,7 +21,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   // 10 is default
   const [distanceFactor, setDistanceFactor] = useState<undefined | number>(10);
 
-  const theme = useTheme()
+  const theme = useAppTheme();
 
   const guitarRef = useRef<Group>(null!);
   const htmlRef = useRef<HTMLDivElement>(null!);
@@ -92,7 +93,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
     animation.to(loaderShaderRef.current.uniforms.uFull, {
       value: 1.01,
       duration: 1,
-      ease: 'back.inOut'
+      ease: 'back.inOut',
     });
   }
 
@@ -106,7 +107,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           fragmentShader={loaderFragmentShader}
           uniforms={{
             uFull: { value: -1.01 },
-            uColor: {value: theme.colors.primary.main.replace('#', '0x')}
+            uColor: { value: theme.colors.primary.main.replace('#', '0x') },
           }}
         />
       </mesh>
@@ -129,13 +130,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
             </>
           ) : (
             <>
-              <ChakraHtml
-                ref={htmlRef}
-                occlude="blending"
-                prepend
-                center
-                position={[0, -0.8, 0]}
-              >
+              <ChakraHtml ref={htmlRef} occlude="blending" prepend center position={[0, -0.8, 0]}>
                 <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
                   Play
                 </Button>
