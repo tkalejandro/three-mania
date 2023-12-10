@@ -40,6 +40,7 @@ const customTheme = {
       800: '#004080',
       900: '#002633',
       main: '#220632', // Use the same main shade for consistency
+      contrastText: '#f5f5f5',
     },
     secondary: {
       50: '#f2f0f4', // Very light purple (adjust as needed)
@@ -53,6 +54,7 @@ const customTheme = {
       800: '#5b5acf',
       900: '#494fcb',
       main: '#9679db', // Use the same main shade for consistency
+      contrastText: '#f5f5f5',
     },
     warning: {
       50: '#fff7e6',
@@ -66,6 +68,7 @@ const customTheme = {
       800: '#b37700',
       900: '#995c00',
       main: '#FFC107',
+      contrastText: '#000000',
     },
     success: {
       50: '#e6f7e6',
@@ -79,6 +82,7 @@ const customTheme = {
       800: '#1a6b29',
       900: '#14591f',
       main: '#28A745',
+      contrastText: '#000000',
     },
     danger: {
       50: '#ffe6e6',
@@ -92,6 +96,7 @@ const customTheme = {
       800: '#961f2f',
       900: '#7f1a29',
       main: '#DC3545',
+      contrastText: '#ffffff',
     },
     info: {
       50: '#e6f7ff',
@@ -105,13 +110,17 @@ const customTheme = {
       800: '#004080',
       900: '#002633',
       main: '#007bff',
+      contrastText: '#000000',
     },
   },
 };
 
-const theme = extendTheme(
+/**
+ * Make it safe the type theme.
+ */
+export type AppTheme = typeof customTheme;
+
+export const theme = extendTheme(
   customTheme,
   withDefaultColorScheme({ colorScheme: 'primary' }),
-) as typeof customTheme;
-
-export default theme;
+) as AppTheme;

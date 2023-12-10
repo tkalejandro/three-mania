@@ -41,7 +41,6 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
       faceRef.current.position.y = scenePositionY + positionY + mouseY * positionIntensityY;
 
       // Make the face look at the mouse
-      console.log(mouseX, mouseY);
       faceRef.current.rotation.x = -mouseY * rotationIntensityX;
       faceRef.current.rotation.y = mouseX * rotationIntensityY;
       //faceRef.current.lookAt(mouseX * lookAtIntensity, mouseY * lookAtIntensity, 20);

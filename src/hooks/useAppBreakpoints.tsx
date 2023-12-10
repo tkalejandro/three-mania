@@ -1,11 +1,12 @@
-import { useMediaQuery, useTheme } from '@chakra-ui/react';
+import { useMediaQuery } from '@chakra-ui/react';
 import React from 'react';
+import { useAppTheme } from '.';
 
 /**
  * It will provide booleans when the width has reach certain size.
  */
 const useAppBreakpoints = () => {
-  const theme = useTheme();
+  const theme = useAppTheme();
 
   const [isBase] = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);
   const [isMobile] = useMediaQuery(`(min-width: ${theme.breakpoints.sm})`);

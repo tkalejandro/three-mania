@@ -3,8 +3,7 @@ import { Color, useFrame } from '@react-three/fiber';
 import { Center, Text } from '@react-three/drei';
 import { MovingFace } from './components';
 import { ThreeDButton } from '../../components';
-import { useTheme } from '@chakra-ui/react';
-import { useAppBreakpoints } from '@/hooks';
+import { useAppBreakpoints, useAppTheme } from '@/hooks';
 import { Vector3 } from 'three';
 
 interface AboutSceneProps {
@@ -12,7 +11,7 @@ interface AboutSceneProps {
 }
 
 const AboutScene = ({ position }: AboutSceneProps) => {
-  const theme = useTheme();
+  const theme = useAppTheme();
   const { isBigTablet } = useAppBreakpoints();
 
   // This reference will give us direct access to the mesh

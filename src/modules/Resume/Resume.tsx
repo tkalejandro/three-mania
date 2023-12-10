@@ -15,13 +15,11 @@ import {
   Link,
   Container,
   VStack,
-  useTheme,
 } from '@chakra-ui/react';
 
 const Resume = () => {
   const sonia = soniaCoronado;
-  const theme = useTheme();
-  console.log(theme);
+
   return (
     <>
       <Box maxW="100%" py={8}>
