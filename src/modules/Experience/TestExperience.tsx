@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import {
   AboutScene,
   AudioLibraryScene,
@@ -17,6 +17,7 @@ import { useCamera, useDeveloperSettings } from '@/store';
 import { DebugButton } from './components';
 import { MainLight } from './lights';
 import { Vector3 } from 'three';
+import { MainCamera } from './camera';
 
 /**
  * Welcome to the TEST PAGE. Useful to build a 3D scene isolated from the project.
@@ -26,15 +27,25 @@ import { Vector3 } from 'three';
 const TestExperience = () => {
   // ****** DONT DELETE
   const debugMode = useDeveloperSettings((state) => state.debugMode);
+  const cameraPosition = useCamera((state) => state.cameraPosition);
   // ******************
 
   return (
     <div id="experience">
       <Canvas>
         {debugMode && <Perf position="top-left" />}
+        <PerspectiveCamera
+          position={cameraPosition}
+          makeDefault
+          fov={90}
+          aspect={1}
+          near={0.1}
+          far={4}
+        />
         {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
-          <MainLight />
-          <ProjectsAwardsScene position={[0,0,0]} />
+        <MainLight />
+
+        <ProjectsAwardsScene position={[0, 0, 0]} />
         {/* UNTIL HERE */}
       </Canvas>
       {/* DONT DELETE BUTTON */}

@@ -9,7 +9,7 @@ const SecondStand = () => {
 
   const standControls = useControls('Trophy Second Stand', {
     standRotation: { value: [-0.1, -0.4, 0], step: 0.05 },
-    standPosition: { value: [0.34, -1, 0], step: 0.05 },
+    standPosition: { value: [0.0, -1, 0], step: 0.05 },
   });
   return (
     <group>
@@ -18,7 +18,7 @@ const SecondStand = () => {
         position={standControls.standPosition}
         rotation={standControls.standRotation}
       >
-        <boxGeometry args={[2.5, 0.2, 1]} />
+        <boxGeometry args={[1.6, 0.1, 0.7]} />
         <meshStandardMaterial />
       </mesh>
     </group>
