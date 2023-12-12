@@ -2,11 +2,14 @@ import React, { useMemo } from 'react';
 import { useGLTF } from '@react-three/drei';
 
 /**
- * Heavy resource Guitar Model.
+ * Trophy Model.
  * Requires light.
+ * Trophy by jeremy
+ * [CC-BY] (https://creativecommons.org/licenses/by/3.0/)
+ * via Poly Pizza (https://poly.pizza/m/cYUZdUqlNYd)
  */
-const GuitarModel = ({ ...props }) => {
-  const guitarModel = useGLTF('/models/guitar.gltf');
+const TrophyJeremyModel = ({ ...props }) => {
+  const guitarModel = useGLTF('/models/trophyJeremy.glb');
 
   // Memoize the component based on both props and the loaded model
   const cachedGuitarModel = useMemo(
@@ -17,6 +20,6 @@ const GuitarModel = ({ ...props }) => {
   return cachedGuitarModel;
 };
 
-export default GuitarModel;
+export default TrophyJeremyModel;
 
-useGLTF.preload('/models/guitar.gltf');
+useGLTF.preload('/models/trophyJeremy.glb');

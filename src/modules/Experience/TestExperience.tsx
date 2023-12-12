@@ -8,6 +8,7 @@ import {
   ContactScene,
   LoaderScene,
   MediaCoverageScene,
+  ProjectsAwardsScene,
   WelcomeScene,
 } from './scenes';
 
@@ -32,7 +33,8 @@ const TestExperience = () => {
       <Canvas>
         {debugMode && <Perf position="top-left" />}
         {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
-
+          <MainLight />
+          <ProjectsAwardsScene position={[0,0,0]} />
         {/* UNTIL HERE */}
       </Canvas>
       {/* DONT DELETE BUTTON */}
