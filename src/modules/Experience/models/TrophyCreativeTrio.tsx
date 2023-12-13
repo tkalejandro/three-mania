@@ -20,4 +20,4 @@ const TrophyCreativeTrioModel = ({ ...props }) => {
 
 export default TrophyCreativeTrioModel;
 
-useGLTF.preload('/models/trophyCretiveTrio.glb');
+useGLTF.preload('/models/trophyCreativeTrio.glb');
