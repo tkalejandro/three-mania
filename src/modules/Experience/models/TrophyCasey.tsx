@@ -9,7 +9,7 @@ import { Group, Object3DEventMap } from 'three';
  * [CC-BY] (https://creativecommons.org/licenses/by/3.0/)
  * via Poly Pizza (https://poly.pizza/m/6Xu7mttjodo)
  */
-const TrophyCaseyModel = ({ ...props }) => {
+const TrophyCasey = ({ ...props }) => {
   const [gltfScene, setGltfScene] = useState<Group<Object3DEventMap> | null>(null);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ const TrophyCaseyModel = ({ ...props }) => {
   return cachedModel;
 };
 
-export default TrophyCaseyModel;
+export default TrophyCasey;
 
 // Optionally preload the model
 useGLTF.preload('/models/trophyCasey.glb');

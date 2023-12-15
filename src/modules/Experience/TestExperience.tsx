@@ -44,7 +44,7 @@ const TestExperience = () => {
         />
         {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
         <MainLight />
-
+        <OrbitControls />
         <ProjectsAwardsScene position={[0, 0, 0]} />
         {/* UNTIL HERE */}
       </Canvas>

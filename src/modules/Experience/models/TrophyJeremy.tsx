@@ -1,25 +1,39 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
+import { Group, Object3DEventMap } from 'three';
 
 /**
  * Trophy Model.
+ * This is a HUGE Model
  * Requires light.
  * Trophy by jeremy
  * [CC-BY] (https://creativecommons.org/licenses/by/3.0/)
  * via Poly Pizza (https://poly.pizza/m/cYUZdUqlNYd)
  */
-const TrophyJeremyModel = ({ ...props }) => {
-  const guitarModel = useGLTF('/models/trophyJeremy.glb');
+const TrophyJeremy = ({ ...props }) => {
+  const [gltfScene, setGltfScene] = useState<Group<Object3DEventMap> | null>(null);
+
+  useEffect(() => {
+    const { scene } = useGLTF('/models/trophyJeremy.glb');
+    setGltfScene(scene);
+
+    return () => {
+      // Clean up if necessary
+    };
+  }, []);
 
   // Memoize the component based on both props and the loaded model
-  const cachedGuitarModel = useMemo(
-    () => <primitive object={guitarModel.scene} {...props} />,
-    [props, guitarModel],
-  );
+  const cachedModel = useMemo(() => {
+    if (gltfScene) {
+      return <primitive object={gltfScene.clone()} {...props} />;
+    } else {
+      return null; // Handle the case where the model hasn't loaded yet
+    }
+  }, [props, gltfScene]);
 
-  return cachedGuitarModel;
+  return cachedModel;
 };
 
-export default TrophyJeremyModel;
+export default TrophyJeremy;
 
 useGLTF.preload('/models/trophyJeremy.glb');
