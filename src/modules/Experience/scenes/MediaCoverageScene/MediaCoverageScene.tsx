@@ -1,6 +1,9 @@
 import React, { useRef, useState } from 'react';
 import { useFrame, Vector3 } from '@react-three/fiber';
 import { Text } from '@react-three/drei';
+import { MediaCard } from './components';
+
+
 
 interface MediaCoverageSceneProps {
   position: Vector3;
@@ -22,7 +25,7 @@ const MediaCoverageScene = ({ position }: MediaCoverageSceneProps) => {
   // Return view, these are regular three.js elements expressed in JSX
   return (
     <group position={position}>
-      <mesh
+      {/* <mesh
         ref={meshRef}
         scale={active ? 1.5 : 1}
         onClick={(event) => setActive(!active)}
@@ -34,7 +37,8 @@ const MediaCoverageScene = ({ position }: MediaCoverageSceneProps) => {
       </mesh>
       <Text position={[0, -1, 0]} scale={0.2}>
         Im Media Coverage
-      </Text>
+      </Text> */}
+      <MediaCard />
     </group>
   );
 };
