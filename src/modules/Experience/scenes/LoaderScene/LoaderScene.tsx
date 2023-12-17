@@ -1,8 +1,9 @@
 import { Html, shaderMaterial, useProgress } from '@react-three/drei';
 import React from 'react';
 import { ChakraHtml } from '../../components';
-import { Text, useTheme } from '@chakra-ui/react';
+import { Text } from '@chakra-ui/react';
 import { loaderFragmentShader, loaderVertexShader } from '../../shaders/loaderShader';
+import { useAppTheme } from '@/hooks';
 /**
  * First Thing to appear :-)
  * This might dissapear in the future.
@@ -10,7 +11,7 @@ import { loaderFragmentShader, loaderVertexShader } from '../../shaders/loaderSh
  */
 const LoaderScene = () => {
   const { active, progress, errors, item, loaded, total } = useProgress();
-  const theme = useTheme();
+  const theme = useAppTheme();
 
   return (
     <>

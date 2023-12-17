@@ -14,6 +14,8 @@ import {
 import { Perf } from 'r3f-perf';
 import { useCamera, useDeveloperSettings } from '@/store';
 import { DebugButton } from './components';
+import { MainLight } from './lights';
+import { Vector3 } from 'three';
 
 /**
  * Welcome to the TEST PAGE. Useful to build a 3D scene isolated from the project.
@@ -24,15 +26,12 @@ const TestExperience = () => {
   // ****** DONT DELETE
   const debugMode = useDeveloperSettings((state) => state.debugMode);
   // ******************
-  const cameraPosition = useCamera((state) => state.cameraPosition);
+
   return (
     <div id="experience">
       <Canvas>
         {debugMode && <Perf position="top-left" />}
         {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
-
-        <ambientLight />
-        <WelcomeScene position={[0, 0, 0]} />
 
         {/* UNTIL HERE */}
       </Canvas>
