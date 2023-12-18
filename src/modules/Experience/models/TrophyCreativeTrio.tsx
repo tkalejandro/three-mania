@@ -9,9 +9,9 @@ import { Group, Object3DEventMap } from 'three';
  */
 const TrophyCreativeTrio = ({ ...props }) => {
   const [gltfScene, setGltfScene] = useState<Group<Object3DEventMap> | null>(null);
+  const { scene } = useGLTF('/models/trophyCreativeTrio.glb');
 
   useEffect(() => {
-    const { scene } = useGLTF('/models/trophyCreativeTrio.glb');
     setGltfScene(scene);
 
     return () => {

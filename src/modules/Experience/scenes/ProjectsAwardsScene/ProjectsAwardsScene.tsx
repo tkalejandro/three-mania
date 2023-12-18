@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { useFrame, Vector3 } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
-import { useControls } from 'leva';
+import { Vector3 } from '@react-three/fiber';
 import { FirstStand, Gallery, SecondStand } from './components';
 
 interface ProjectAwardsSceneProps {
