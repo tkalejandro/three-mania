@@ -4,8 +4,7 @@ varying vec2 vUv;
 uniform vec2 pointer;
 varying float vWave;
 uniform float uTime;
-uniform float uFull;
-uniform float uAmp;
+
 //
 // Description : Array and textureless GLSL 2D/3D/4D simplex
 //               noise functions.
@@ -100,7 +99,7 @@ float snoise(vec3 v) {
   p1 *= norm.y;
   p2 *= norm.z;
   p3 *= norm.w;
-  
+
   // Mix final noise value
   vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
   m = m * m;
@@ -111,14 +110,14 @@ float snoise(vec3 v) {
 void main() {
   vUv = uv;
 
-  vec4 modelPosition = modelMatrix * vec4(position, uFull);
+  vec4 modelPosition = modelMatrix * vec4(position, 1.);
   modelPosition.y += sin(modelPosition.x * 4.0 + uTime * 2.0) * 0.;
   vec4 viewPosition = viewMatrix * modelPosition;
   vec4 projectedPosition = projectionMatrix * viewPosition;
 
   vec3 pos = position;
   float noiseFreq = 3.5;
-  float noiseAmp = uAmp;
+  float noiseAmp = 0.10;
   vec3 noisePos = vec3(pos.x * noiseFreq + (uTime * 0.1) , pos.y, pos.z);
   pos.z += snoise(noisePos) * noiseAmp;
   vWave = pos.z;
