@@ -1,18 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { useFrame, Vector3 } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
+import React from 'react';
+import { Vector3 } from '@react-three/fiber';
 import { MediaCard } from './components';
 import { useAppBreakpoints } from '@/hooks';
-// import { MediaCard } from './components';
-
-
-
 interface MediaCoverageSceneProps {
   position: Vector3;
 }
 
 const MediaCoverageScene = ({ position }: MediaCoverageSceneProps) => {
-  const { isBigTablet, isTablet, isMobile } = useAppBreakpoints()
+  const { isTablet } = useAppBreakpoints()
+
   const cards = {
     card1: {
       x: -1.22,

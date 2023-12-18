@@ -1,8 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { MeshProps, Object3DNode, extend, useFrame, useThree, Vector3 } from '@react-three/fiber'
+import { extend, useFrame, useThree, Vector3 } from '@react-three/fiber'
 import { mediaCardVertex, mediaCardFragment } from '../../../../shaders/mediaShader'
 import * as THREE from 'three'
 import { useTexture, Text, shaderMaterial } from '@react-three/drei';
+import { Mesh } from 'three';
 
 interface MediaProps {
   scale: Vector3;
@@ -11,11 +12,18 @@ interface MediaProps {
   image: string;
 }
 
+
 const MediaCard = ({scale, position, title, image}: MediaProps) => {
   const [hovered, setHover] = useState<boolean>(false)
   const [fixedElapse, setFixedElpase] = useState<number>(0)
-  const ref = useRef<any>()
-  const time = useRef<any>(0)
+  /**
+   * TODO: Fix type issue.
+   * - Using type Mesh alone throws
+   * an error cuz uTime is type any
+   * in line 39.
+   */
+  const ref = useRef<Mesh | any>(null!)
+  const time = useRef<number>(0)
   const { viewport, size } = useThree()
 
   const WaveMaterial = shaderMaterial(
@@ -35,6 +43,13 @@ const MediaCard = ({scale, position, title, image}: MediaProps) => {
     time.current = state.clock.elapsedTime
   })
 
+  /**
+   * We will save the last elapsed time durring
+   * the animation and save it so the image stay
+   * fixed when mouving the mouse out of mesh
+   * instead of returning to it's initial shape
+   */
+
   useEffect(() => {
     setFixedElpase(time.current)
   }, [hovered])
@@ -50,8 +65,12 @@ const MediaCard = ({scale, position, title, image}: MediaProps) => {
       >
         <planeGeometry />
         {
+          // TODO: Fix this.
           /* @ts-ignore */
-          <waveMaterial key={WaveMaterial.key} resolution={[size.width * viewport.dpr, size.height * viewport.dpr]} />
+          <waveMaterial
+            key={WaveMaterial.key}
+            resolution={[size.width * viewport.dpr, size.height * viewport.dpr]}
+          />
         }
       </mesh>
     </group>
