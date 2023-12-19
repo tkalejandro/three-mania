@@ -35,7 +35,7 @@ const Experience = () => {
     contactPosition,
   } = useControls('Layout Location', {
     welcomePosition: { value: [0, 0, 0], step: 0.5 },
-    aboutPosition: { value: [0, -4, 0], step: 0.5 },
+    aboutPosition: { value: [0, -3.5, 0], step: 0.5 },
     projectsAwardsPosition: { value: [0, -8, 0], step: 0.5 },
     audioLibraryPosition: { value: [0, -12, 0], step: 0.5 },
     mediaCoveragePosition: { value: [0, -16, 0], step: 0.5 },
