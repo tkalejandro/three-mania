@@ -60,11 +60,11 @@ const Gallery = () => {
   return (
     <group position={[0, 0, -1]}>
       <group scale={galleryContainerScale}>
-        <Image url={imageLibrary.tlou2_1} scale={tlou2_1.scale} position={tlou2_1.position} />
-        <Image url={imageLibrary.cod_2} scale={cod_2.scale} position={cod_2.position} />
-        <Image url={imageLibrary.tlou2_2} scale={tlou2_2.scale} position={tlou2_2.position} />
-        <Image url={imageLibrary.god_1} scale={god_1.scale} position={god_1.position} />
-        <Image url={imageLibrary.cod_1} scale={cod_1.scale} position={cod_1.position} />
+        <Image url={imageLibrary.tlou2_1()} scale={tlou2_1.scale} position={tlou2_1.position} />
+        <Image url={imageLibrary.cod_2()} scale={cod_2.scale} position={cod_2.position} />
+        <Image url={imageLibrary.tlou2_2()} scale={tlou2_2.scale} position={tlou2_2.position} />
+        <Image url={imageLibrary.god_1()} scale={god_1.scale} position={god_1.position} />
+        <Image url={imageLibrary.cod_1()} scale={cod_1.scale} position={cod_1.position} />
         <mesh position={secret.position}>
           <planeGeometry args={secret.scale} />
           <meshStandardMaterial color="purple" />
