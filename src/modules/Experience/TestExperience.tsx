@@ -43,9 +43,9 @@ const TestExperience = () => {
           far={4}
         />
         {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
-        <MainLight />
-        <OrbitControls />
-        <ProjectsAwardsScene position={[0, 0, 0]} />
+        {/* <MainLight />
+        <OrbitControls /> */}
+
         {/* UNTIL HERE */}
       </Canvas>
       {/* DONT DELETE BUTTON */}
