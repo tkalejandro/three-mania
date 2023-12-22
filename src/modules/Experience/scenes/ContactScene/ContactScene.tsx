@@ -1,39 +1,43 @@
 import React, { useRef, useState } from 'react';
 import { useFrame, Vector3 } from '@react-three/fiber';
-import { Text } from '@react-three/drei';
+import { Center, Text, Text3D } from '@react-three/drei';
+import { soniaCoronado } from '@/constants';
 
 interface ContactSceneProps {
   position: Vector3;
 }
 
+/**
+ * Shows the contact information
+ * Refer this link for some help:
+ * https://codesandbox.io/p/sandbox/text3d-alignment-x6obrb?file=%2Fsrc%2FApp.js
+ * https://gero3.github.io/facetype.js/
+ * https://threejs.org/docs/index.html?q=textg#examples/en/geometries/TextGeometry
+ *
+ */
 const ContactScene = ({ position }: ContactSceneProps) => {
-  // This reference will give us direct access to the mesh
-  const meshRef = useRef<THREE.Mesh>(null);
-  // Set up state for the hovered and active state
-  const [hovered, setHover] = useState<boolean>(false);
-  const [active, setActive] = useState<boolean>(false);
-  // Subscribe this component to the render-loop, rotate the mesh every frame
-  useFrame((state, delta) => {
-    if (meshRef.current) {
-      // Check if meshRef.current is defined
-      meshRef.current.rotation.x += delta;
-    }
-  });
-  // Return view, these are regular three.js elements expressed in JSX
+  const { email, phone } = soniaCoronado;
   return (
     <group position={position}>
-      <mesh
-        ref={meshRef}
-        scale={active ? 1.5 : 1}
-        onClick={(event) => setActive(!active)}
-        onPointerOver={(event) => setHover(true)}
-        onPointerOut={(event) => setHover(false)}
+      <Text
+        font={'/fonts/Montserrat-Bold.ttf'}
+        fontSize={0.1}
+        position={[0, 0, 0]}
+        rotation-y={0}
+        maxWidth={2.5}
       >
-        <boxGeometry args={[1, 1, 1]} />
-        <meshStandardMaterial color={hovered ? 'hotpink' : 'orange'} />
-      </mesh>
-      <Text position={[0, -1, 0]} scale={0.2}>
-        Im Contact
+        {email}
+        <meshNormalMaterial />
+      </Text>
+      <Text
+        font={'/fonts/Montserrat-Bold.ttf'}
+        fontSize={0.1}
+        position={[0, -0.5, 0]}
+        rotation-y={0}
+        maxWidth={2.5}
+      >
+        {phone}
+        <meshNormalMaterial />
       </Text>
     </group>
   );
