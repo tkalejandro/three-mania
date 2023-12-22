@@ -16,7 +16,7 @@ import { imageLibrary } from '@/helpers';
 
 const image = imageLibrary.tlou2_1;
 
-const displayImage = () => {
+const DisplayImage = () => {
   // Example usage in React component
   // <img src={image} alt="The Last of Us 1" />
 };

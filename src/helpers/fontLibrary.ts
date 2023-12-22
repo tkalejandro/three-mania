@@ -5,12 +5,12 @@ class FontLibrary {
   /**
    * Montserrat - Useful only in Text3D from Drei
    */
-  montserratBold3DText = () => '/fonts/Montserrat_Bold.json';
+  _3DTextMontserratBold = () => '/fonts/Montserrat_Bold.json';
   /**
    *
    * Montserrat - Useful only in Text3D from Drei
    */
-  montserratThinRegular3DText = () => '/fonts/Montserrat_Thin_Regular.json';
+  _3DTextMontserratThinRegular = () => '/fonts/Montserrat_Thin_Regular.json';
 
   /**
    * Montserrat Black - Useful in Text from drei
