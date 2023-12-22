@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { useFrame, Vector3 } from '@react-three/fiber';
 import { Center, Text, Text3D } from '@react-three/drei';
 import { soniaCoronado } from '@/constants';
+import { fontLibrary } from '@/helpers';
 
 interface ContactSceneProps {
   position: Vector3;
@@ -20,7 +21,7 @@ const ContactScene = ({ position }: ContactSceneProps) => {
   return (
     <group position={position}>
       <Text
-        font={'/fonts/Montserrat-Bold.ttf'}
+        font={fontLibrary.montserratSemiBold()}
         fontSize={0.1}
         position={[0, 0, 0]}
         rotation-y={0}
@@ -30,7 +31,7 @@ const ContactScene = ({ position }: ContactSceneProps) => {
         <meshNormalMaterial />
       </Text>
       <Text
-        font={'/fonts/Montserrat-Bold.ttf'}
+        font={fontLibrary.montserratSemiBold()}
         fontSize={0.1}
         position={[0, -0.5, 0]}
         rotation-y={0}
