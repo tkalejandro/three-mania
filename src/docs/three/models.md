@@ -31,7 +31,7 @@ export { default as GuitarModel } from './GuitarModel';
 ## Where to find Models
 
 Some models can be imported from:
-- https://sketchfab.com/tags/threejs
+- https://sketchfab.com/
 - https://poly.pizza/
 - https://blendswap.com/
 - https://market.pmnd.rs/

@@ -3,6 +3,7 @@ import { useFrame, Vector3 } from '@react-three/fiber';
 import { Center, Text, Text3D } from '@react-three/drei';
 import { soniaCoronado } from '@/constants';
 import { fontLibrary } from '@/helpers';
+import { IphoneX } from '../../models';
 
 interface ContactSceneProps {
   position: Vector3;
@@ -20,8 +21,9 @@ const ContactScene = ({ position }: ContactSceneProps) => {
   const { email, phone } = soniaCoronado;
   return (
     <group position={position}>
+      <IphoneX scale={0.6} />
       <Text
-        font={fontLibrary.montserratSemiBold()}
+        font={fontLibrary.montserrat.semiBold}
         fontSize={0.1}
         position={[0, 0, 0]}
         rotation-y={0}
@@ -31,7 +33,7 @@ const ContactScene = ({ position }: ContactSceneProps) => {
         <meshNormalMaterial />
       </Text>
       <Text
-        font={fontLibrary.montserratSemiBold()}
+        font={fontLibrary.montserrat.semiBold}
         fontSize={0.1}
         position={[0, -0.5, 0]}
         rotation-y={0}
