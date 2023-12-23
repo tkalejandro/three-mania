@@ -1,9 +1,11 @@
 import React, { useRef, useState } from 'react';
 import { useFrame, Vector3 } from '@react-three/fiber';
-import { Center, Text, Text3D } from '@react-three/drei';
+import { Center, Float, Text, Text3D } from '@react-three/drei';
 import { soniaCoronado } from '@/constants';
 import { fontLibrary } from '@/helpers';
 import { IphoneX } from '../../models';
+import { useControls } from 'leva';
+import { useAppBreakpoints } from '@/hooks';
 
 interface ContactSceneProps {
   position: Vector3;
@@ -19,9 +21,28 @@ interface ContactSceneProps {
  */
 const ContactScene = ({ position }: ContactSceneProps) => {
   const { email, phone } = soniaCoronado;
+
+  const { isTablet, isBigTablet } = useAppBreakpoints();
+
+  let scale = 1;
+  if (isBigTablet) {
+    scale = 1.5;
+  } else if (isTablet) {
+    scale = 1.2;
+  }
+
+  const iPhone = useControls('iPhone', {
+    position: { value: [0, -1, -0.6], step: 0.05 },
+    rotation: { value: [0, 0, 0], step: 0.05 },
+    scale: { value: 0.65, step: 0.05 },
+  });
   return (
-    <group position={position}>
-      <IphoneX scale={0.6} />
+    <group position={position} scale={scale}>
+      <Float rotationIntensity={1.5}>
+        <group position={iPhone.position} rotation={iPhone.rotation} scale={iPhone.scale}>
+          <IphoneX />
+        </group>
+      </Float>
       <Text
         font={fontLibrary.montserrat.semiBold}
         fontSize={0.1}
