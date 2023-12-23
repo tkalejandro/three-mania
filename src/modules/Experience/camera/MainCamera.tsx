@@ -1,12 +1,23 @@
 import { useCamera } from '@/store';
 import { useRef } from 'react';
-import { PerspectiveCamera, useHelper, useAspect } from '@react-three/drei';
-import * as THREE from 'three';
+import { PerspectiveCamera, useScroll } from '@react-three/drei';
+import { useFrame } from '@react-three/fiber';
+
 const MainCamera = () => {
   const cameraPosition = useCamera((state) => state.cameraPosition);
   const cameraRef = useRef<any>(null);
 
-  // useHelper(cameraRef, THREE.CameraHelper);
+  const scroll = useScroll();
+
+  useFrame((state) => {
+    let value = scroll.offset;
+    if (!isFinite(value)) {
+      //Fix the bug when the number is infinity.
+      value = 0;
+    }
+    // 20.5 Match perfectly for each section that
+    state.camera.position.y = -value * 20.5;
+  });
 
   return (
     <group>
