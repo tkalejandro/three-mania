@@ -17,21 +17,15 @@ const devTeamInfo = [
     id: 0,
     fullName: 'Alejandro Coronado',
     img: 'https://www.nefrologiaenlinea.com/static/media/jacc.0ca55152d92bcd4c0d97.jpeg',
-    role: [
-      'Product Development',
-      'Lead Developer',
-      'Web Architect',
-      'Frontend Development',
-      'Backend Development',
-    ],
+    role: ['Product Owner', 'Frontend Development', 'Three Development'],
     linkedinUrl: 'https://www.linkedin.com/in/jorge-alejandro-coronado-cuesta/',
   },
   {
     id: 1,
     fullName: 'Hicham-Zaadla',
     img: 'https://avatars.githubusercontent.com/u/99765449?v=4',
-    role: ['Frontend Development', 'Design'],
-    linkedinUrl: '',
+    role: ['Frontend Development', 'Three Development'],
+    linkedinUrl: 'https://www.linkedin.com/in/hicham-zaadla/',
   },
   {
     id: 2,
@@ -48,9 +42,10 @@ const tools = [
   'React',
   'NextJs',
   'ThreeJs',
-  'i18n',
+  'React Three Fiber',
   'ChakraUI',
   'Github',
+  'Discord',
 ];
 export const Developers = () => {
   return (
