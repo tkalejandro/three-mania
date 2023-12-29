@@ -15,10 +15,10 @@ Now that we have the source, lets dive in how to use it.
 For this project, we want to make the models easy to use as using any react component.
 Therefore we initiate the model inside `src/modules/Experience/models` as a react component.
 
-There are many ways to have a Model. But all should have income is this:
+There are many ways to have a Model. But all should have in common is this:
 
-- Easy name: DogModel, ChairModel, etc. Avoid no sense names.
-- UseMemo to no need to render again.
+- Easy name: DogModel, ChairModel, Trophy, RedHouse etc. Avoid no sense names.
+- UseEffect to save as useState variable.
 - Use preload.
 - Pass ...props. To be able to use all properties like any other mesh.
 
@@ -31,10 +31,11 @@ export { default as GuitarModel } from './GuitarModel';
 ## Where to find Models
 
 Some models can be imported from:
-- https://sketchfab.com/tags/threejs
+- https://sketchfab.com/
 - https://poly.pizza/
 - https://blendswap.com/
 - https://market.pmnd.rs/
+- https://www.mixamo.com/
 
 ## How to transform a GLTF to a React Component
 
