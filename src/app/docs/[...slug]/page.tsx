@@ -1,3 +1,4 @@
+import { StyledMarkdown } from '@/components';
 import fs, { readFileSync } from 'fs';
 import Markdown from 'markdown-to-jsx';
 import React from 'react';
@@ -18,7 +19,7 @@ const SlugPage = ({ params }: { params: { slug: string[] } }) => {
   let element: JSX.Element;
   if (!stats.isDirectory()) {
     const markdownContent = readFileSync(`${patchPath}`, 'utf-8');
-    return <Markdown>{markdownContent}</Markdown>;
+    return <StyledMarkdown>{markdownContent}</StyledMarkdown>;
   }
 
   //TODO More work is need here

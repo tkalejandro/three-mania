@@ -1,12 +1,8 @@
 'use client';
-
-import Markdown from 'markdown-to-jsx';
 import React from 'react';
 import Link from 'next/link';
 import { ContentSection } from '@/types/DocAppTypes';
-import { Text } from '@chakra-ui/layout';
-import { H1, H2, H3, H4, H5, H6 } from './components/Headings';
-import { B, Em, I, P, Strong } from './components/Typographys';
+import { StyledMarkdown } from '@/components';
 
 interface DocAppProps {
   markdownContent: string;
@@ -54,49 +50,10 @@ const DocApp = ({ markdownContent, docStructure, paths, directory, os }: DocAppP
       </ul>
     );
   };
+
   return (
     <div>
-      <Markdown
-        options={{
-          overrides: {
-            h1: {
-              component: H1,
-            },
-            h2: {
-              component: H2,
-            },
-            h3: {
-              component: H3,
-            },
-            h4: {
-              component: H4,
-            },
-            h5: {
-              component: H5,
-            },
-            h6: {
-              component: H6,
-            },
-            p: {
-              component: P,
-            },
-            em: {
-              component: Em,
-            },
-            i: {
-              component: I,
-            },
-            b: {
-              component: B,
-            },
-            strong: {
-              component: Strong,
-            },
-          },
-        }}
-      >
-        {markdownContent}
-      </Markdown>
+      <StyledMarkdown>{markdownContent}</StyledMarkdown>
       <hr />
       <h2>Content</h2>
       {generateNestedList(docStructure)}
