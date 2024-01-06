@@ -1,5 +1,8 @@
+import { StyledMarkdown } from '@/modules/DocApp/components';
+import { Button } from '@chakra-ui/react';
 import fs, { readFileSync } from 'fs';
 import Markdown from 'markdown-to-jsx';
+import Link from 'next/link';
 import React from 'react';
 
 /**
@@ -18,7 +21,14 @@ const SlugPage = ({ params }: { params: { slug: string[] } }) => {
   let element: JSX.Element;
   if (!stats.isDirectory()) {
     const markdownContent = readFileSync(`${patchPath}`, 'utf-8');
-    return <Markdown>{markdownContent}</Markdown>;
+    return (
+      <>
+        <StyledMarkdown>{markdownContent}</StyledMarkdown>
+        <Button colorScheme="primary" mt={10}>
+          <Link href="/docs">Back To Docs </Link>
+        </Button>
+      </>
+    );
   }
 
   //TODO More work is need here

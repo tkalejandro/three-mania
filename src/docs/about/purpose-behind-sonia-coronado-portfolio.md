@@ -31,3 +31,4 @@ Lastly, the project is an opportunity to embrace good development practices. It 
 ## Conclusion
 
 In creating Sonia Coronado's 3D portfolio, we embark on a journey that goes beyond a mere project. It's a learning adventure, a creative exploration, and an opportunity to embrace the best practices of web development. By dedicating our time and effort to this endeavor, we aim to create something exceptional that not only showcases Sonia's work but also reflects our commitment to innovation and skill development.
+
