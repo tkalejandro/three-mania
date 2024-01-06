@@ -25,7 +25,7 @@ const DocApp = ({ markdownContent, docStructure, paths, directory, os }: DocAppP
         ?.replace(directory, 'docs')
         .replace('src', '');
     }
-    // Mac
+    // Mac and Linux
     return paths.find((i) => i.includes(`/${file}`))?.replace(directory, 'docs');
   };
 
