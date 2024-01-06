@@ -26,7 +26,6 @@ const Gallery = () => {
     }
 
     if (isTablet) {
-      console.log(isBigTablet);
       setGalleryTransform({
         tlou2_1: { scale: [2, 1.7], position: new Vector3(-1.125, 2, 0) },
         cod_2: { scale: [2, 1.7], position: new Vector3(1.03, 2, 0) },

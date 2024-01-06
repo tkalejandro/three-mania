@@ -1,12 +1,12 @@
 import { Text } from '@chakra-ui/layout';
-import { ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 
 interface TextStyleProps {
   children: ReactNode;
 }
 
 export const P = ({ children }: TextStyleProps) => (
-  <Text as="p" fontSize="md">
+  <Text as="p" fontSize="md" my={4}>
     {children}
   </Text>
 );

@@ -1,6 +1,14 @@
+import { Th } from '@chakra-ui/table';
 import Markdown from 'markdown-to-jsx';
 import React, { ReactNode } from 'react';
-import { H1, H2, H3, H4, H5, H6 } from '../ui/Headings';
+import { Blockquote } from './ui/Blockquote';
+import { Code, Pre } from './ui/Code';
+import { HR } from './ui/Dividers';
+import { H1, H2, H3, H4, H5, H6 } from './ui/Headings';
+import { Img } from './ui/Images';
+import { ExternalLink } from './ui/Links';
+import { LI, OL, UL } from './ui/Lists';
+import { TableWrapper, TBody, TD, TH, THead, TR } from './ui/Table';
 import {
   Abbr,
   B,
@@ -18,11 +26,14 @@ import {
   Sub,
   Sup,
   Underline,
-} from '../ui/Texts';
+} from './ui/Texts';
 interface StyledMarkdownProps {
   children: string;
 }
-
+/**
+ * Documentation
+ * https://www.npmjs.com/package/markdown-to-jsx
+ */
 const StyledMarkdown = ({ children }: StyledMarkdownProps) => {
   return (
     <Markdown
@@ -94,66 +105,56 @@ const StyledMarkdown = ({ children }: StyledMarkdownProps) => {
           sup: {
             component: Sup,
           },
-          // a: {
-          //   component: YourAnchorComponent,
-          // },
-          // img: {
-          //   component: YourImageComponent,
-          // },
-          // code: {
-          //   component: YourCodeComponent,
-          // },
-          // blockquote: {
-          //   component: YourBlockquoteComponent,
-          // },
-          // ul: {
-          //   component: YourUnorderedListComponent,
-          // },
-          // ol: {
-          //   component: YourOrderedListComponent,
-          // },
-          // li: {
-          //   component: YourListItemComponent,
-          // },
-          // hr: {
-          //   component: YourHorizontalRuleComponent,
-          // },
-          // table: {
-          //   component: YourTableComponent,
-          // },
-          // thead: {
-          //   component: YourTableHeadComponent,
-          // },
-          // tbody: {
-          //   component: YourTableBodyComponent,
-          // },
-          // tr: {
-          //   component: YourTableRowComponent,
-          // },
-          // th: {
-          //   component: YourTableHeaderCellComponent,
-          // },
-          // td: {
-          //   component: YourTableCellComponent,
-          // },
-          // code: {
-          //   component: YourCodeComponent,
-          // },
-          // pre: {
-          //   component: YourPreComponent,
-          // },
+          a: {
+            component: ExternalLink,
+          },
+          img: {
+            component: Img,
+          },
+          code: {
+            component: Code,
+          },
+          blockquote: {
+            //TODO Needs work
+            component: Blockquote,
+          },
+          ul: {
+            component: UL,
+          },
+          ol: {
+            component: OL,
+          },
+          li: {
+            component: LI,
+          },
+          hr: {
+            component: HR,
+          },
+          table: {
+            component: TableWrapper,
+          },
+          thead: {
+            component: THead,
+          },
+          tbody: {
+            component: TBody,
+          },
+          tr: {
+            component: TR,
+          },
+          th: {
+            component: TH,
+          },
+          td: {
+            component: TD,
+          },
+          pre: {
+            component: Pre,
+          },
+          //TODO Not sure if is really needed.
           // br: {
           //   component: YourLineBreakComponent,
           // },
-          // hr: {
-          //   component: YourHorizontalRuleComponent,
-          // },
-          // blockquote: {
-          //   component: YourBlockquoteComponent,
-          // },
-          // img: {
-          //   component:
-          // }
         },
       }}
     >
