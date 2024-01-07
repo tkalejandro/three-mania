@@ -6,7 +6,7 @@ interface CodeProps {
 }
 export const Code = ({ children }: CodeProps) => {
   return (
-    <CodeUI px={2} borderRadius={10} colorScheme="gray">
+    <CodeUI overflow={'auto'} px={2} borderRadius={10} colorScheme="gray">
       {children}
     </CodeUI>
   );
