@@ -51,7 +51,7 @@ src
 
 ## Public folder
 
-Here you will find all explanations related to public folder.
+Here you will find all explanations related to `/public` folder.
 
 ### Audio
 
@@ -96,6 +96,200 @@ pavingStones
     normal.png
     ...
 ```
+
+## Src Folder
+
+Here you will find all explanations related to `/src` folder.
+
+### App
+
+App folder is a special forder from NextJS 14. This is how the routing of the project happens and is considered as a backend environment. To get more information you could visit here: [NextJS App router documentation](https://nextjs.org/docs).
+
+However the important here to know this folder is full of special files.
+
+```
+page.tsx --> at the root is actually "/"
+
+myFolder
+    page.tsx --> is a new page called "/myFolder"
+
+layout.tsx --> Is a layout wrapper
+providers.tsx --> Is a wrapper to add providers.
+
+favicon.ico --> favicon
+apple-icon.png --> favicon for apple
+icon.png --> icon
+
+```
+
+### Components
+
+All UI components that can be use across the project. However, its mostly use for UI that belongs inside the `src/app` folder. We dont do it directly app folder, to not confuse with the special files.
+
+### constants
+
+As we explained is a collection of objects with information that never change. Could be the info of a company, a person, or country information. For example your data could be a constant.
+
+When you create a new file, make sure you export it as default and later add it in the `index.ts` file.
+
+```
+...
+export { default as soniaCoronado } from './soniaCoronado';
+...
+```
+
+### Docs
+
+This are all MD files that are use for the DocApp. The important here to know is that only the `.md` files will be read. This section is possible because we are using the ability of Backend from NextJS, that allow us to read files and folders from the project.
+
+Take in count that you can create new folders as categories or subcategories. The navigiation will be automatically created. If you think there is a style that is off, this could be change in the `StyledMarkdown/ui` components.
+
+### Enums
+
+Enums in TypeScript provide a way to define a set of named constant values. This enhances code readability and maintainability by giving meaningful names to these values.
+
+```
+enum Days {
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday
+}
+
+const today: Days = Days.Wednesday; // or any other day that we assign in the enum.
+```
+
+Make sure you export the enums in the category they belong as a `export const MyEnum {...}`
+
+### Helpers
+
+In this folder you will find many code that help us in the reusability. As you might know, in this project there are a lot of hardcoded strings , like linking an image, music, textures, etc. Therefore we created this helpers to make it very easy to use. We recommend to read the guide of each audiolibraries.
+
+You can create more helpers, if you feel a code is been repeated a lot, there is a high chance that could be a helper. The base of this helpers is using Class methods.
+
+Make sure the new helper is added in the `index.ts` file.
+
+```
+...
+export { default as audioLibrary } from './audioLibrary';
+export { default as textureLibrary } from './textureLibrary';
+export { default as envMapLibrary } from './envMapLibrary';
+export { default as threeHelpers } from './threeHelpers';
+export { default as imageLibrary } from './imageLibrary';
+export { default as fontLibrary } from './fontLibrary';
+...
+
+```
+
+### Hooks
+
+In React, hooks are special functions that help functional components manage state and side effects. They simplify code, promote reusability, and allow for better organization, making it easier to build and maintain components without the need for class components.
+
+At the moment we have the:
+
+- useAppTheme --> this is to get the theme configurations. So we avoud using hardcoded strings
+- useAppBreakpoints --> this is to know when is mobile, desktop, etc.
+
+### Modules
+
+The modules is like a department in which each team is responsible. In this project we have 3 departments which are:
+
+- Experience --> it create all pages related to the experience. In this case 2. "/" and "/testExperience"
+- DocApp --> all related to DocApp. "/docs"
+- StaticPages --> all related to static page that almost never change. In thid case "/resume" and "/developers"
+
+Each team or department are in charge of generating the content that will be display in each route. Therefore each team has the freedom to create pages and also their frontends. 
+
+If you see there a new department to create, you can also create one.
+
+### Store
+
+This is where all global states are created. We have divided them by categories. We should always avoid to have to much data in 1 file, because then it gets complex.
+
+For more information please read the [Zustand Documentation](https://github.com/pmndrs/zustand).
+
+### Theme
+
+Everything related to the theme, styles, colors, spacing etc, goes here.
+The important here is you can easily change, delete and add new variables as a theme. This will be automatically recognize in our `useAppTheme` custom hook. Is important to mention is Type safe.
+
+Remember the base is Chakra UI. So it comes in handy you also check the ChakraUI Docs.
+
+[Chakra UI Documentation](https://chakra-ui.com/docs/getting-started)
+
+### Types
+
+In TypeScript, custom types can be created to represent specific shapes of data. This enhances code clarity and ensures that variables adhere to specific structures.
+
+```
+export type Person = {
+  name: string;
+  age: number;
+  isStudent: boolean;
+};
+
+const user: Person = {
+  name: "John Doe",
+  age: 25,
+  isStudent: true
+};
+
+```
+
+You will see a lot `interface` . It does almost the same as `Type` is just the stucture is different.
+
+```
+export interface Person {
+  name: string;
+  age: number;
+  isStudent: boolean;
+}
+```
+
+## Why so many Index.ts file?
+
+To streamline imports and enhance code organization, you can create an `index.ts` file in a folder that exports various functionalities. This approach simplifies import statements in other parts of your codebase.
+
+```
+// Inside a folder, e.g., "hooks"
+export { default as useAppBreakpoints } from './useAppBreakpoints';
+export { default as useAppTheme } from './useAppTheme';
+
+```
+
+```
+// Now, you can import the exported functionalities in a more concise way
+import { useAppBreakpoints, useAppTheme } from './hooks';
+```
+
+By consolidating exports in an index.ts file, you create a centralized entry point for a folder, making it easier to manage and import multiple functionalities without writing lengthy import statements.
+
+## Why so many components folder?
+
+In a nut shell, we want to make our components to be local to the component we are created. This way we can have easy access to the components to belong to it. If for some reason we want to reuse a component many times across the page. Then is better choice to have it as global component inside this folder `src/components`
+
+Example how component looks like:
+
+```
+HumanComponent
+    - HumanComponent.tsx
+    - Components
+        - UpperBody
+            -UpperBody.tsx
+        - LowerBody
+            - LowerBody.tsx
+    - Index.ts //contains component Upper and Lower body.
+```
+
+
+
+
+
+
+
+
+
 
 
 
