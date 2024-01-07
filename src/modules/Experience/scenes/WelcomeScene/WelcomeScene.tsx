@@ -40,7 +40,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
 
   const playButton = () => {
     mainSound.currentTime = 0;
-    mainSound.volume = 1;
+    mainSound.volume = 0;
     mainSound.loop = true;
 
     mainSound.play();
