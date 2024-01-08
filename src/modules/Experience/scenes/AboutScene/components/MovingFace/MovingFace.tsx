@@ -1,7 +1,11 @@
 import React, { useRef } from 'react';
-import { Color, useFrame } from '@react-three/fiber';
+import { Color, useFrame, useLoader } from '@react-three/fiber';
 import { Mesh } from 'three';
 import { useControls } from 'leva';
+import { Point, useGLTF } from '@react-three/drei';
+import * as THREE from 'three'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { GuitarModel } from '@/modules/Experience/models';
 
 interface MovingFaceProps {
   scenePositionY: number;
@@ -9,7 +13,7 @@ interface MovingFaceProps {
 }
 
 const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
-  const faceRef = useRef<Mesh>(null!);
+  const faceRef = useRef<Mesh | any>(null!);
 
   const {
     positionIntensityX,
@@ -46,12 +50,47 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
       //faceRef.current.lookAt(mouseX * lookAtIntensity, mouseY * lookAtIntensity, 20);
     }
   });
+  const map1 = new THREE.TextureLoader().load('https://cdn.discordapp.com/attachments/941095160517894185/1192890009741709403/note.png?ex=65aab865&is=65984365&hm=7c54f001dd572a6fc963abc396026353c22b73504b0ebfc96f6a6eac8df1d641&')
+  const model = useGLTF('/models/head.glb')
+  // console.log(model.scene.children[0].geometry);
+  const modelGeo = model.scene.children[0].geometry.clone()
+  const pmaterial = new THREE.PointsMaterial({
+    // color: selectedColor,
+    size: 0.07,
+    blending: THREE.AdditiveBlending,
+    transparent: true,
+    opacity: 1,
+    depthWrite: false,
+    sizeAttenuation: true,
+    alphaMap: map1,
+    color: new THREE.Color(`${selectedColor}`)
+  })
+
+  const pointsMesh  =new THREE.Points(modelGeo, pmaterial)
 
   return (
-    <mesh ref={faceRef} position={[0, scenePositionY + positionY, -0.3]}>
-      <planeGeometry args={[2, 3.5]} />
-      <meshStandardMaterial color={selectedColor} />
-    </mesh>
+    <>
+    {/* <mesh ref={faceRef} position={[0, scenePositionY + positionY, -0.3]}> */}
+      {/* <planeGeometry args={[2, 3.5, 32]} /> */}
+      
+      {/* <sphereGeometry attach="geometry" args={[0.5, 32, 32]} /> */}
+      {/* <meshStandardMaterial attach="material" color={selectedColor} /> */}
+      <group ref={faceRef} position={[0, scenePositionY + positionY , -0.3]} >
+        <primitive object={pointsMesh} />
+        {/* <pointsMaterial
+            color={selectedColor}
+            size={0.1}
+            blending={THREE.AdditiveBlending}
+            transparent={true}
+            opacity={1}
+            depthWrite={false}
+            sizeAttenuation={true}
+            alphaMap={map1}
+            // onBeforeCompile={onBeforeCompile}
+        /> */}
+      </group>
+    {/* </mesh> */}
+    </>
   );
 };
 
