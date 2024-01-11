@@ -18,6 +18,7 @@ import { DebugButton } from './components';
 import { MainLight } from './lights';
 import { Vector3 } from 'three';
 import { MainCamera } from './camera';
+import { Message } from './scenes/WelcomeScene/components';
 
 /**
  * Welcome to the TEST PAGE. Useful to build a 3D scene isolated from the project.
@@ -45,7 +46,7 @@ const TestExperience = () => {
         {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
         {/* <MainLight />
         <OrbitControls /> */}
-
+        <Message />
         {/* UNTIL HERE */}
       </Canvas>
       {/* DONT DELETE BUTTON */}

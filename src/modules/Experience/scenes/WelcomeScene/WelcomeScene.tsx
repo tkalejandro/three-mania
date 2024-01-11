@@ -5,7 +5,7 @@ import { GuitarModel, Headphone } from '../../models';
 import { Group, ShaderMaterial } from 'three';
 import { Message } from './components';
 import { Button } from '@chakra-ui/react';
-import { ChakraHtml } from '../../components';
+import { ChakraHtml, ThreeDButton } from '../../components';
 import { Phase } from '@/enums/Experience';
 import { audioLibrary } from '@/helpers';
 import gsap from 'gsap';
@@ -23,16 +23,19 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
 
   const theme = useAppTheme();
 
-  const headphoneRef = useRef<Group>(null!);
-  const htmlRef = useRef<HTMLDivElement>(null!);
+  const buttonRef = useRef<Group>(null!);
   const loaderShaderRef = useRef<ShaderMaterial>(null!);
 
   const [opacity, setOpacity] = useState<number>(1);
   const [action, setAction] = useState<Phase>(Phase.Ready);
-  const [navigationOpen, setNavigationOpen] = useState<boolean>(false);
+  const [messageOpen, setMessageOpen] = useState<boolean>(false);
+
+  // This trick works because this scene doest need to render again.
+  // Normal react this is criminal but we are in R3F.
+  let time = 0;
 
   const mainSound = audioLibrary.synthBase();
-
+  const guitarSound = audioLibrary.guitars();
   useEffect(() => {
     if (!distanceFactor) return;
     setDistanceFactor(undefined);
@@ -43,52 +46,34 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
     mainSound.volume = 1;
     mainSound.loop = true;
 
+    guitarSound.currentTime = 0;
+    guitarSound.volume = 1;
+    guitarSound.loop = true;
+
     mainSound.play();
-    // Lets animate the guitar
+    guitarSound.play();
+    // Music experience starts
     setAction(Phase.Playing);
   };
 
   useFrame((state, delta) => {
-    // Rotate the headphone over time
-    if (headphoneRef.current == null) return;
-    if (action === Phase.Playing) {
-      if (htmlRef.current != null) {
-        if (opacity !== 0) {
-          // If user clicks the navigation lets dissapear the button quickly
-          const targetOpacity = 0;
-          const speed = 4;
-          setOpacity((prevOpacity) => {
-            const newOpacity = Math.max(prevOpacity - delta * speed, targetOpacity);
-            htmlRef.current.style.opacity = newOpacity.toString();
-            return newOpacity;
-          });
-        }
-      }
+    console.log(time);
 
-      // This rotates 360 max
-      if (headphoneRef.current.rotation.y >= 6.24) {
-        // This means just a little inclination to the left
-        if (headphoneRef.current.rotation.z >= 0.05) {
-          // Our animation finished lets open the navigation
-          if (navigationOpen) return;
-          setNavigationOpen(true);
-          return;
-        }
-        headphoneRef.current.position.x -= delta * 0.0001;
-        headphoneRef.current.rotation.z += delta * 0.1;
+    if (action === Phase.Playing) {
+      if (time > 2) {
+        setMessageOpen(true);
         return;
       }
-      headphoneRef.current.position.z -= delta * 0.09;
-      headphoneRef.current.position.x -= delta * 0.000001;
-      headphoneRef.current.rotation.y += delta * 4.5;
+      const s = delta;
+      time += s * 1.3;
     }
   });
 
   useScroll();
 
-  // If the loaderShaderRef and HtmlRef
+  // If the loaderShaderRef and buttonRef
   // are loaded
-  if (loaderShaderRef.current && htmlRef.current) {
+  if (loaderShaderRef.current && buttonRef.current) {
     let animation = gsap.timeline();
     animation.to(loaderShaderRef.current.uniforms.uFull, {
       value: 1.01,
@@ -111,24 +96,13 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           }}
         />
       </mesh>
-
-      <group position={position} scale={2}>
-        <group ref={headphoneRef}>{/* <Headphone scale={0.25} /> */}</group>
-
-        {navigationOpen ? (
-          <>
-            <Message />
-          </>
-        ) : (
-          <>
-            <ChakraHtml ref={htmlRef} occlude="blending" prepend center position={[0, 0, 0]}>
-              <Button colorScheme="primary" onClick={playButton} size="lg" variant="outline">
-                Play
-              </Button>
-            </ChakraHtml>
-          </>
-        )}
-      </group>
+      {messageOpen ? (
+        <Message />
+      ) : (
+        <group position={position} ref={buttonRef}>
+          <ThreeDButton text="Play" size="lg" onClick={playButton} color="primary" />
+        </group>
+      )}
     </>
   );
 };
