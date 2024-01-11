@@ -89,7 +89,7 @@ const Navigation = () => {
         </Box>
         <Box centerAnchor marginTop={0.075}>
           <Text
-            font={fontLibrary.montserrat.extraBold}
+            font={fontLibrary.montserrat.extraBoldItalic}
             scale={0.1}
             color={theme.colors.primary.main}
           >
