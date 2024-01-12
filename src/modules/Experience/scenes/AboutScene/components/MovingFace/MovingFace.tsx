@@ -52,7 +52,9 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
   });
   const map1 = new THREE.TextureLoader().load('https://cdn.discordapp.com/attachments/941095160517894185/1192890009741709403/note.png?ex=65aab865&is=65984365&hm=7c54f001dd572a6fc963abc396026353c22b73504b0ebfc96f6a6eac8df1d641&')
   const model = useGLTF('/models/head-2.glb')
-  // console.log(model.scene.children[0].geometry);
+
+  // Let's ignore the issue for now
+  // @ts-ignore
   const modelGeo = model.scene.children[0].geometry.clone()
   const pmaterial = new THREE.PointsMaterial({
     // color: selectedColor,
