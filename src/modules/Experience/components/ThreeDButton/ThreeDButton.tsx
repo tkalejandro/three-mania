@@ -111,7 +111,16 @@ const ThreeDButton = ({
   };
   if (!buttonScale) return null;
   return (
-    <group {...props} scale={buttonScale}>
+    <group
+      {...props}
+      scale={buttonScale}
+      onPointerEnter={() => {
+        document.body.style.cursor = 'pointer';
+      }}
+      onPointerLeave={() => {
+        document.body.style.cursor = 'default';
+      }}
+    >
       {/* Button */}
 
       <mesh ref={buttonRef} position={[0, 0, 0]}>

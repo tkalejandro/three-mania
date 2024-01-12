@@ -5,6 +5,7 @@ import { Text, useAspect } from '@react-three/drei';
 import { useFrame, useThree } from '@react-three/fiber';
 import { Flex, Box } from '@react-three/flex';
 import React, { useEffect, useRef, useState } from 'react';
+import { MeshPhongMaterial } from 'three';
 
 const Navigation = () => {
   const theme = useAppTheme();
@@ -12,24 +13,25 @@ const Navigation = () => {
   const { size } = useThree();
   const [vw, vh] = useAspect(size.width, size.height);
 
-  const [opacity, setOpacity] = useState<number>(0);
+  //TODO Can we make this better??
+  const transparentRef1 = useRef<MeshPhongMaterial>(null!);
+  const transparentRef2 = useRef<MeshPhongMaterial>(null!);
+  const transparentRef3 = useRef<MeshPhongMaterial>(null!);
+  const transparentRef4 = useRef<MeshPhongMaterial>(null!);
+  const transparentRef5 = useRef<MeshPhongMaterial>(null!);
+
   const navigationLoaded = useAppSettings((state) => state.navigationLoaded);
   const setNavigationLoaded = useAppSettings((state) => state.setNavigationLoaded);
 
   useFrame((state, delta) => {
-    if (opacity >= 0.99) {
-      // Finish!;
-      return;
+    if (navigationLoaded && transparentRef1.current.opacity < 1.1) {
+      const speed = 0.1;
+      transparentRef1.current.opacity += speed;
+      transparentRef2.current.opacity += speed;
+      transparentRef3.current.opacity += speed;
+      transparentRef4.current.opacity += speed;
+      transparentRef5.current.opacity += speed;
     }
-
-    const targetOpacity = 1; // Target opacity value
-    const speed = 1.5; // Adjust the speed of the transition
-
-    setOpacity((prevOpacity) => {
-      const newOpacity = prevOpacity + (targetOpacity - prevOpacity) * delta * speed;
-
-      return newOpacity;
-    });
   });
 
   useEffect(() => {
@@ -60,6 +62,12 @@ const Navigation = () => {
             color={theme.colors.primary.main}
           >
             Hello there!
+            <meshPhongMaterial
+              ref={transparentRef1}
+              color={theme.colors.primary.main}
+              opacity={0}
+              transparent
+            />
           </Text>
         </Box>
         <Box centerAnchor marginBottom={0.075}>
@@ -69,6 +77,12 @@ const Navigation = () => {
             color={theme.colors.secondary[900]}
           >
             Welcome to my musical world!
+            <meshPhongMaterial
+              ref={transparentRef2}
+              color={theme.colors.secondary[900]}
+              opacity={0.1}
+              transparent
+            />
           </Text>
         </Box>
         <Box centerAnchor marginBottom={0.075}>
@@ -79,6 +93,12 @@ const Navigation = () => {
             color={theme.colors.primary.main}
           >
             Scroll down and Feel the cool tunes I made for you.
+            <meshPhongMaterial
+              ref={transparentRef3}
+              color={theme.colors.primary.main}
+              opacity={0.1}
+              transparent
+            />
           </Text>
         </Box>
         <Box centerAnchor marginBottom={0.075}>
@@ -88,6 +108,12 @@ const Navigation = () => {
             color={theme.colors.primary.main}
           >
             Enjoy the journey,
+            <meshPhongMaterial
+              ref={transparentRef4}
+              color={theme.colors.primary.main}
+              opacity={0.1}
+              transparent
+            />
           </Text>
         </Box>
         <Box centerAnchor marginTop={0.075}>
@@ -97,6 +123,12 @@ const Navigation = () => {
             color={theme.colors.primary.main}
           >
             Sonia
+            <meshPhongMaterial
+              ref={transparentRef5}
+              color={theme.colors.primary.main}
+              opacity={0.1}
+              transparent
+            />
           </Text>
         </Box>
       </Flex>

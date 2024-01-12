@@ -57,8 +57,6 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   };
 
   useFrame((state, delta) => {
-    console.log(time);
-
     if (action === Phase.Playing) {
       if (time > 2) {
         setMessageOpen(true);

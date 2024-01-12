@@ -72,12 +72,6 @@ const AboutScene = ({ position }: AboutSceneProps) => {
             text="Warning"
             color="primary"
             size="xl"
-            onPointerEnter={() => {
-              document.body.style.cursor = 'pointer';
-            }}
-            onPointerLeave={() => {
-              document.body.style.cursor = 'default';
-            }}
           />
           <ThreeDButton
             onClick={() => selectButton(theme.colors.danger.main)}
@@ -86,12 +80,6 @@ const AboutScene = ({ position }: AboutSceneProps) => {
             text="Danger"
             color="primary"
             size="xl"
-            onPointerEnter={() => {
-              document.body.style.cursor = 'pointer';
-            }}
-            onPointerLeave={() => {
-              document.body.style.cursor = 'default';
-            }}
           />
           <ThreeDButton
             onClick={() => selectButton(theme.colors.info.main)}
@@ -100,12 +88,6 @@ const AboutScene = ({ position }: AboutSceneProps) => {
             text="Info"
             color="primary"
             size="xl"
-            onPointerEnter={() => {
-              document.body.style.cursor = 'pointer';
-            }}
-            onPointerLeave={() => {
-              document.body.style.cursor = 'default';
-            }}
           />
         </group>
       </Center>
