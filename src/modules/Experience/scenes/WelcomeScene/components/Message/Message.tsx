@@ -39,8 +39,7 @@ const Navigation = () => {
       }, 250);
     }
   }, []);
-  console.log('i react');
-  console.log(isDesktop);
+
   const textScale = isDesktop ? 2 : 1;
   return (
     <group>

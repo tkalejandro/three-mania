@@ -46,7 +46,7 @@ const TestExperience = () => {
         {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
         {/* <MainLight />
         <OrbitControls /> */}
-        <Message />
+
         {/* UNTIL HERE */}
       </Canvas>
       {/* DONT DELETE BUTTON */}
