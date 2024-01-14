@@ -53,6 +53,10 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
   const map1 = new THREE.TextureLoader().load('https://cdn.discordapp.com/attachments/941095160517894185/1192890009741709403/note.png?ex=65aab865&is=65984365&hm=7c54f001dd572a6fc963abc396026353c22b73504b0ebfc96f6a6eac8df1d641&')
   const model = useGLTF('/models/head-2.glb')
 
+  let uniforms = { mousePos: { value: new THREE.Vector3() } }
+  let pointsGeometry = new THREE.BufferGeometry()
+  const cursor = { x: 0, y: 0 }
+
   // Let's ignore the issue for now
   // @ts-ignore
   const modelGeo = model.scene.children[0].geometry.clone()
@@ -69,8 +73,39 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
     color: new THREE.Color(`${selectedColor}`)
   })
 
+  // Create the custom vertex shader injection
+  pmaterial.onBeforeCompile = function(shader) {
+    shader.uniforms.mousePos = uniforms.mousePos
+
+    shader.vertexShader = `
+      uniform vec3 mousePos;
+      varying float vNormal;
+      
+      ${shader.vertexShader}`.replace(
+        `#include <begin_vertex>`,
+        `#include <begin_vertex>   
+        vec3 seg = (position * -.05) - mousePos;
+        vec3 dir = normalize(seg);
+        float dist = length(seg);
+        if (dist < 1.5){
+          float force = clamp(1.0 / (dist * dist), -0., .2);
+          transformed += dir * log(force) * .25;
+          vNormal = force /0.5;
+        }
+      `
+    )
+}
 
   const pointsMesh = new THREE.Points(modelGeo, pmaterial)
+
+  document.addEventListener('mousemove', (event) => {
+    event.preventDefault()
+    cursor.x = -(event.clientX / window.innerWidth - 0.5)
+    cursor.y = event.clientY / window.innerHeight - 0.5
+    uniforms.mousePos.value.set(cursor.x, cursor.y, 0)
+    // m.uniforms.mousePos.value.set(cursor.x, cursor.y)
+
+}, false)
 
   return (
     <>
