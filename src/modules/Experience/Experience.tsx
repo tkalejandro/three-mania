@@ -1,6 +1,6 @@
 'use client';
 import React, { Suspense, useEffect, useState } from 'react';
-import { Canvas, useFrame } from '@react-three/fiber';
+import { Canvas } from '@react-three/fiber';
 import { ScrollControls } from '@react-three/drei';
 import {
   AboutScene,

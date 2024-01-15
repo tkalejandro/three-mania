@@ -27,13 +27,6 @@ const AboutScene = ({ position, scenePositionY }: AboutSceneProps) => {
     }
   });
 
-  // const hitSound = audioLibrary.hit();
-  // const dummyAudio = () => {
-  //   hitSound.currentTime = 0;
-  //   hitSound.volume = 1;
-  //   hitSound.play();
-  // };
-
   const selectButton = (value: Color) => {
     if (value === selectedColor) {
       //Same color was selected
@@ -58,12 +51,6 @@ const AboutScene = ({ position, scenePositionY }: AboutSceneProps) => {
             text="Succcess"
             color="primary"
             size="xl"
-            onPointerEnter={() => {
-              document.body.style.cursor = 'pointer';
-            }}
-            onPointerLeave={() => {
-              document.body.style.cursor = 'default';
-            }}
           />
 
           <ThreeDButton
