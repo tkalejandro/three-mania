@@ -7,7 +7,7 @@ import { Flex, Box } from '@react-three/flex';
 import React, { useEffect, useRef, useState } from 'react';
 import { MeshPhongMaterial } from 'three';
 
-const Navigation = () => {
+const Message = () => {
   const theme = useAppTheme();
   const { isDesktop } = useAppBreakpoints();
   const { size } = useThree();
@@ -136,4 +136,4 @@ const Navigation = () => {
   );
 };
 
-export default Navigation;
+export default Message;

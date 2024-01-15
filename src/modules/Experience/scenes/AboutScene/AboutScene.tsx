@@ -8,9 +8,10 @@ import { Vector3 } from 'three';
 
 interface AboutSceneProps {
   position: Vector3;
+  scenePositionY: number;
 }
 
-const AboutScene = ({ position }: AboutSceneProps) => {
+const AboutScene = ({ position, scenePositionY }: AboutSceneProps) => {
   const theme = useAppTheme();
   const { isBigTablet } = useAppBreakpoints();
 
@@ -44,7 +45,7 @@ const AboutScene = ({ position }: AboutSceneProps) => {
   return (
     <group position={position} scale={0.6}>
       <Center disableX>
-        <MovingFace selectedColor={selectedColor} scenePositionY={position.y} />
+        <MovingFace selectedColor={selectedColor} scenePositionY={scenePositionY} />
         <Text fontSize={0.1}>
           Bet on the magic of music: Switch the track, feel the vibe!
           <meshNormalMaterial />

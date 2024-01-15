@@ -15,8 +15,8 @@ const MainCamera = () => {
       //Fix the bug when the number is infinity.
       value = 0;
     }
-    // 20.5 Match perfectly for each section that
-    state.camera.position.y = -value * 20.5;
+    // 30.5 Match perfectly for each section that
+    state.camera.position.y = -value * 30.0;
   });
 
   return (

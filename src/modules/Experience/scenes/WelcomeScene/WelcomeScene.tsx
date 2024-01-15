@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useFrame, Vector3 } from '@react-three/fiber';
-import { Center, Float, Html, useProgress, useScroll } from '@react-three/drei';
-import { GuitarModel, Headphone } from '../../models';
+import { useScroll } from '@react-three/drei';
 import { Group, ShaderMaterial } from 'three';
 import { Message } from './components';
-import { Button } from '@chakra-ui/react';
-import { ChakraHtml, ThreeDButton } from '../../components';
+import { ThreeDButton } from '../../components';
 import { Phase } from '@/enums/Experience';
 import { audioLibrary } from '@/helpers';
 import gsap from 'gsap';
@@ -26,7 +24,6 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   const buttonRef = useRef<Group>(null!);
   const loaderShaderRef = useRef<ShaderMaterial>(null!);
 
-  const [opacity, setOpacity] = useState<number>(1);
   const [action, setAction] = useState<Phase>(Phase.Ready);
   const [messageOpen, setMessageOpen] = useState<boolean>(false);
 
@@ -47,7 +44,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
     mainSound.loop = true;
 
     guitarSound.currentTime = 0;
-    guitarSound.volume = 1;
+    guitarSound.volume = 0;
     guitarSound.loop = true;
 
     mainSound.play();
@@ -62,8 +59,27 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
         setMessageOpen(true);
         return;
       }
-      const s = delta;
-      time += s * 1.3;
+      const s = delta * 1.3;
+
+      time += s;
+      if (buttonRef.current && buttonRef.current.scale != null) {
+        // Additional null check to ensure buttonRef.current.scale is not null
+        if (
+          //buttonRef.current.scale.x >= 0 ||
+          buttonRef.current.scale.y >= 0 ||
+          buttonRef.current.scale.z >= 0
+        ) {
+          //buttonRef.current.scale.x -= s;
+          buttonRef.current.scale.y -= s * 1.01;
+          buttonRef.current.scale.z -= s;
+
+          return;
+        }
+
+        buttonRef.current.scale.x = 0;
+        buttonRef.current.scale.y = 0;
+        buttonRef.current.scale.z = 0;
+      }
     }
   });
 
