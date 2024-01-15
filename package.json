@@ -19,6 +19,7 @@
         "@fontsource-variable/montserrat": "^5.0.16",
         "@react-three/drei": "^9.86.3",
         "@react-three/fiber": "^8.14.4",
+        "@react-three/flex": "^1.0.1",
         "@types/three": "^0.156.0",
         "framer-motion": "^10.16.5",
         "gsap": "^3.12.3",

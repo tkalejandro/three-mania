@@ -35,10 +35,10 @@ const customTheme = {
       300: '#4da6ff',
       400: '#1a8cff',
       500: '#220632', // Very dark purple (adjust as needed)
-      600: '#0066cc',
-      700: '#0052b3',
-      800: '#004080',
-      900: '#002633',
+      600: '#361142',
+      700: '#4a1a52',
+      800: '#5e2362',
+      900: '#722d72',
       main: '#220632', // Use the same main shade for consistency
       contrastText: '#f5f5f5',
     },

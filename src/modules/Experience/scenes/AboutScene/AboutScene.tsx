@@ -8,9 +8,10 @@ import { Vector3 } from 'three';
 
 interface AboutSceneProps {
   position: Vector3;
+  scenePositionY: number;
 }
 
-const AboutScene = ({ position }: AboutSceneProps) => {
+const AboutScene = ({ position, scenePositionY }: AboutSceneProps) => {
   const theme = useAppTheme();
   const { isBigTablet } = useAppBreakpoints();
 
@@ -26,13 +27,6 @@ const AboutScene = ({ position }: AboutSceneProps) => {
     }
   });
 
-  // const hitSound = audioLibrary.hit();
-  // const dummyAudio = () => {
-  //   hitSound.currentTime = 0;
-  //   hitSound.volume = 1;
-  //   hitSound.play();
-  // };
-
   const selectButton = (value: Color) => {
     if (value === selectedColor) {
       //Same color was selected
@@ -44,7 +38,7 @@ const AboutScene = ({ position }: AboutSceneProps) => {
   return (
     <group position={position} scale={0.6}>
       <Center disableX>
-        <MovingFace selectedColor={selectedColor} scenePositionY={position.y} />
+        <MovingFace selectedColor={selectedColor} scenePositionY={scenePositionY} />
         <Text fontSize={0.1}>
           Bet on the magic of music: Switch the track, feel the vibe!
           <meshNormalMaterial />
@@ -57,12 +51,6 @@ const AboutScene = ({ position }: AboutSceneProps) => {
             text="Succcess"
             color="primary"
             size="xl"
-            onPointerEnter={() => {
-              document.body.style.cursor = 'pointer';
-            }}
-            onPointerLeave={() => {
-              document.body.style.cursor = 'default';
-            }}
           />
 
           <ThreeDButton
@@ -72,12 +60,6 @@ const AboutScene = ({ position }: AboutSceneProps) => {
             text="Warning"
             color="primary"
             size="xl"
-            onPointerEnter={() => {
-              document.body.style.cursor = 'pointer';
-            }}
-            onPointerLeave={() => {
-              document.body.style.cursor = 'default';
-            }}
           />
           <ThreeDButton
             onClick={() => selectButton(theme.colors.danger.main)}
@@ -86,12 +68,6 @@ const AboutScene = ({ position }: AboutSceneProps) => {
             text="Danger"
             color="primary"
             size="xl"
-            onPointerEnter={() => {
-              document.body.style.cursor = 'pointer';
-            }}
-            onPointerLeave={() => {
-              document.body.style.cursor = 'default';
-            }}
           />
           <ThreeDButton
             onClick={() => selectButton(theme.colors.info.main)}
@@ -100,12 +76,6 @@ const AboutScene = ({ position }: AboutSceneProps) => {
             text="Info"
             color="primary"
             size="xl"
-            onPointerEnter={() => {
-              document.body.style.cursor = 'pointer';
-            }}
-            onPointerLeave={() => {
-              document.body.style.cursor = 'default';
-            }}
           />
         </group>
       </Center>

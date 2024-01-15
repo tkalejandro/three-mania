@@ -4,6 +4,7 @@ import { Group, Mesh } from 'three';
 import { Text } from '@react-three/drei';
 import { ThreeColor, ThreeSize } from '@/types/ExperienceTypes';
 import { useAppTheme } from '@/hooks';
+import { fontLibrary } from '@/helpers';
 
 interface ThreeDButtonProps extends GroupProps {
   /**
@@ -111,7 +112,16 @@ const ThreeDButton = ({
   };
   if (!buttonScale) return null;
   return (
-    <group {...props} scale={buttonScale}>
+    <group
+      {...props}
+      scale={buttonScale}
+      onPointerEnter={() => {
+        document.body.style.cursor = 'pointer';
+      }}
+      onPointerLeave={() => {
+        document.body.style.cursor = 'default';
+      }}
+    >
       {/* Button */}
 
       <mesh ref={buttonRef} position={[0, 0, 0]}>
@@ -121,10 +131,10 @@ const ThreeDButton = ({
 
       {/* Text */}
       <Text
-        position={[0, -0.005, 0.028]}
+        position={[0, 0.004, 0.028]}
         ref={textRef}
         fontSize={0.07}
-        font="Arial"
+        font={fontLibrary.montserrat.regular}
         color={textColor}
       >
         {text}
