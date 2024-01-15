@@ -49,6 +49,7 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
       faceRef.current.rotation.y = mouseX * rotationIntensityY;
       //faceRef.current.lookAt(mouseX * lookAtIntensity, mouseY * lookAtIntensity, 20);
     }
+    
   });
   const map1 = new THREE.TextureLoader().load('https://cdn.discordapp.com/attachments/941095160517894185/1192890009741709403/note.png?ex=65aab865&is=65984365&hm=7c54f001dd572a6fc963abc396026353c22b73504b0ebfc96f6a6eac8df1d641&')
   const model = useGLTF('/models/head-2.glb')
@@ -69,7 +70,6 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
     depthWrite: false,
     sizeAttenuation: true,
     alphaMap: map1,
-    
     color: new THREE.Color(`${selectedColor}`)
   })
 
@@ -98,14 +98,14 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
 
   const pointsMesh = new THREE.Points(modelGeo, pmaterial)
 
+  
   document.addEventListener('mousemove', (event) => {
     event.preventDefault()
     cursor.x = -(event.clientX / window.innerWidth - 0.5)
     cursor.y = event.clientY / window.innerHeight - 0.5
     uniforms.mousePos.value.set(cursor.x, cursor.y, 0)
     // m.uniforms.mousePos.value.set(cursor.x, cursor.y)
-
-}, false)
+  }, false)
 
   return (
     <>
