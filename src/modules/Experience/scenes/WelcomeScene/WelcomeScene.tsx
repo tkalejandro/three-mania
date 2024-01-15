@@ -1,11 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useFrame, Vector3 } from '@react-three/fiber';
-import { Center, Float, Html, useProgress, useScroll } from '@react-three/drei';
-import { GuitarModel } from '../../models';
+import { useScroll } from '@react-three/drei';
 import { Group, ShaderMaterial } from 'three';
-import { Navigation } from './components';
-import { Button } from '@chakra-ui/react';
-import { ChakraHtml } from '../../components';
+import { Message } from './components';
+import { ThreeDButton } from '../../components';
 import { Phase } from '@/enums/Experience';
 import { audioLibrary } from '@/helpers';
 import gsap from 'gsap';
@@ -23,16 +21,18 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
 
   const theme = useAppTheme();
 
-  const guitarRef = useRef<Group>(null!);
-  const htmlRef = useRef<HTMLDivElement>(null!);
+  const buttonRef = useRef<Group>(null!);
   const loaderShaderRef = useRef<ShaderMaterial>(null!);
 
-  const [opacity, setOpacity] = useState<number>(1);
   const [action, setAction] = useState<Phase>(Phase.Ready);
-  const [navigationOpen, setNavigationOpen] = useState<boolean>(false);
+  const [messageOpen, setMessageOpen] = useState<boolean>(false);
+
+  // This trick works because this scene doest need to render again.
+  // Normal react this is criminal but we are in R3F.
+  let time = 0;
 
   const mainSound = audioLibrary.synthBase();
-
+  const guitarSound = audioLibrary.guitars();
   useEffect(() => {
     if (!distanceFactor) return;
     setDistanceFactor(undefined);
@@ -43,52 +43,51 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
     mainSound.volume = 1;
     mainSound.loop = true;
 
+    guitarSound.currentTime = 0;
+    guitarSound.volume = 0;
+    guitarSound.loop = true;
+
     mainSound.play();
-    // Lets animate the guitar
+    guitarSound.play();
+    // Music experience starts
     setAction(Phase.Playing);
   };
 
   useFrame((state, delta) => {
-    // Rotate the guitar over time
-    if (guitarRef.current == null) return;
     if (action === Phase.Playing) {
-      if (htmlRef.current != null) {
-        if (opacity !== 0) {
-          // If user clicks the navigation lets dissapear the button quickly
-          const targetOpacity = 0;
-          const speed = 3;
-          setOpacity((prevOpacity) => {
-            const newOpacity = Math.max(prevOpacity - delta * speed, targetOpacity);
-            htmlRef.current.style.opacity = newOpacity.toString();
-            return newOpacity;
-          });
-        }
-      }
-
-      // This rotates 360 max
-      if (guitarRef.current.rotation.y >= 6.24) {
-        // This means just a little inclination to the left
-        if (guitarRef.current.rotation.z >= 0.1) {
-          // Our animation finished lets open the navigation
-          if (navigationOpen) return;
-          setNavigationOpen(true);
-          return;
-        }
-        guitarRef.current.position.x -= delta * 0.1;
-        guitarRef.current.rotation.z += delta * 0.1;
+      if (time > 2) {
+        setMessageOpen(true);
         return;
       }
-      guitarRef.current.position.z -= delta * 0.09;
-      guitarRef.current.position.x -= delta * 0.09;
-      guitarRef.current.rotation.y += delta * 3.5;
+      const s = delta * 1.3;
+
+      time += s;
+      if (buttonRef.current && buttonRef.current.scale != null) {
+        // Additional null check to ensure buttonRef.current.scale is not null
+        if (
+          //buttonRef.current.scale.x >= 0 ||
+          buttonRef.current.scale.y >= 0 ||
+          buttonRef.current.scale.z >= 0
+        ) {
+          //buttonRef.current.scale.x -= s;
+          buttonRef.current.scale.y -= s * 1.01;
+          buttonRef.current.scale.z -= s;
+
+          return;
+        }
+
+        buttonRef.current.scale.x = 0;
+        buttonRef.current.scale.y = 0;
+        buttonRef.current.scale.z = 0;
+      }
     }
   });
 
   useScroll();
 
-  // If the loaderShaderRef and HtmlRef
+  // If the loaderShaderRef and buttonRef
   // are loaded
-  if (loaderShaderRef.current && htmlRef.current) {
+  if (loaderShaderRef.current && buttonRef.current) {
     let animation = gsap.timeline();
     animation.to(loaderShaderRef.current.uniforms.uFull, {
       value: 1.01,
@@ -111,34 +110,13 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           }}
         />
       </mesh>
-
-      <Center>
-        <group position={position} scale={2}>
-          <Float
-            speed={2}
-            rotationIntensity={navigationOpen ? 0.1 : 0}
-            floatIntensity={navigationOpen ? 0.05 : 0}
-            floatingRange={[-0.1, 0.1]}
-          >
-            <group ref={guitarRef}>
-              <GuitarModel />
-            </group>
-          </Float>
-          {navigationOpen ? (
-            <>
-              <Navigation />
-            </>
-          ) : (
-            <>
-              <ChakraHtml ref={htmlRef} occlude="blending" prepend center position={[0, -0.8, 0]}>
-                <Button colorScheme="primary" onClick={playButton} size="lg" variant="solid">
-                  Play
-                </Button>
-              </ChakraHtml>
-            </>
-          )}
+      {messageOpen ? (
+        <Message />
+      ) : (
+        <group position={position} ref={buttonRef}>
+          <ThreeDButton text="Play" size="lg" onClick={playButton} color="primary" />
         </group>
-      </Center>
+      )}
     </>
   );
 };

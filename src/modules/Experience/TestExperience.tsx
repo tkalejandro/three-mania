@@ -4,6 +4,7 @@ import { Canvas } from '@react-three/fiber';
 import { OrbitControls, PerspectiveCamera } from '@react-three/drei';
 import {
   AboutScene,
+  AddMusicScene,
   AudioLibraryScene,
   ContactScene,
   LoaderScene,
@@ -18,6 +19,7 @@ import { DebugButton } from './components';
 import { MainLight } from './lights';
 import { Vector3 } from 'three';
 import { MainCamera } from './camera';
+import { Message } from './scenes/WelcomeScene/components';
 
 /**
  * Welcome to the TEST PAGE. Useful to build a 3D scene isolated from the project.

@@ -5,3 +5,4 @@ export { default as MediaCoverageScene } from './MediaCoverageScene/MediaCoverag
 export { default as WelcomeScene } from './WelcomeScene/WelcomeScene';
 export { default as ProjectsAwardsScene } from './ProjectsAwardsScene/ProjectsAwardsScene';
 export { default as LoaderScene } from './LoaderScene/LoaderScene';
+export { default as AddMusicScene } from './AddMusicScene/AddMusicScene';
