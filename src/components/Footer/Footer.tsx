@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <Box textAlign="center" p={4}>
       &copy; Sonia Coronado {year} | Crafted with ❤️ by the amazing{' '}
-      <a href="link-to-contributors-page">Development Team</a>
+      <a href="developers">Three Mania Team</a>
     </Box>
   );
 };
