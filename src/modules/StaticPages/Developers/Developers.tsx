@@ -34,6 +34,13 @@ const devTeamInfo = [
     role: ['Frontend Development'],
     linkedinUrl: 'https://www.linkedin.com/in/albert-clemente/',
   },
+  {
+    id: 3,
+    fullName: 'João Tápparo',
+    img: 'https://avatars.githubusercontent.com/u/51871292?v=4',
+    role: ['Frontend Development', 'Three Development'],
+    linkedinUrl: 'https://www.linkedin.com/in/joao-tapparo/',
+  },
 ];
 
 const tools = [
