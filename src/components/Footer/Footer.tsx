@@ -1,12 +1,14 @@
 import React from 'react';
+import { Box } from '@chakra-ui/react';
 
 const Footer = () => {
   const year = new Date().getFullYear();
+
   return (
-    <footer>
-      &copy; Sonia Coronado {year} | Crafted with ❤️ by the amazing
+    <Box textAlign="center" p={4}>
+      &copy; Sonia Coronado {year} | Crafted with ❤️ by the amazing{' '}
       <a href="link-to-contributors-page">Development Team</a>
-    </footer>
+    </Box>
   );
 };
 
