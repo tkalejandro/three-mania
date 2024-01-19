@@ -3,13 +3,22 @@ import { audioLibrary } from '@/helpers';
 import { useAppSettings } from '@/store';
 import React, { useEffect, useRef, createContext, ContextType, ReactNode, useContext } from 'react';
 
-//TODO Can this be Type safe??
-const SoundManagerContext = createContext(undefined as any);
+interface SoundManagerContextType {
+  /**
+   * This is when user interact with the first layer
+   */
+  onFirstLayer: () => void;
+}
+
+const SoundManagerContext = createContext<SoundManagerContextType | undefined>(undefined);
 
 interface SoundManagerProps {
   children: ReactNode;
 }
 
+/**
+ * Doesnt handle any
+ */
 const SoundManager = ({ children }: SoundManagerProps) => {
   const mainSoundRef = useRef<HTMLAudioElement>(null!);
   const guitarSoundRef = useRef<HTMLAudioElement>(null!);
@@ -29,9 +38,6 @@ const SoundManager = ({ children }: SoundManagerProps) => {
     guitarSoundRef.current.play();
   };
 
-  /**
-   * This is when user interact with the first layer
-   */
   const onFirstLayer = () => {
     guitarSoundRef.current.volume = 1;
   };
@@ -50,10 +56,6 @@ const SoundManager = ({ children }: SoundManagerProps) => {
       {/* AUDIO SHOULD BE INITIALIZED HERE */}
       <audio ref={mainSoundRef} src={audioLibrary.synthBase()} loop />
       <audio ref={guitarSoundRef} src={audioLibrary.guitars()} loop />
-
-      {/* <button onClick={addFirstLayer} style={{ zIndex: 2 }}>
-        Click
-      </button> */}
       <SoundManagerContext.Provider value={{ onFirstLayer }}>
         {children}
       </SoundManagerContext.Provider>
