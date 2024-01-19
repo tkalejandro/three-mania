@@ -50,7 +50,7 @@ const SoundManager = ({ children }: SoundManagerProps) => {
       return;
     }
   }, [phase]);
-  console.log(mainSoundRef.current?.volume);
+
   return (
     <>
       {/* AUDIO SHOULD BE INITIALIZED HERE */}
