@@ -30,29 +30,9 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
     rotationIntensityY: { value: 0.2, step: 0.001, min: 0.001, max: 2 },
   });
 
-  useFrame((state, delta) => {
-    // Mouse coordinates from -1 to 1
-    const mouse = state.pointer;
+  
 
-    const mouseX = mouse.x;
-    const mouseY = mouse.y;
-
-    // Update mesh position based on mouse position
-    if (faceRef.current) {
-      faceRef.current.position.x = mouseX * positionIntensityX;
-      // ScenePositionY is to correct the position of the face.
-
-      faceRef.current.position.y = scenePositionY + positionY + mouseY * positionIntensityY;
-
-      // Make the face look at the mouse
-      faceRef.current.rotation.x = -mouseY * rotationIntensityX;
-      faceRef.current.rotation.y = mouseX * rotationIntensityY;
-      //faceRef.current.lookAt(mouseX * lookAtIntensity, mouseY * lookAtIntensity, 20);
-    }
-
-  });
-
-  const map1 = new THREE.TextureLoader().load('https://cdn.discordapp.com/attachments/941095160517894185/1192890009741709403/note.png?ex=65aab865&is=65984365&hm=7c54f001dd572a6fc963abc396026353c22b73504b0ebfc96f6a6eac8df1d641&')
+  const map1 = new THREE.TextureLoader().load('/textures/movingFace/note.png')
   const model = useGLTF('/models/head-2.glb')
   let uniforms = { mousePos: { value: new THREE.Vector3() } }
   const cursor = { x: 0, y: 0 }
@@ -61,6 +41,7 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
   const modelGeo = model.scene.children[0].geometry.clone()
   const pmaterial = new THREE.PointsMaterial({
     color: new THREE.Color(`${selectedColor}`),
+    // color: new THREE.Color('#000000'),
     size: 0.1,
     blending: THREE.AdditiveBlending,
     transparent: true,
@@ -93,13 +74,37 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
     )
 }
   const pointsMesh = new THREE.Points(modelGeo, pmaterial)
-
+ 
+// Get apply current 
   document.addEventListener('mousemove', (event) => {
     event.preventDefault()
     cursor.x = -(event.clientX / window.innerWidth - 0.5)
     cursor.y = event.clientY / window.innerHeight - 0.5
     uniforms.mousePos.value.set(cursor.x, cursor.y, 0)
   }, false)
+  useFrame((state, delta) => {
+    // Mouse coordinates from -1 to 1
+    const mouse = state.pointer;
+
+    const mouseX = mouse.x;
+    const mouseY = mouse.y;
+
+    // Update mesh position based on mouse position
+    if (faceRef.current) {
+      faceRef.current.position.x = mouseX * positionIntensityX;
+      // ScenePositionY is to correct the position of the face.
+
+      faceRef.current.position.y = scenePositionY + positionY + mouseY * positionIntensityY;
+
+      // Make the face look at the mouse
+      faceRef.current.rotation.x = -mouseY * rotationIntensityX;
+      faceRef.current.rotation.y = mouseX * rotationIntensityY;
+      //faceRef.current.lookAt(mouseX * lookAtIntensity, mouseY * lookAtIntensity, 20);
+    }
+    // uniforms.mousePos.value.set(mouseX, mouseY, 0)
+    
+
+  });
 
   return (
       <group ref={faceRef} position={[0, scenePositionY + positionY , -0.3]} >
