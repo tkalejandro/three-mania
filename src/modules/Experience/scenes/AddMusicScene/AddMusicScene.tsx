@@ -1,4 +1,4 @@
-import { audioLibrary, fontLibrary } from '@/helpers';
+import { fontLibrary } from '@/helpers';
 import { useAppBreakpoints, useAppTheme } from '@/hooks';
 import { Text, useAspect } from '@react-three/drei';
 import { useFrame, useThree, Vector3 } from '@react-three/fiber';
@@ -6,6 +6,7 @@ import { Flex, Box } from '@react-three/flex';
 import React, { useRef } from 'react';
 import { MeshPhongMaterial } from 'three';
 import { ThreeDButton } from '../../components';
+import { useSoundManagerContext } from '../../sounds/SoundManager/SoundManager';
 
 interface AddMusicSceneProps {
   position: Vector3;
@@ -14,14 +15,13 @@ interface AddMusicSceneProps {
 const AddMusicScene = ({ position }: AddMusicSceneProps) => {
   const theme = useAppTheme();
   const { isDesktop } = useAppBreakpoints();
+  const { onFirstLayer } = useSoundManagerContext();
   const { size } = useThree();
   const [vw, vh] = useAspect(size.width, size.height);
 
   //TODO Can we make this better??
   const transparentRef1 = useRef<MeshPhongMaterial>(null!);
   const transparentRef2 = useRef<MeshPhongMaterial>(null!);
-
-  const guitarSound = audioLibrary.guitars();
 
   useFrame((state, delta) => {
     if (transparentRef1.current.opacity < 1.1) {
@@ -32,11 +32,7 @@ const AddMusicScene = ({ position }: AddMusicSceneProps) => {
   });
 
   const playButton = () => {
-    guitarSound.currentTime = 0;
-    guitarSound.volume = 1;
-    guitarSound.loop = true;
-
-    guitarSound.play();
+    onFirstLayer();
   };
 
   const textScale = isDesktop ? 2 : 1;

@@ -19,13 +19,14 @@ import { DebugButton } from './components';
 import { MainCamera } from './camera';
 import { MainLight } from './lights';
 import { Vector3 } from 'three';
+import { SoundManager } from './sounds';
 
 /**
  * Heart of the 3D App
  */
 const Experience = () => {
   const debugMode = useDeveloperSettings((state) => state.debugMode);
-  const navigationLoaded = useAppSettings((state) => state.navigationLoaded);
+  const navigationLoaded = useAppSettings((state) => state.experienceLoaded);
   const [distance, setDistance] = useState<number>(0);
   const {
     welcomePosition,
@@ -55,29 +56,37 @@ const Experience = () => {
     eps: { value: 0.00001, step: 0.00001 },
   });
   return (
-    <div id="experience">
-      <Canvas flat>
-        <ScrollControls pages={scrollControls.pages} distance={distance} eps={scrollControls.eps}>
-          <Suspense fallback={<LoaderScene />}>
-            <MainCamera />
-            <MainLight />
-            {debugMode && <Perf position="top-left" />}
-            <WelcomeScene position={welcomePosition} />
-            <AddMusicScene position={addMusicPosition} />
-            <AboutScene
-              position={new Vector3(aboutPosition[0], aboutPosition[1], aboutPosition[2])}
-              //We need the sum of all scenesY for the face.
-              scenePositionY={welcomePosition[1] + addMusicPosition[1]}
-            />
-            <ProjectsAwardsScene position={projectsAwardsPosition} />
-            <AudioLibraryScene position={audioLibraryPosition} />
-            <MediaCoverageScene position={mediaCoveragePosition} />
-            <ContactScene position={contactPosition} />
-          </Suspense>
-        </ScrollControls>
-      </Canvas>
-      <DebugButton />
-    </div>
+    <>
+      <div id="experience">
+        <SoundManager>
+          <Canvas flat>
+            <ScrollControls
+              pages={scrollControls.pages}
+              distance={distance}
+              eps={scrollControls.eps}
+            >
+              <Suspense fallback={<LoaderScene />}>
+                <MainCamera />
+                <MainLight />
+                {debugMode && <Perf position="top-left" />}
+                <WelcomeScene position={welcomePosition} />
+                <AddMusicScene position={addMusicPosition} />
+                <AboutScene
+                  position={new Vector3(aboutPosition[0], aboutPosition[1], aboutPosition[2])}
+                  //We need the sum of all scenesY for the face.
+                  scenePositionY={welcomePosition[1] + addMusicPosition[1]}
+                />
+                <ProjectsAwardsScene position={projectsAwardsPosition} />
+                <AudioLibraryScene position={audioLibraryPosition} />
+                <MediaCoverageScene position={mediaCoveragePosition} />
+                <ContactScene position={contactPosition} />
+              </Suspense>
+            </ScrollControls>
+          </Canvas>
+        </SoundManager>
+        <DebugButton />
+      </div>
+    </>
   );
 };
 

@@ -5,7 +5,7 @@ class AudioLibrary {
   /**
    * Guitar strings that can be mixed with base.
    */
-  guitars = () => new Audio('audio/guitars.mp3');
+  guitars = () => 'audio/guitars.mp3';
 
   /**
    * Sound that will be playing when getting near the secret.
@@ -20,7 +20,7 @@ class AudioLibrary {
   /**
    * This is the base song for the project.
    */
-  synthBase = () => new Audio('audio/synthBase.mp3');
+  synthBase = () => 'audio/synthBase.mp3';
   /**
    * Song that will be located at the Audiolibrary.
    */
