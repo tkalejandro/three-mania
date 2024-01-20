@@ -72,8 +72,6 @@ const Gallery = () => {
         align={'center'}
         size={[vw * 2, vh * 0.5, 1]}
         scale={1}
-        //TODO This is bugy when transforming from Desktop to Mobile. FIX ME.
-        //marginLeft={isDesktop ? 1 : 0}
       >
         <Box centerAnchor marginBottom={0.35}>
           <Text
@@ -108,8 +106,6 @@ const Gallery = () => {
           </group>
         </Box>
       </Flex>
-
-      {/* TODO - This could be an interactive hidden treasure that open more information */}
     </group>
   );
 };
