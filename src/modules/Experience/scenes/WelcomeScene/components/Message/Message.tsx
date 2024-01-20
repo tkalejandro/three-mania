@@ -20,11 +20,11 @@ const Message = () => {
   const transparentRef4 = useRef<MeshPhongMaterial>(null!);
   const transparentRef5 = useRef<MeshPhongMaterial>(null!);
 
-  const navigationLoaded = useAppSettings((state) => state.navigationLoaded);
-  const setNavigationLoaded = useAppSettings((state) => state.setNavigationLoaded);
+  const experienceLoaded = useAppSettings((state) => state.experienceLoaded);
+  const setExperienceLoaded = useAppSettings((state) => state.setExperienceLoaded);
 
   useFrame((state, delta) => {
-    if (navigationLoaded && transparentRef1.current.opacity < 1.1) {
+    if (experienceLoaded && transparentRef1.current.opacity < 1.1) {
       const speed = 0.1;
       transparentRef1.current.opacity += speed;
       transparentRef2.current.opacity += speed;
@@ -35,9 +35,9 @@ const Message = () => {
   });
 
   useEffect(() => {
-    if (!navigationLoaded) {
+    if (!experienceLoaded) {
       setTimeout(() => {
-        setNavigationLoaded(true);
+        setExperienceLoaded(true);
       }, 250);
     }
   }, []);

@@ -1,3 +1,4 @@
+import { Phase } from '@/enums/Experience';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -9,20 +10,29 @@ interface AppSettingsState {
   /**
    * Indicates if navigation already load.
    */
-  navigationLoaded: boolean;
+  experienceLoaded: boolean;
+  /**
+   * Indicates the current phase of the experience
+   */
+  phase: Phase;
 
-  setNavigationLoaded: (value: boolean) => void;
+  setExperienceLoaded: (value: boolean) => void;
+  setPhase: (value: Phase) => void;
 }
 
 /**
  * All related to the APP x Client
  */
 const useAppSettingsStore = create<AppSettingsState>((set) => {
-  const setNavigationLoaded = (value: boolean) => set({ navigationLoaded: value });
+  const setExperienceLoaded = (value: boolean) => set({ experienceLoaded: value });
+  const setPhase = (value: Phase) => set({ phase: value });
+
   return {
     loading: false,
-    navigationLoaded: false,
-    setNavigationLoaded: setNavigationLoaded,
+    experienceLoaded: false,
+    setExperienceLoaded,
+    phase: Phase.Ready,
+    setPhase,
   };
 });
 
