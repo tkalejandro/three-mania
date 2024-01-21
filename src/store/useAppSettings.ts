@@ -15,6 +15,10 @@ interface AppSettingsState {
    * Indicates the current phase of the experience
    */
   phase: Phase;
+  /**
+   * Tempo 95bpm, 4/4 in Seconds
+   */
+  readonly tempo: number;
 
   setExperienceLoaded: (value: boolean) => void;
   setPhase: (value: Phase) => void;
@@ -30,8 +34,9 @@ const useAppSettingsStore = create<AppSettingsState>((set) => {
   return {
     loading: false,
     experienceLoaded: false,
-    setExperienceLoaded,
+    tempo: 2.526,
     phase: Phase.Ready,
+    setExperienceLoaded,
     setPhase,
   };
 });
