@@ -69,6 +69,7 @@ const SoundManager = ({ children }: SoundManagerProps) => {
   };
 
   const onSecretVisible = async (): Promise<void> => {
+    if (isPostSecret) return;
     const changes = [];
 
     if (isFirstLayerOn) {
@@ -85,6 +86,7 @@ const SoundManager = ({ children }: SoundManagerProps) => {
   };
 
   const onSecretNotVisible = async (): Promise<void> => {
+    if (isPostSecret) return;
     //We save it in an array because there are conditions
     const changes = [];
 
