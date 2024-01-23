@@ -38,14 +38,17 @@ const PointsLoader = ({ model, selectedColor, map }: PointsLoaderProps) => {
       ${shader.vertexShader}`.replace(
         `#include <begin_vertex>`,
         `#include <begin_vertex>
-        vec3 seg = (position * -.05) - mousePos;
-        vec3 dir = normalize(seg);
-        float dist = length(seg);
-        // apply force if distance to
-        // mouse is lower than 1.5
-        if (dist < 1.5){
-          float force = clamp(1.0 / (dist * dist), -0., .2);
-          transformed += dir * log(force) * .25;
+        // Calculate difference between
+        // mouse and model position
+        // to get direction and distance
+        vec3 seg = (position * -0.03) - mousePos;
+        vec3 direction = normalize(seg);
+        float distance = length(seg);
+        // apply force if distance between
+        // mouse and points is lower than 1.5
+        if (distance < 1.5){
+          float force = clamp(1.0 / (distance * distance), -0., .2);
+          transformed += direction * log(force) * .25;
           vNormal = force /0.5;
         }
       `
