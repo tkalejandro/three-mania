@@ -1,17 +1,10 @@
 import { Phase } from '@/enums/Experience';
 import { audioLibrary } from '@/helpers';
+import generalHelpers from '@/helpers/generalHelpers';
 import soundHelpers from '@/helpers/soundHelpers';
 import { useAppSettings } from '@/store';
 import { SoundManagerContext } from '@/types/ExperienceTypes';
-import React, {
-  useEffect,
-  useRef,
-  createContext,
-  ContextType,
-  ReactNode,
-  useContext,
-  useState,
-} from 'react';
+import React, { useEffect, useRef, createContext, ReactNode, useContext, useState } from 'react';
 
 const soundManagerContext = createContext<SoundManagerContext | undefined>(undefined);
 
@@ -47,6 +40,14 @@ const SoundManager = ({ children }: SoundManagerProps) => {
    * Make sure you add it here at volume 0.
    */
   const play = () => {
+    if (!generalHelpers.isSafari()) {
+      //This is to make sure the rest of logic work when is not safari.
+      // Safari force to have muted at the audio tag.
+      guitarSoundRef.current.muted = false;
+      secretSoundRef.current.muted = false;
+      postSecretSoundRef.current.muted = false;
+    }
+    mainSoundRef.current.muted = false; //Safari
     mainSoundRef.current.volume = 1;
     mainSoundRef.current.play();
 
@@ -64,12 +65,21 @@ const SoundManager = ({ children }: SoundManagerProps) => {
     //If we are already in PostSecret we should not allow to add the guitar layer.
     if (isPostSecret) return;
     // We set this to true, and start the sound.
+
+    guitarSoundRef.current.muted = false; //Safari
     setIsFirstLayerOn(true);
     soundHelpers.smoothVolumeChange(guitarSoundRef, 1, 1, guitarProgress, setGuitarProgress);
   };
 
   const onSecretVisible = async (): Promise<void> => {
     if (isPostSecret) return;
+    // Safari Drama
+    if (generalHelpers.isSafari()) {
+      secretSoundRef.current.muted = !isFirstLayerOn; //Safari
+      guitarSoundRef.current.muted = true; //Safari
+      return;
+    }
+
     const changes = [];
 
     if (isFirstLayerOn) {
@@ -87,6 +97,13 @@ const SoundManager = ({ children }: SoundManagerProps) => {
 
   const onSecretNotVisible = async (): Promise<void> => {
     if (isPostSecret) return;
+    // Safari Drama
+    if (generalHelpers.isSafari()) {
+      guitarSoundRef.current.muted = false; //Safari
+      secretSoundRef.current.muted = true; //Safari
+      return;
+    }
+
     //We save it in an array because there are conditions
     const changes = [];
 
@@ -109,6 +126,17 @@ const SoundManager = ({ children }: SoundManagerProps) => {
     }
     // We are now in post secret.
     setIsPostSecret(true);
+    // Safari Drama
+    if (generalHelpers.isSafari()) {
+      secretSoundRef.current.muted = true; //Safari
+      guitarSoundRef.current.muted = true; //Safari
+      postSecretSoundRef.current.muted = false; //Safari
+      return;
+    } else {
+      secretSoundRef.current.muted = false; //Safari
+      guitarSoundRef.current.muted = false; //Safari
+    }
+
     await soundHelpers.handleManyChanges([
       () =>
         soundHelpers.smoothVolumeChange(secretSoundRef, 0, 2, secretProgress, setSecretProgress),
@@ -137,10 +165,10 @@ const SoundManager = ({ children }: SoundManagerProps) => {
   return (
     <>
       {/* AUDIO SHOULD BE INITIALIZED HERE */}
-      <audio ref={mainSoundRef} src={audioLibrary.synthBase()} loop />
-      <audio ref={guitarSoundRef} src={audioLibrary.guitars()} loop />
-      <audio ref={secretSoundRef} src={audioLibrary.stringsSecretApproach()} loop />
-      <audio ref={postSecretSoundRef} src={audioLibrary.synthPostSecret()} loop />
+      <audio ref={mainSoundRef} src={audioLibrary.synthBase()} loop muted />
+      <audio ref={guitarSoundRef} src={audioLibrary.guitars()} loop muted />
+      <audio ref={secretSoundRef} src={audioLibrary.stringsSecretApproach()} loop muted />
+      <audio ref={postSecretSoundRef} src={audioLibrary.synthPostSecret()} loop muted />
 
       <soundManagerContext.Provider
         value={{

@@ -5,3 +5,4 @@ export { default as threeHelpers } from './threeHelpers';
 export { default as imageLibrary } from './imageLibrary';
 export { default as fontLibrary } from './fontLibrary';
 export { default as SoundHelpers } from './soundHelpers';
+export { default as GeneralHelpers } from './generalHelpers';
