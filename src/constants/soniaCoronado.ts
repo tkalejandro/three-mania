@@ -51,8 +51,8 @@ const resume: Resume = {
   experience: [
     {
       id: 1,
-      title: 'Senior Music Designer at PlayStation Studios Creative Arts (June 2019 to present)',
-      entity: 'PlayStation',
+      title: 'Senior Music Designer',
+      entity: 'PlayStation Studios™ Creative Arts',
       startDate: new Date('2019-06-01'),
       endDate: undefined, // Ongoing
       explanation:
