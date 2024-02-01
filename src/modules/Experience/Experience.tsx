@@ -1,7 +1,7 @@
 'use client';
 import React, { Suspense, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
-import { ScrollControls } from '@react-three/drei';
+import { PerformanceMonitor, ScrollControls } from '@react-three/drei';
 import {
   AboutScene,
   AddMusicScene,
@@ -28,6 +28,7 @@ const Experience = () => {
   const debugMode = useDeveloperSettings((state) => state.debugMode);
   const navigationLoaded = useAppSettings((state) => state.experienceLoaded);
   const [distance, setDistance] = useState<number>(0);
+  const [dpr, setDpr] = useState(1.5);
   const {
     welcomePosition,
     addMusicPosition,
@@ -55,33 +56,37 @@ const Experience = () => {
     pages: { value: 4, step: 0.1 },
     eps: { value: 0.00001, step: 0.00001 },
   });
+
   return (
     <>
       <div id="experience">
         <SoundManager>
-          <Canvas flat>
-            <ScrollControls
-              pages={scrollControls.pages}
-              distance={distance}
-              eps={scrollControls.eps}
-            >
-              <Suspense fallback={<LoaderScene />}>
-                <MainCamera />
-                <MainLight />
-                {debugMode && <Perf position="top-left" />}
-                <WelcomeScene position={welcomePosition} />
-                <AddMusicScene position={addMusicPosition} />
-                <AboutScene
-                  position={new Vector3(aboutPosition[0], aboutPosition[1], aboutPosition[2])}
-                  //We need the sum of all scenesY for the face.
-                  scenePositionY={welcomePosition[1] + addMusicPosition[1]}
-                />
-                <ProjectsAwardsScene position={projectsAwardsPosition} />
-                <AudioLibraryScene position={audioLibraryPosition} />
-                <MediaCoverageScene position={mediaCoveragePosition} />
-                <ContactScene position={contactPosition} />
-              </Suspense>
-            </ScrollControls>
+          <Canvas flat dpr={dpr}>
+            <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)}>
+              <ScrollControls
+                pages={scrollControls.pages}
+                distance={distance}
+                eps={scrollControls.eps}
+              >
+                {/* <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)} /> */}
+                <Suspense fallback={<LoaderScene />}>
+                  <MainCamera />
+                  <MainLight />
+                  {debugMode && <Perf position="top-left" />}
+                  <WelcomeScene position={welcomePosition} />
+                  <AddMusicScene position={addMusicPosition} />
+                  <AboutScene
+                    position={new Vector3(aboutPosition[0], aboutPosition[1], aboutPosition[2])}
+                    //We need the sum of all scenesY for the face.
+                    scenePositionY={welcomePosition[1] + addMusicPosition[1]}
+                  />
+                  <ProjectsAwardsScene position={projectsAwardsPosition} />
+                  <AudioLibraryScene position={audioLibraryPosition} />
+                  <MediaCoverageScene position={mediaCoveragePosition} />
+                  <ContactScene position={contactPosition} />
+                </Suspense>
+              </ScrollControls>
+            </PerformanceMonitor>
           </Canvas>
         </SoundManager>
         <DebugButton />
