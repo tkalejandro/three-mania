@@ -13,7 +13,7 @@ class ImageLibrary {
    * Call of Duty - Pic 2
    */
   cod_2 = () => {
-    return 'images/cod_2.jpeg';
+    return 'images/cod_2.webp';
   };
 
   /**
@@ -24,10 +24,17 @@ class ImageLibrary {
   };
 
   /**
+   * The last of Us 2 - Pic 2
+   */
+  tlou2_3 = () => {
+    return 'images/tlou2_3.jpeg';
+  };
+
+  /**
    * God of War - Pic 1
    */
   god_1 = () => {
-    return 'images/god_1.jpeg';
+    return 'images/god_1.jpg';
   };
 
   /**
