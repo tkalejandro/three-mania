@@ -1,6 +1,5 @@
 import { fontLibrary, imageLibrary } from '@/helpers';
 import { useAppBreakpoints, useAppTheme } from '@/hooks';
-import { MovingImage } from '@/modules/Experience/components';
 import { GalleryTransform } from '@/types/ExperienceTypes';
 import { Image, Text, useAspect } from '@react-three/drei';
 import { useThree } from '@react-three/fiber';
@@ -98,25 +97,11 @@ const Gallery = () => {
         </Box>
         <Box centerAnchor marginTop={0.35}>
           <group scale={galleryContainerScale}>
-            <MovingImage
-              src={imageLibrary.tlou2_1()}
-              scale={tlou2_1.scale}
-              position={tlou2_1.position}
-            />
-            <MovingImage src={imageLibrary.cod_2()} scale={cod_2.scale} position={cod_2.position} />
-            <MovingImage
-              src={imageLibrary.tlou2_3()}
-              scale={tlou2_2.scale}
-              position={tlou2_2.position}
-            />
-            <MovingImage src={imageLibrary.god_1()} scale={god_1.scale} position={god_1.position} />
-            <MovingImage src={imageLibrary.cod_1()} scale={cod_1.scale} position={cod_1.position} />
-
-            {/* <Image url={imageLibrary.tlou2_1()} scale={tlou2_1.scale} position={tlou2_1.position} />
+            <Image url={imageLibrary.tlou2_1()} scale={tlou2_1.scale} position={tlou2_1.position} />
             <Image url={imageLibrary.cod_2()} scale={cod_2.scale} position={cod_2.position} />
-            <Image url={imageLibrary.tlou2_2()} scale={tlou2_2.scale} position={tlou2_2.position} />
+            <Image url={imageLibrary.tlou2_3()} scale={tlou2_2.scale} position={tlou2_2.position} />
             <Image url={imageLibrary.god_1()} scale={god_1.scale} position={god_1.position} />
-            <Image url={imageLibrary.cod_1()} scale={cod_1.scale} position={cod_1.position} /> */}
+            <Image url={imageLibrary.cod_1()} scale={cod_1.scale} position={cod_1.position} />
             <SecretButton element={secret} />
           </group>
         </Box>

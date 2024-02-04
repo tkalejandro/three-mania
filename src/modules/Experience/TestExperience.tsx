@@ -62,8 +62,6 @@ const TestExperience = () => {
           <Environment preset="sunset" />
           {/* <OrbitControls /> */}
 
-          <Gallery />
-
           {/* UNTIL HERE */}
         </Canvas>
       </SoundManager>

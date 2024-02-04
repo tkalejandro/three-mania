@@ -22,13 +22,14 @@ interface MovingFaceProps {
  * It creates a Plane Geometry with a reverse mesh simulating movement.
  * IF you can make it better go for it.
  * At the moment only certain image size made the trick. Choose wisely.
+ * Avoid this component when there is to much scrolling.
  * @returns
  */
 const MovingImage = ({
   src,
   scale,
   position,
-  imgIntensity = 1.2,
+  imgIntensity = 1.05,
   ...floatProps
 }: MovingFaceProps) => {
   return (

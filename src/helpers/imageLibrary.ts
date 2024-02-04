@@ -20,7 +20,7 @@ class ImageLibrary {
    * The last of Us 2 - Pic 2
    */
   tlou2_2 = () => {
-    return 'images/tlou2_2.webp';
+    return 'images/tlou2_2.jpeg';
   };
 
   /**
