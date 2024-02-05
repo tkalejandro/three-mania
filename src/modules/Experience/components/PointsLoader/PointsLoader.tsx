@@ -1,15 +1,16 @@
 import { Color } from '@react-three/fiber';
 import { BufferGeometry, NormalOrGLBufferAttributes, Texture } from 'three';
-import * as THREE from 'three'
+import * as THREE from 'three';
 
 interface PointsLoaderProps {
-  model: BufferGeometry<NormalOrGLBufferAttributes>,
-  selectedColor: Color,
-  map: Texture
+  model: BufferGeometry<NormalOrGLBufferAttributes>;
+  selectedColor: Color;
+  map: Texture;
+  mousemove: boolean;
 }
-const PointsLoader = ({ model, selectedColor, map }: PointsLoaderProps) => {
-  let uniforms = { mousePos: { value: new THREE.Vector3() } }
-  const cursor = { x: 0, y: 0 }
+const PointsLoader = ({ model, selectedColor, map, mousemove }: PointsLoaderProps) => {
+  let uniforms = { mousePos: { value: new THREE.Vector3() } };
+  const cursor = { x: 0, y: 0 };
   const pmaterial = new THREE.PointsMaterial({
     color: new THREE.Color(`${selectedColor}`),
     size: 0.1,
@@ -18,8 +19,8 @@ const PointsLoader = ({ model, selectedColor, map }: PointsLoaderProps) => {
     opacity: 1,
     depthWrite: false,
     sizeAttenuation: true,
-    alphaMap: map
-  })
+    alphaMap: map,
+  });
 
   /**
    * Create the custom vertex shader injection
@@ -28,16 +29,16 @@ const PointsLoader = ({ model, selectedColor, map }: PointsLoaderProps) => {
    * An easier way to reach this effect
    * is by using CustomShaderMaterial
    */
-  pmaterial.onBeforeCompile = function(shader) {
-    shader.uniforms.mousePos = uniforms.mousePos
+  pmaterial.onBeforeCompile = function (shader) {
+    shader.uniforms.mousePos = uniforms.mousePos;
 
     shader.vertexShader = `
       uniform vec3 mousePos;
       varying float vNormal;
 
       ${shader.vertexShader}`.replace(
-        `#include <begin_vertex>`,
-        `#include <begin_vertex>
+      `#include <begin_vertex>`,
+      `#include <begin_vertex>
         // Calculate difference between
         // mouse and model position
         // to get direction and distance
@@ -51,10 +52,10 @@ const PointsLoader = ({ model, selectedColor, map }: PointsLoaderProps) => {
           transformed += direction * log(force) * .25;
           vNormal = force /0.5;
         }
-      `
-      )
-  }
-  const pointsMesh = new THREE.Points(model, pmaterial)
+      `,
+    );
+  };
+  const pointsMesh = new THREE.Points(model, pmaterial);
 
   /**
    * Calculate mouse position seperatly
@@ -62,16 +63,22 @@ const PointsLoader = ({ model, selectedColor, map }: PointsLoaderProps) => {
    * around it without worrying about it
    * sticking to the mouse :-)
    */
-  document.addEventListener('mousemove', (event) => {
-    event.preventDefault()
-    cursor.x = -(event.clientX / window.innerWidth - 0.5)
-    cursor.y = event.clientY / window.innerHeight - 0.5
-    uniforms.mousePos.value.set(cursor.x, cursor.y, 0)
-  }, false)
+  document.addEventListener(
+    'mousemove',
+    (event) => {
+      if (!mousemove) {
+        // Dont react to this event
+        return;
+      }
+      event.preventDefault();
+      cursor.x = -(event.clientX / window.innerWidth - 0.5);
+      cursor.y = event.clientY / window.innerHeight - 0.5;
+      uniforms.mousePos.value.set(cursor.x, cursor.y, 0);
+    },
+    false,
+  );
 
-  return (
-    <primitive object={pointsMesh} />
-  )
-}
+  return <primitive object={pointsMesh} />;
+};
 
 export default PointsLoader;
