@@ -2,11 +2,13 @@ import React, { useRef } from 'react';
 import { Color, useFrame } from '@react-three/fiber';
 import { Mesh } from 'three';
 import { useControls } from 'leva';
-import * as THREE from 'three'
+import * as THREE from 'three';
 import PointsLoader from '@/modules/Experience/components/PointsLoader/PointsLoader';
 import headModel from '@/modules/Experience/models/HeadModel';
 import HeadModel from '@/modules/Experience/models/HeadModel';
 import { textureLibrary } from '@/helpers';
+import { useAppBreakpoints } from '@/hooks';
+import { Float } from '@react-three/drei';
 
 interface MovingFaceProps {
   scenePositionY: number;
@@ -15,6 +17,7 @@ interface MovingFaceProps {
 
 const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
   const faceRef = useRef<Mesh | any>(null!);
+  const { isDesktop } = useAppBreakpoints();
   const {
     positionIntensityX,
     positionIntensityY,
@@ -32,6 +35,11 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
 
   // follow mouse movment by @tkalejandro
   useFrame((state, delta) => {
+    if (!isDesktop) {
+      // This stop looking the mouse
+      return;
+    }
+
     // Mouse coordinates from -1 to 1
     const mouse = state.pointer;
 
@@ -52,12 +60,18 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
     }
   });
 
-  const musicNoteMap = new THREE.TextureLoader().load(textureLibrary.musicNote().map)
-
-
+  const musicNoteMap = new THREE.TextureLoader().load(textureLibrary.musicNote().map);
+  console.log(isDesktop);
   return (
-    <group ref={faceRef} position={[0, scenePositionY + positionY , -0.3]} >
-      <HeadModel selectedColor={selectedColor} map={musicNoteMap} />
+    <group ref={faceRef} position={[0, scenePositionY + positionY, -0.3]}>
+      <Float speed={isDesktop ? 0 : 2}>
+        <HeadModel
+          selectedColor={selectedColor}
+          map={musicNoteMap}
+          //Only move when is desktop.
+          mousemove={isDesktop}
+        />
+      </Float>
     </group>
   );
 };

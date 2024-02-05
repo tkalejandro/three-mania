@@ -57,11 +57,11 @@ const TestExperience = () => {
             far={4}
           />
           {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
-          {/* <MainLight /> */}
-          <ambientLight intensity={0.5} />
+          <MainLight />
+          {/* <ambientLight intensity={0.5} /> */}
           <Environment preset="sunset" />
           {/* <OrbitControls /> */}
-
+          <AboutScene position={[0, 0, 0]} scenePositionY={0} />
           {/* UNTIL HERE */}
         </Canvas>
       </SoundManager>

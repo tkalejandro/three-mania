@@ -76,7 +76,7 @@ const Experience = () => {
                   <WelcomeScene position={welcomePosition} />
                   <AddMusicScene position={addMusicPosition} />
                   <AboutScene
-                    position={new Vector3(aboutPosition[0], aboutPosition[1], aboutPosition[2])}
+                    position={aboutPosition}
                     //We need the sum of all scenesY for the face.
                     scenePositionY={welcomePosition[1] + addMusicPosition[1]}
                   />

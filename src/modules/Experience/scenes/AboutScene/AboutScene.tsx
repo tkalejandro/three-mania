@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { Color, useFrame } from '@react-three/fiber';
+import { Color, useFrame, Vector3 } from '@react-three/fiber';
 import { Center, Text } from '@react-three/drei';
 import { MovingFace } from './components';
 import { ThreeDButton } from '../../components';
 import { useAppBreakpoints, useAppTheme } from '@/hooks';
-import { Vector3 } from 'three';
 
 interface AboutSceneProps {
   position: Vector3;
