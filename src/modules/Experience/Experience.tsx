@@ -18,7 +18,6 @@ import { useControls } from 'leva';
 import { DebugButton } from './components';
 import { MainCamera } from './camera';
 import { MainLight } from './lights';
-import { Vector3 } from 'three';
 import { SoundManager } from './sounds';
 
 /**
