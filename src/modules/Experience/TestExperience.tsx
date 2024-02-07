@@ -60,8 +60,8 @@ const TestExperience = () => {
           {/* <MainLight /> */}
           {/* <ambientLight intensity={0.5} /> */}
           <Environment preset="sunset" />
-          {/* <OrbitControls /> */}
-         
+          <OrbitControls />
+          <ProjectsAwardsScene position={[0, 0, 0]} />
           {/* UNTIL HERE */}
         </Canvas>
       </SoundManager>
