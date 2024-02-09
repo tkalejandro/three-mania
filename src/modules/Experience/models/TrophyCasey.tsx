@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Group, Object3DEventMap } from 'three';
 import { GroupProps } from '@react-three/fiber';
-import { FakeGlowMaterial } from '../components';
+import { EnhancedGroup, FakeGlowMaterial } from '../components';
 
 interface ModelProps extends GroupProps {
   glow?: boolean;
@@ -30,7 +30,7 @@ const TrophyCasey = ({ glow, ...props }: ModelProps) => {
   const cachedModel = useMemo(() => {
     if (gltfScene) {
       return (
-        <group {...props}>
+        <EnhancedGroup {...props}>
           <primitive object={gltfScene.clone()}>
             {glow && (
               <>
@@ -46,7 +46,7 @@ const TrophyCasey = ({ glow, ...props }: ModelProps) => {
             )}
           </primitive>
           ;
-        </group>
+        </EnhancedGroup>
       );
     } else {
       return null; // Handle the case where the model hasn't loaded yet
