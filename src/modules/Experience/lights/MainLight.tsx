@@ -20,7 +20,7 @@ export default function MainLight() {
         //ref={light}
         castShadow
         position={[-0.25, 1, 1]}
-        intensity={10.5}
+        intensity={3.5}
         //shadow-mapSize={ [ 1024, 1024 ] }
         // shadow-camera-near={1}
         // shadow-camera-far={10}

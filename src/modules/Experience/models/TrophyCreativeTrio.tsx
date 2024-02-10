@@ -25,7 +25,6 @@ const TrophyCreativeTrio = ({ glow = false, glowOnHover = false, ...props }: Mod
       // Clean up if necessary
     };
   }, []);
-  console.log(glowHover);
   // Memoize the component based on both props and the loaded model
   const cachedModel = useMemo(() => {
     if (gltfScene) {
