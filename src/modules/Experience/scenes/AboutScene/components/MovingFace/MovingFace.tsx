@@ -61,7 +61,6 @@ const MovingFace = ({ scenePositionY, selectedColor }: MovingFaceProps) => {
   });
 
   const musicNoteMap = new THREE.TextureLoader().load(textureLibrary.musicNote().map);
-  console.log(isDesktop);
   return (
     <group ref={faceRef} position={[0, scenePositionY + positionY, -0.3]}>
       <Float speed={isDesktop ? 0 : 2}>

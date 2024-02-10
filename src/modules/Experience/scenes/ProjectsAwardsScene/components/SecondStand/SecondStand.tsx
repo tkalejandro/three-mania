@@ -18,8 +18,13 @@ const SecondStand = () => {
       position={isBigTablet ? [1, -1.3, 0] : standControls.standPosition}
       rotation={isBigTablet ? [0, -0.2, 0] : standControls.standRotation}
     >
-      <TrophyCasey position={[-0.26, 0.305, 0]} />
-      <TrophyJeremy position={[0.36, 0.05, 0]} scale={0.055} rotation={[0, Math.PI / 2, 0]} />
+      <TrophyCasey position={[-0.26, 0.305, 0]} glowOnHover />
+      <TrophyJeremy
+        position={[0.36, 0.05, 0]}
+        scale={0.055}
+        rotation={[0, Math.PI / 2, 0]}
+        glowOnHover
+      />
       <mesh ref={trophyStand}>
         <boxGeometry args={[1.6, 0.1, 0.7]} />
         <meshStandardMaterial />

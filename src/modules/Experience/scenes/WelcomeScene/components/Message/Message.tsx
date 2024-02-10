@@ -25,7 +25,7 @@ const Message = () => {
 
   useFrame((state, delta) => {
     if (experienceLoaded && transparentRef1.current.opacity < 1.1) {
-      const speed = 0.1;
+      const speed = delta * 10;
       transparentRef1.current.opacity += speed;
       transparentRef2.current.opacity += speed;
       transparentRef3.current.opacity += speed;
@@ -62,7 +62,7 @@ const Message = () => {
             color={theme.colors.primary.main}
           >
             Hello there!
-            <meshPhongMaterial
+            <meshBasicMaterial
               ref={transparentRef1}
               color={theme.colors.primary.main}
               opacity={0}
@@ -77,7 +77,7 @@ const Message = () => {
             color={theme.colors.secondary[900]}
           >
             Welcome to my musical world!
-            <meshPhongMaterial
+            <meshBasicMaterial
               ref={transparentRef2}
               color={theme.colors.secondary[900]}
               opacity={0.1}
@@ -93,7 +93,7 @@ const Message = () => {
             color={theme.colors.primary.main}
           >
             Scroll down and Feel the cool tunes I made for you.
-            <meshPhongMaterial
+            <meshBasicMaterial
               ref={transparentRef3}
               color={theme.colors.primary.main}
               opacity={0.1}
@@ -108,7 +108,7 @@ const Message = () => {
             color={theme.colors.primary.main}
           >
             Enjoy the journey,
-            <meshPhongMaterial
+            <meshBasicMaterial
               ref={transparentRef4}
               color={theme.colors.primary.main}
               opacity={0.1}
@@ -123,7 +123,7 @@ const Message = () => {
             color={theme.colors.primary.main}
           >
             Sonia
-            <meshPhongMaterial
+            <meshBasicMaterial
               ref={transparentRef5}
               color={theme.colors.primary.main}
               opacity={0.1}
