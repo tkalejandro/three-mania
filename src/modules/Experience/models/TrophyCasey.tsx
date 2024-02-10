@@ -30,22 +30,23 @@ const TrophyCasey = ({ glow, ...props }: ModelProps) => {
   const cachedModel = useMemo(() => {
     if (gltfScene) {
       return (
-        <EnhancedGroup {...props}>
-          <primitive object={gltfScene.clone()}>
-            {glow && (
-              <>
-                <mesh position={[0.015, 0.12, 0.0]} scale={0.2}>
-                  <sphereGeometry />
-                  <FakeGlowMaterial glowInternalRadius={1} glowSharpness={-0.65} falloff={0} />
-                </mesh>
-                <mesh scale={0.135} position={[0.0, -0.2, 0]}>
-                  <sphereGeometry />
-                  <FakeGlowMaterial glowInternalRadius={1} glowSharpness={-0.8} falloff={1} />
-                </mesh>
-              </>
-            )}
-          </primitive>
-          ;
+        <EnhancedGroup>
+          <group {...props}>
+            <primitive object={gltfScene.clone()}>
+              {glow && (
+                <>
+                  <mesh position={[0.015, 0.12, 0.0]} scale={0.2}>
+                    <sphereGeometry />
+                    <FakeGlowMaterial glowInternalRadius={1} glowSharpness={-0.65} falloff={0} />
+                  </mesh>
+                  <mesh scale={0.135} position={[0.0, -0.2, 0]}>
+                    <sphereGeometry />
+                    <FakeGlowMaterial glowInternalRadius={1} glowSharpness={-0.8} falloff={1} />
+                  </mesh>
+                </>
+              )}
+            </primitive>
+          </group>
         </EnhancedGroup>
       );
     } else {

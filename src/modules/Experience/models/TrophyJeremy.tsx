@@ -31,70 +31,84 @@ const TrophyJeremy = ({ glow = false, ...props }: ModelProps) => {
   const cachedModel = useMemo(() => {
     if (gltfScene) {
       return (
-        <EnhancedGroup {...props}>
-          <primitive object={gltfScene.clone()}>
-            {glow && (
-              <>
-                <mesh position={[0.095, 14, -0.08]} scale={2}>
-                  <sphereGeometry />
-                  <FakeGlowMaterial glowInternalRadius={1} glowSharpness={-0.65} falloff={0} />
-                </mesh>
-                <mesh position={[0.095, 10.1, -0.08]} scale={2.9}>
-                  <sphereGeometry />
-                  <FakeGlowMaterial
-                    glowColor="red"
-                    glowInternalRadius={1}
-                    glowSharpness={-0.65}
-                    falloff={0}
-                  />
-                </mesh>
-                <mesh position={[0.095, 6.1, -0.08]} scale={2.9}>
-                  <sphereGeometry />
-                  <FakeGlowMaterial
-                    glowColor="red"
-                    glowInternalRadius={1}
-                    glowSharpness={-0.65}
-                    falloff={0}
-                  />
-                </mesh>
-                {/* COLUMN LEFT */}
-                <mesh position={[0.095, 2.1, -1.75]} scale={1.9}>
-                  <sphereGeometry />
-                  <FakeGlowMaterial
-                    glowColor="red"
-                    glowInternalRadius={0.9}
-                    glowSharpness={-0.65}
-                    falloff={0}
-                  />
-                </mesh>
-                {/* COLUMN RIGHT */}
-                <mesh position={[0.095, 2.1, 1.75]} scale={1.9}>
-                  <sphereGeometry />
-                  <FakeGlowMaterial
-                    glowColor="red"
-                    glowInternalRadius={0.9}
-                    glowSharpness={-0.65}
-                    falloff={0}
-                  />
-                </mesh>
-                {/* RIGHT SIDE GOLD */}
-                <mesh position={[0.095, 4.1, -1.75]} scale={1.5}>
-                  <sphereGeometry />
-                  <FakeGlowMaterial glowInternalRadius={0.9} glowSharpness={-0.65} falloff={1.5} />
-                </mesh>
-                {/* CENTER GOLD */}
-                <mesh position={[0.095, 4.1, 0]} scale={1.5}>
-                  <sphereGeometry />
-                  <FakeGlowMaterial glowInternalRadius={0.9} glowSharpness={-0.65} falloff={1.5} />
-                </mesh>
-                {/* LEFT SIDE GOLD */}
-                <mesh position={[0.095, 4.1, 1.75]} scale={1.5}>
-                  <sphereGeometry />
-                  <FakeGlowMaterial glowInternalRadius={0.9} glowSharpness={-0.65} falloff={1.5} />
-                </mesh>
-              </>
-            )}
-          </primitive>
+        <EnhancedGroup>
+          <group {...props}>
+            <primitive object={gltfScene.clone()}>
+              {glow && (
+                <>
+                  <mesh position={[0.095, 14, -0.08]} scale={2}>
+                    <sphereGeometry />
+                    <FakeGlowMaterial glowInternalRadius={1} glowSharpness={-0.65} falloff={0} />
+                  </mesh>
+                  <mesh position={[0.095, 10.1, -0.08]} scale={2.9}>
+                    <sphereGeometry />
+                    <FakeGlowMaterial
+                      glowColor="red"
+                      glowInternalRadius={1}
+                      glowSharpness={-0.65}
+                      falloff={0}
+                    />
+                  </mesh>
+                  <mesh position={[0.095, 6.1, -0.08]} scale={2.9}>
+                    <sphereGeometry />
+                    <FakeGlowMaterial
+                      glowColor="red"
+                      glowInternalRadius={1}
+                      glowSharpness={-0.65}
+                      falloff={0}
+                    />
+                  </mesh>
+                  {/* COLUMN LEFT */}
+                  <mesh position={[0.095, 2.1, -1.75]} scale={1.9}>
+                    <sphereGeometry />
+                    <FakeGlowMaterial
+                      glowColor="red"
+                      glowInternalRadius={0.9}
+                      glowSharpness={-0.65}
+                      falloff={0}
+                    />
+                  </mesh>
+                  {/* COLUMN RIGHT */}
+                  <mesh position={[0.095, 2.1, 1.75]} scale={1.9}>
+                    <sphereGeometry />
+                    <FakeGlowMaterial
+                      glowColor="red"
+                      glowInternalRadius={0.9}
+                      glowSharpness={-0.65}
+                      falloff={0}
+                    />
+                  </mesh>
+                  {/* RIGHT SIDE GOLD */}
+                  <mesh position={[0.095, 4.1, -1.75]} scale={1.5}>
+                    <sphereGeometry />
+                    <FakeGlowMaterial
+                      glowInternalRadius={0.9}
+                      glowSharpness={-0.65}
+                      falloff={1.5}
+                    />
+                  </mesh>
+                  {/* CENTER GOLD */}
+                  <mesh position={[0.095, 4.1, 0]} scale={1.5}>
+                    <sphereGeometry />
+                    <FakeGlowMaterial
+                      glowInternalRadius={0.9}
+                      glowSharpness={-0.65}
+                      falloff={1.5}
+                    />
+                  </mesh>
+                  {/* LEFT SIDE GOLD */}
+                  <mesh position={[0.095, 4.1, 1.75]} scale={1.5}>
+                    <sphereGeometry />
+                    <FakeGlowMaterial
+                      glowInternalRadius={0.9}
+                      glowSharpness={-0.65}
+                      falloff={1.5}
+                    />
+                  </mesh>
+                </>
+              )}
+            </primitive>
+          </group>
         </EnhancedGroup>
       );
     } else {
