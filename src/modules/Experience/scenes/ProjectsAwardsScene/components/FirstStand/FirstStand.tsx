@@ -17,7 +17,7 @@ const FirstStand = () => {
 
   return (
     <group
-      position={isBigTablet ? [-1, -1.3, 0] : standControls.standPosition}
+      position={isBigTablet ? [-1, -2, 0] : standControls.standPosition}
       rotation={isBigTablet ? [0, 0.2, 0] : standControls.standRotation}
     >
       <TrophyCreativeTrio position={[-0.6, 0.05, 0.14]} scale={1.8} glowOnHover />
