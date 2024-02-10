@@ -1,9 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { Group, Object3DEventMap } from 'three';
-import { EnhancedGroup, FakeGlowMaterial } from '../components';
+import { EnhancedGroup, FakeGlowMaterial, InvisibleMesh } from '../components';
 import { GroupProps } from '@react-three/fiber';
-import InvisibleMesh from '../components/InvisibleMesh/InvisibleMesh';
 
 interface ModelProps extends GroupProps {
   glow?: boolean;
@@ -35,13 +34,13 @@ const TrophyCreativeTrio = ({ glow = false, glowOnHover = false, ...props }: Mod
           <group {...props}>
             <InvisibleMesh
               onPointerEnter={glowOnHover ? () => setGlowHover(true) : undefined}
-              onPointerOut={glowOnHover ? () => setGlowHover(false) : undefined}
+              onPointerLeave={glowOnHover ? () => setGlowHover(false) : undefined}
               invisibleSize={[0.17, 0.3, 0.15]}
               invisiblePosition={[0.09, 0.15, -0.075]}
             >
               <primitive object={gltfScene.clone()}>
                 {(glow || glowHover) && (
-                  <>
+                  <group>
                     <mesh position={[0.095, 0.22, -0.08]} scale={0.125}>
                       <sphereGeometry />
                       <FakeGlowMaterial glowInternalRadius={1} glowSharpness={-0.65} falloff={0} />
@@ -50,7 +49,7 @@ const TrophyCreativeTrio = ({ glow = false, glowOnHover = false, ...props }: Mod
                       <sphereGeometry />
                       <FakeGlowMaterial glowInternalRadius={1} glowSharpness={-0.8} falloff={1} />
                     </mesh>
-                  </>
+                  </group>
                 )}
               </primitive>
             </InvisibleMesh>
@@ -61,7 +60,6 @@ const TrophyCreativeTrio = ({ glow = false, glowOnHover = false, ...props }: Mod
       return null; // Handle the case where the model hasn't loaded yet
     }
   }, [props, gltfScene]);
-
   return cachedModel;
 };
 

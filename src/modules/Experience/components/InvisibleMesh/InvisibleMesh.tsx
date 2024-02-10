@@ -25,10 +25,9 @@ const InvisibleMesh = ({
   return (
     <group {...props}>
       {children}
-
       <mesh position={invisiblePosition}>
         <boxGeometry args={invisibleSize} />
-        <meshBasicMaterial transparent opacity={enableDebugger ? 0.5 : 0} />
+        <meshBasicMaterial transparent opacity={enableDebugger ? 0.75 : 0} />
       </mesh>
     </group>
   );
