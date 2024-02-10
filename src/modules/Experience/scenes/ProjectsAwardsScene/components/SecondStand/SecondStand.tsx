@@ -15,7 +15,7 @@ const SecondStand = () => {
   });
   return (
     <group
-      position={isBigTablet ? [1, -1.3, 0] : standControls.standPosition}
+      position={isBigTablet ? [1, -2, 0] : standControls.standPosition}
       rotation={isBigTablet ? [0, -0.2, 0] : standControls.standRotation}
     >
       <TrophyCasey position={[-0.26, 0.305, 0]} glowOnHover />
