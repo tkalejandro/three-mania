@@ -17,6 +17,7 @@ import {
   ModalHeader,
   ModalOverlay,
 } from '@chakra-ui/modal';
+import { ListItem, UnorderedList } from '@chakra-ui/react';
 import { useFrame, useThree } from '@react-three/fiber';
 import React, { useRef, useState } from 'react';
 import { Mesh } from 'three';
@@ -86,13 +87,35 @@ const ScretButton = ({ element }: SecretButtonProps) => {
         <Modal isCentered isOpen={isOpen} onClose={closeSecret} size="xl">
           <ModalOverlay />
           <ModalContent margin={4}>
-            <ModalHeader color={theme.colors.primary.main}>{'You found me!'}</ModalHeader>
+            <ModalHeader fontSize="medium" color={theme.colors.primary.main}>
+              {'You found me!'}
+            </ModalHeader>
             <ModalCloseButton />
-            <ModalBody>
-              <Text>
+            <ModalBody fontWeight={300}>
+              <Text fontSize="small">
                 Music, like a hidden key, unlocks emotions and transforms perception, turning
                 ordinary moments into extraordinary discoveries.
               </Text>
+              <Text fontSize="small" my={4}>
+                Thanks to this magic, I've been honored with the following awards:
+              </Text>
+              <UnorderedList fontSize="small">
+                <ListItem fontStyle="italic" mb={4}>
+                  <strong>MPSE Golden Reel Award </strong>for Outstanding Achievement in{' '}
+                  <strong>Sound Editing for Computer Cinematic</strong>. As a music editor for{' '}
+                  <strong>COD</strong> (2020) and <strong>TLOU2</strong> (2021).
+                </ListItem>
+                <ListItem fontStyle="italic">
+                  <strong> MPSE Golden Reel Award </strong>for Outstanding Achievement in{' '}
+                  <strong>Sound Editing for Computer Interactive Gameplay </strong>. As a music
+                  editor for <strong>COD</strong> (2020) and <strong>TLOU2</strong> (2021).
+                </ListItem>
+                <ListItem fontStyle="italic">
+                  Outstanding Achievement in{' '}
+                  <strong>Music Editing – Game Music As a supervising music editor</strong> for{' '}
+                  <strong>GOWR</strong> (2023).
+                </ListItem>
+              </UnorderedList>
             </ModalBody>
             <ModalFooter>
               <Button colorScheme="blue" mr={3} onClick={closeSecret}>
