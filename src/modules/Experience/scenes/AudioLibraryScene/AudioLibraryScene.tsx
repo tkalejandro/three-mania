@@ -65,8 +65,17 @@ const AudioLibraryScene = ({ position }: AudioLibrarySceneProps) => {
     setIsDragging(false);
   };
 
+  const handlePointerLeave = () => {
+    setIsDragging(false);
+
+    document.body.style.cursor = 'default';
+  };
+  const handlePointerEnter = () => {
+    document.body.style.cursor = 'grab';
+  };
+
   const xRadius = isDesktop ? 1.75 : isBigTablet ? 1.5 : 1;
-  const zRadius = isDesktop ? 0.75 : isBigTablet ? 0.65 : 0.65;
+  const zRadius = isDesktop ? 0.75 : isBigTablet ? 0.65 : 1.8;
   const calculateCoverPositions = (numCovers: number, rotationAngle: number) => {
     const positions = [];
     const angleIncrement = (2 * Math.PI) / numCovers;
@@ -84,19 +93,29 @@ const AudioLibraryScene = ({ position }: AudioLibrarySceneProps) => {
 
   const audioCovers = [
     {
-      name: '1',
+      name: 'Omnissphere Experiment',
+      description: 'Some description',
+      color: theme.colors.secondary.main,
     },
     {
-      name: '2',
+      name: 'Omnissphere Experiment',
+      description: 'Some description',
+      color: theme.colors.danger.main,
     },
     {
-      name: '3',
+      name: 'Omnissphere Experiment',
+      description: 'Some description',
+      color: theme.colors.success.main,
     },
     {
-      name: '4',
+      name: 'Omnissphere Experiment',
+      description: 'Some description',
+      color: theme.colors.grey,
     },
     {
-      name: '5',
+      name: 'Omnissphere Experiment',
+      description: 'Some description',
+      color: theme.colors.warning.main,
     },
   ];
 
@@ -110,16 +129,19 @@ const AudioLibraryScene = ({ position }: AudioLibrarySceneProps) => {
         onPointerMove={handlePointerMove}
         onPointerDown={handlePointerDown}
         onPointerUp={dragFalse}
-        onPointerLeave={dragFalse}
-        invisibleSize={[screenWidth, 2, 0]}
-        invisiblePosition={[0, 0, 0]}
+        onPointerLeave={handlePointerLeave}
+        onPointerEnter={handlePointerEnter}
+        invisibleSize={[screenWidth, 1.3, 0]}
+        invisiblePosition={[0, 0, 0.85]}
       >
         <group position={[0, 0, -zPoint]} ref={audioListRef}>
           {audioCovers.map((cover, index) => (
             <AudioCover
               key={index}
               position={coverPositions[index].toArray()}
-              color={theme.colors.secondary[500]}
+              name={cover.name}
+              description={cover.description}
+              color={cover.color}
             />
           ))}
         </group>

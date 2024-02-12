@@ -1,11 +1,16 @@
-import { Float } from '@react-three/drei';
-import { GroupProps, MeshProps, useFrame, Vector3 } from '@react-three/fiber';
-import React, { useEffect, useRef, useState } from 'react';
+import { fontLibrary } from '@/helpers';
+import { useAppTheme } from '@/hooks';
+import { Float, RoundedBox, Text, Text3D } from '@react-three/drei';
+import { GroupProps, useFrame } from '@react-three/fiber';
+
+import React, { useRef } from 'react';
 import * as THREE from 'three';
 import { Group } from 'three';
 interface AudioCoverProps extends GroupProps {
   // Something goes here
   color: string;
+  name: string;
+  description: string;
 }
 
 /**
@@ -13,9 +18,9 @@ interface AudioCoverProps extends GroupProps {
  * Please use this and extend the properties if needed.
  * This is to keep the standard
  */
-const AudioCover = ({ color, ...props }: AudioCoverProps) => {
+const AudioCover = ({ color, description, name, ...props }: AudioCoverProps) => {
   const meshRef = useRef<Group>(null);
-
+  const theme = useAppTheme();
   useFrame(({ clock }) => {
     if (meshRef.current) {
       // Get current position of the mesh
@@ -45,14 +50,43 @@ const AudioCover = ({ color, ...props }: AudioCoverProps) => {
   return (
     <group {...props} ref={meshRef}>
       <Float floatingRange={[-0.1, 0.1]} rotationIntensity={0.05}>
-        <mesh>
-          <planeGeometry args={[0.9, 1.6]} />
-          <meshStandardMaterial color={color} side={THREE.FrontSide} />
-        </mesh>
-        <mesh>
-          <planeGeometry args={[0.9, 1.6]} />
-          <meshStandardMaterial color={'black'} side={THREE.BackSide} />
-        </mesh>
+        <group position={[0, 0, 0.0201]}>
+          <mesh position={[0, 0.15, 0]}>
+            {/* HERE GOES IMAGE / SHADER  */}
+            <planeGeometry args={[0.8, 1.2]} />
+            <meshStandardMaterial color={theme.colors.primary[100]} />
+          </mesh>
+          <group position={[0, -0.6, 0]}>
+            <mesh>
+              <planeGeometry args={[0.8, 0.3]} />
+              <meshStandardMaterial color={theme.colors.primary[900]} />
+            </mesh>
+
+            <Text3D
+              scale={0.03}
+              font={fontLibrary._3DTextMontserrat.bold}
+              position={[-0.29, 0.05, 0.001]}
+            >
+              {name}
+              <meshNormalMaterial />
+            </Text3D>
+
+            <Text position={[0, -0.05, 0.001]} maxWidth={0.75} textAlign="center" fontSize={0.045}>
+              {description}
+            </Text>
+          </group>
+        </group>
+
+        <RoundedBox
+          radius={0.05}
+          smoothness={2}
+          bevelSegments={4}
+          creaseAngle={0.4}
+          scale={[1, 1, 0.4]}
+          args={[0.9, 1.6, 0.1]} // Width, height, depth
+        >
+          <meshStandardMaterial color={color} roughness={0.15} />
+        </RoundedBox>
       </Float>
     </group>
   );
