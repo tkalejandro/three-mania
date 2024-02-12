@@ -23,7 +23,7 @@ class TextureLibrary {
   musicNote() {
     return {
       map: '/textures/musicNote/note_map.png',
-    }
+    };
   }
 }
 
