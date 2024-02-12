@@ -73,8 +73,9 @@ const AudioLibraryScene = ({ position }: AudioLibrarySceneProps) => {
 
     for (let i = 0; i < numCovers; i++) {
       const angle = rotationAngle + i * angleIncrement;
-      const x = Math.cos(angle) * zPoint * xRadius; // Radius of 1.2 units
-      const z = Math.sin(angle) * zPoint * zRadius; // Radius of 1.2 units
+      // Currently not a perfect circle but ellipsis.
+      const x = Math.cos(angle) * zPoint * xRadius;
+      const z = Math.sin(angle) * zPoint * zRadius;
       positions.push(new Vector3(x, 0, z));
     }
 
@@ -106,7 +107,6 @@ const AudioLibraryScene = ({ position }: AudioLibrarySceneProps) => {
     <group position={position}>
       {/* Render audio covers with dynamic positions */}
       <InvisibleMesh
-        //onPointerOver={handlePointerMove}
         onPointerMove={handlePointerMove}
         onPointerDown={handlePointerDown}
         onPointerUp={dragFalse}
