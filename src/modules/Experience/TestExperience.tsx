@@ -15,7 +15,6 @@ import {
   AddMusicScene,
   AudioLibraryScene,
   ContactScene,
-  LoaderScene,
   MediaCoverageScene,
   ProjectsAwardsScene,
   WelcomeScene,
