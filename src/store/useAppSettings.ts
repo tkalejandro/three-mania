@@ -10,6 +10,7 @@ interface AppSettingsState {
   /**
    * Indicates if navigation already load.
    */
+  experienceStarted: boolean;
   experienceLoaded: boolean;
   /**
    * Indicates the current phase of the experience
@@ -20,7 +21,7 @@ interface AppSettingsState {
    */
   readonly tempo: number;
 
-  setExperienceLoaded: (value: boolean) => void;
+  setExperienceStarted: (value: boolean) => void;
   setPhase: (value: Phase) => void;
 }
 
@@ -28,15 +29,16 @@ interface AppSettingsState {
  * All related to the APP x Client
  */
 const useAppSettingsStore = create<AppSettingsState>((set) => {
-  const setExperienceLoaded = (value: boolean) => set({ experienceLoaded: value });
+  const setExperienceStarted = (value: boolean) => set({ experienceStarted: value });
   const setPhase = (value: Phase) => set({ phase: value });
 
   return {
     loading: false,
+    experienceStarted: false,
     experienceLoaded: false,
     tempo: 2.526,
     phase: Phase.Ready,
-    setExperienceLoaded,
+    setExperienceStarted,
     setPhase,
   };
 });

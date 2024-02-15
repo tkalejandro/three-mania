@@ -11,7 +11,7 @@ const GuitarModel = ({ ...props }) => {
   // Memoize the component based on both props and the loaded model
   const cachedGuitarModel = useMemo(
     () => <primitive object={guitarModel.scene} {...props} />,
-    [props, guitarModel],
+    [guitarModel],
   );
 
   return cachedGuitarModel;

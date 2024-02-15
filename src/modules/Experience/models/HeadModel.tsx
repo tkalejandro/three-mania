@@ -41,7 +41,7 @@ const HeadModel = ({ selectedColor, map, mousemove = true, ...props }: HeadModel
     } else {
       return null;
     }
-  }, [props, gltfScene]);
+  }, [gltfScene]);
 
   return cachedModel;
 };

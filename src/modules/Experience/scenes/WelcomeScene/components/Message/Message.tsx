@@ -20,11 +20,11 @@ const Message = () => {
   const transparentRef4 = useRef<MeshPhongMaterial>(null!);
   const transparentRef5 = useRef<MeshPhongMaterial>(null!);
 
-  const experienceLoaded = useAppSettings((state) => state.experienceLoaded);
-  const setExperienceLoaded = useAppSettings((state) => state.setExperienceLoaded);
+  const experienceStarted = useAppSettings((state) => state.experienceStarted);
+  const setExperienceLoaded = useAppSettings((state) => state.setExperienceStarted);
 
   useFrame((state, delta) => {
-    if (experienceLoaded && transparentRef1.current.opacity < 1.1) {
+    if (experienceStarted && transparentRef1.current.opacity < 1.1) {
       const speed = delta * 10;
       transparentRef1.current.opacity += speed;
       transparentRef2.current.opacity += speed;
@@ -35,7 +35,7 @@ const Message = () => {
   });
 
   useEffect(() => {
-    if (!experienceLoaded) {
+    if (!experienceStarted) {
       setTimeout(() => {
         setExperienceLoaded(true);
       }, 250);

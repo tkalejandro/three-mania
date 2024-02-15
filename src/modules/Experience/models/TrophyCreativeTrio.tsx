@@ -58,7 +58,7 @@ const TrophyCreativeTrio = ({ glow = false, glowOnHover = false, ...props }: Mod
     } else {
       return null; // Handle the case where the model hasn't loaded yet
     }
-  }, [props, gltfScene]);
+  }, [gltfScene]);
   return cachedModel;
 };
 

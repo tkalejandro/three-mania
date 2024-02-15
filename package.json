@@ -21,6 +21,7 @@
         "@react-three/fiber": "^8.14.4",
         "@react-three/flex": "^1.0.1",
         "@types/three": "^0.156.0",
+        "@types/vara": "^1.1.4",
         "framer-motion": "^10.16.5",
         "gsap": "^3.12.3",
         "leva": "^0.9.35",
@@ -32,6 +33,7 @@
         "react-dom": "^18.2.0",
         "three": "^0.157.0",
         "three-custom-shader-material": "^5.4.0",
+        "vara": "^1.4.1",
         "zustand": "^4.4.4"
     },
     "devDependencies": {

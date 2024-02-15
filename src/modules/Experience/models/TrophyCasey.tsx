@@ -60,7 +60,7 @@ const TrophyCasey = ({ glow, glowOnHover = false, ...props }: ModelProps) => {
     } else {
       return null; // Handle the case where the model hasn't loaded yet
     }
-  }, [props, gltfScene]);
+  }, [gltfScene]);
 
   return cachedModel;
 };

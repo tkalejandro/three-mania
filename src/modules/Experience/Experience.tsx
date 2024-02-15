@@ -7,7 +7,6 @@ import {
   AddMusicScene,
   AudioLibraryScene,
   ContactScene,
-  LoaderScene,
   MediaCoverageScene,
   WelcomeScene,
 } from './scenes';
@@ -19,13 +18,14 @@ import { DebugButton } from './components';
 import { MainCamera } from './camera';
 import { MainLight } from './lights';
 import { SoundManager } from './sounds';
+import { Loader } from './loader';
 
 /**
  * Heart of the 3D App
  */
 const Experience = () => {
   const debugMode = useDeveloperSettings((state) => state.debugMode);
-  const navigationLoaded = useAppSettings((state) => state.experienceLoaded);
+  const navigationLoaded = useAppSettings((state) => state.experienceStarted);
   const [distance, setDistance] = useState<number>(0);
   const [dpr, setDpr] = useState(1.5);
   const {
@@ -55,20 +55,22 @@ const Experience = () => {
     pages: { value: 4, step: 0.1 },
     eps: { value: 0.00001, step: 0.00001 },
   });
-
+  const experienceStarted = useAppSettings((state) => state.experienceStarted);
+  console.log(experienceStarted);
   return (
     <>
       <div id="experience">
         <SoundManager>
-          <Canvas flat dpr={dpr}>
-            <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)}>
-              <ScrollControls
-                pages={scrollControls.pages}
-                distance={distance}
-                eps={scrollControls.eps}
-              >
-                {/* <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)} /> */}
-                <Suspense fallback={<LoaderScene />}>
+          <Suspense fallback={<Loader />}>
+            <Canvas flat dpr={dpr}>
+              <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)}>
+                <ScrollControls
+                  pages={scrollControls.pages}
+                  distance={distance}
+                  eps={scrollControls.eps}
+                >
+                  {/* <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)} /> */}
+
                   <MainCamera />
                   <MainLight />
                   {debugMode && <Perf position="top-left" />}
@@ -83,10 +85,10 @@ const Experience = () => {
                   <AudioLibraryScene position={audioLibraryPosition} />
                   <MediaCoverageScene position={mediaCoveragePosition} />
                   <ContactScene position={contactPosition} />
-                </Suspense>
-              </ScrollControls>
-            </PerformanceMonitor>
-          </Canvas>
+                </ScrollControls>
+              </PerformanceMonitor>
+            </Canvas>
+          </Suspense>
         </SoundManager>
         <DebugButton />
       </div>
