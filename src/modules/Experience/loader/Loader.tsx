@@ -3,12 +3,13 @@ import React, { useEffect, useRef } from 'react';
 
 import { useAppTheme } from '@/hooks';
 import { Box, Text } from '@chakra-ui/layout';
+import { VaraText } from '.';
 /**
  * First Thing to appear :-)
  * This might dissapear in the future.
  * @returns
  */
-const LoaderScene = () => {
+const Loader = () => {
   const { progress } = useProgress();
   const theme = useAppTheme();
 
@@ -27,10 +28,23 @@ const LoaderScene = () => {
   }, []);
   console.log(progress);
   return (
-    <Box zIndex={20}>
-      <Text>{progress.toFixed(0)} % loaded</Text>
+    <Box
+      style={{
+        background: theme.colors.primary.main,
+        width: '100%',
+        height: '100vh',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        flexDirection: 'column',
+      }}
+    >
+      <VaraText />
+      <Text mt={10} color={theme.colors.white}>
+        {progress.toFixed(0)} % loaded
+      </Text>
     </Box>
   );
 };
 
-export default LoaderScene;
+export default Loader;

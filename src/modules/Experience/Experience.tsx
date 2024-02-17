@@ -12,13 +12,13 @@ import {
 } from './scenes';
 import ProjectsAwardsScene from './scenes/ProjectsAwardsScene/ProjectsAwardsScene';
 import { Perf } from 'r3f-perf';
-import { useAppSettings, useCamera, useDeveloperSettings } from '@/store';
+import { useAppSettings, useDeveloperSettings } from '@/store';
 import { useControls } from 'leva';
 import { DebugButton } from './components';
 import { MainCamera } from './camera';
 import { MainLight } from './lights';
 import { SoundManager } from './sounds';
-import { Loader, Splash } from './loader';
+import { Loader } from './loader';
 
 /**
  * Heart of the 3D App
@@ -59,7 +59,6 @@ const Experience = () => {
   return (
     <>
       <div id="experience">
-        <Splash />
         <SoundManager>
           <Suspense fallback={<Loader />}>
             <Canvas flat dpr={dpr}>
@@ -69,8 +68,6 @@ const Experience = () => {
                   distance={distance}
                   eps={scrollControls.eps}
                 >
-                  {/* <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)} /> */}
-
                   <MainCamera />
                   <MainLight />
                   {debugMode && <Perf position="top-left" />}
