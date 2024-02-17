@@ -7,18 +7,18 @@ import {
   AddMusicScene,
   AudioLibraryScene,
   ContactScene,
-  LoaderScene,
   MediaCoverageScene,
   WelcomeScene,
 } from './scenes';
 import ProjectsAwardsScene from './scenes/ProjectsAwardsScene/ProjectsAwardsScene';
 import { Perf } from 'r3f-perf';
-import { useAppSettings, useCamera, useDeveloperSettings } from '@/store';
+import { useAppSettings, useDeveloperSettings } from '@/store';
 import { useControls } from 'leva';
 import { DebugButton } from './components';
 import { MainCamera } from './camera';
 import { MainLight } from './lights';
 import { SoundManager } from './sounds';
+import { Loader } from './loader';
 
 /**
  * Heart of the 3D App
@@ -60,15 +60,14 @@ const Experience = () => {
     <>
       <div id="experience">
         <SoundManager>
-          <Canvas flat dpr={dpr}>
-            <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)}>
-              <ScrollControls
-                pages={scrollControls.pages}
-                distance={distance}
-                eps={scrollControls.eps}
-              >
-                {/* <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)} /> */}
-                <Suspense fallback={<LoaderScene />}>
+          <Suspense fallback={<Loader />}>
+            <Canvas flat dpr={dpr}>
+              <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)}>
+                <ScrollControls
+                  pages={scrollControls.pages}
+                  distance={distance}
+                  eps={scrollControls.eps}
+                >
                   <MainCamera />
                   <MainLight />
                   {debugMode && <Perf position="top-left" />}
@@ -83,10 +82,10 @@ const Experience = () => {
                   <AudioLibraryScene position={audioLibraryPosition} />
                   <MediaCoverageScene position={mediaCoveragePosition} />
                   <ContactScene position={contactPosition} />
-                </Suspense>
-              </ScrollControls>
-            </PerformanceMonitor>
-          </Canvas>
+                </ScrollControls>
+              </PerformanceMonitor>
+            </Canvas>
+          </Suspense>
         </SoundManager>
         <DebugButton />
       </div>
