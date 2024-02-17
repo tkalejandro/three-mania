@@ -5,8 +5,7 @@ import { useAppTheme } from '@/hooks';
 import { Box, Text } from '@chakra-ui/layout';
 
 /**
- * First Thing to appear :-)
- * This might dissapear in the future.
+ * First thing to appear before experience
  * @returns
  */
 const Loader = () => {
@@ -20,13 +19,8 @@ const Loader = () => {
       isFirstRender.current = false;
       return;
     }
-    return () => {
-      //It will tell the application that all files have been loaded
-      //Happens once
-      console.log('complete');
-    };
   }, []);
-  console.log(progress);
+
   return (
     <Box
       style={{
