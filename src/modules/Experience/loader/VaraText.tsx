@@ -1,7 +1,7 @@
 import { useAppTheme } from '@/hooks';
 import React, { useEffect, useRef } from 'react';
 import Vara from 'vara';
-import json from './varaText.json';
+
 const VaraText = () => {
   const theme = useAppTheme();
   //Trick to ignore info of first render
