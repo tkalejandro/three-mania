@@ -27,8 +27,8 @@ const LoaderScene = () => {
   }, []);
   console.log(progress);
   return (
-    <Box>
-      <Text color={theme.colors.white}>{progress.toFixed(0)} % loaded</Text>
+    <Box zIndex={20}>
+      <Text>{progress.toFixed(0)} % loaded</Text>
     </Box>
   );
 };

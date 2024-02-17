@@ -18,7 +18,7 @@ import { DebugButton } from './components';
 import { MainCamera } from './camera';
 import { MainLight } from './lights';
 import { SoundManager } from './sounds';
-import { Loader } from './loader';
+import { Loader, Splash } from './loader';
 
 /**
  * Heart of the 3D App
@@ -59,6 +59,7 @@ const Experience = () => {
   return (
     <>
       <div id="experience">
+        <Splash />
         <SoundManager>
           <Suspense fallback={<Loader />}>
             <Canvas flat dpr={dpr}>
