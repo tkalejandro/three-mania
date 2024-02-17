@@ -32,14 +32,12 @@
         "react-dom": "^18.2.0",
         "three": "^0.157.0",
         "three-custom-shader-material": "^5.4.0",
-        "vara": "^1.4.1",
         "zustand": "^4.4.4"
     },
     "devDependencies": {
         "@types/node": "^20",
         "@types/react": "^18.2.33",
         "@types/react-dom": "^18.2.14",
-        "@types/vara": "^1.1.4",
         "autoprefixer": "^10",
         "eslint": "^8",
         "eslint-config-next": "^14.0.1",

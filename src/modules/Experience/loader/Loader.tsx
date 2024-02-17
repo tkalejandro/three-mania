@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from 'react';
 
 import { useAppTheme } from '@/hooks';
 import { Box, Text } from '@chakra-ui/layout';
-import { VaraText } from '.';
+
 /**
  * First Thing to appear :-)
  * This might dissapear in the future.
@@ -39,7 +39,6 @@ const Loader = () => {
         flexDirection: 'column',
       }}
     >
-      <VaraText />
       <Text mt={10} color={theme.colors.white}>
         {progress.toFixed(0)} % loaded
       </Text>
