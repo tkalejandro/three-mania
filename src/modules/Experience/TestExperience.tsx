@@ -70,13 +70,12 @@ const TestExperience = () => {
           {/* <ambientLight intensity={0.5} /> */}
           <Environment preset="sunset" />
           <OrbitControls />
-          {/* <animated.group scale={scale} onClick={() => setActive(!active)} ref={myMesh}>
+          <animated.group scale={scale} onClick={() => setActive(!active)} ref={myMesh}>
             <animated.mesh>
               <boxGeometry />
               <meshStandardMaterial transparent opacity={o} />
             </animated.mesh>
-          </animated.group> */}
-          <Message />
+          </animated.group>
 
           {/* UNTIL HERE */}
         </Canvas>

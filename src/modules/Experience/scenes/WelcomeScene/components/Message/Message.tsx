@@ -2,7 +2,7 @@ import { fontLibrary } from '@/helpers';
 import { useAppBreakpoints, useAppTheme } from '@/hooks';
 import { useAppSettings } from '@/store';
 import { Text, useAspect } from '@react-three/drei';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useThree } from '@react-three/fiber';
 import { Flex, Box } from '@react-three/flex';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSpring, animated, config } from '@react-spring/three';
@@ -12,19 +12,12 @@ const Message = () => {
   const { isDesktop } = useAppBreakpoints();
   const { size } = useThree();
   const [vw, vh] = useAspect(size.width, size.height);
-
   const [opacity, setOpacity] = useState<number>(0);
   const experienceLoaded = useAppSettings((state) => state.experienceLoaded);
   const setExperienceLoaded = useAppSettings((state) => state.setExperienceLoaded);
 
-  useFrame((state, delta) => {});
-
   useEffect(() => {
-    if (!experienceLoaded) {
-      setTimeout(() => {
-        setExperienceLoaded(true);
-      }, 250);
-    }
+    setExperienceLoaded(true);
   }, []);
 
   useSpring({
@@ -37,11 +30,6 @@ const Message = () => {
 
   /**
    * Creates effect to work as opacity.
-   * @param text
-   * @param font
-   * @param scale
-   * @param color
-   * @returns
    */
   const opacityText = (text: string, font: string, scale: number, color: string) => {
     return (
