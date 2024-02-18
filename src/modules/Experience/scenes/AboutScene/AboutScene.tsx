@@ -45,7 +45,6 @@ const AboutScene = ({ position, scenePositionY }: AboutSceneProps) => {
         <group position={[0, -1, 0]}>
           <ThreeDButton
             onClick={() => selectButton(theme.colors.success.main)}
-            //isSelected={selectedColor === theme.colors.success.main}
             position={isBigTablet ? [-1.5, 0.5, 0] : [-0.7, 0.5, 0]}
             text="Succcess"
             color={selectedColor === theme.colors.success.main ? 'success' : 'primary'}
@@ -54,7 +53,6 @@ const AboutScene = ({ position, scenePositionY }: AboutSceneProps) => {
 
           <ThreeDButton
             onClick={() => selectButton(theme.colors.warning.main)}
-            //isSelected={selectedColor === theme.colors.warning.main}
             position={isBigTablet ? [-0.5, 0.5, 0] : [0.7, 0.5, 0]}
             text="Warning"
             color={selectedColor === theme.colors.warning.main ? 'warning' : 'primary'}
@@ -62,7 +60,6 @@ const AboutScene = ({ position, scenePositionY }: AboutSceneProps) => {
           />
           <ThreeDButton
             onClick={() => selectButton(theme.colors.danger.main)}
-            //isSelected={selectedColor === theme.colors.danger.main}
             position={isBigTablet ? [0.5, 0.5, 0] : [-0.7, 0, 0]}
             text="Danger"
             color={selectedColor === theme.colors.danger.main ? 'danger' : 'primary'}
@@ -70,7 +67,6 @@ const AboutScene = ({ position, scenePositionY }: AboutSceneProps) => {
           />
           <ThreeDButton
             onClick={() => selectButton(theme.colors.info.main)}
-            //isSelected={selectedColor === theme.colors.info.main}
             position={isBigTablet ? [1.5, 0.5, 0] : [0.7, 0, 0]}
             text="Info"
             color={selectedColor === theme.colors.info.main ? 'info' : 'primary'}
