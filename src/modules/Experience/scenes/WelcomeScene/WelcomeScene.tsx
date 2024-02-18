@@ -26,7 +26,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
 
   const phase = useAppSettings((state) => state.phase);
   const setPhase = useAppSettings((state) => state.setPhase);
-  const [messageOpen, setMessageOpen] = useState<boolean>(false);
+  const setExperienceLoaded = useAppSettings((state) => state.setExperienceLoaded);
 
   // This trick works because this scene doest need to render again.
   // Normal react this is criminal but we are in R3F.
@@ -45,7 +45,7 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   useFrame((state, delta) => {
     if (phase === Phase.Playing) {
       if (time > 2) {
-        setMessageOpen(true);
+        setExperienceLoaded(true);
         return;
       }
       const s = delta * 1.3;
@@ -99,13 +99,11 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           }}
         />
       </mesh>
-      {messageOpen ? (
-        <Message />
-      ) : (
-        <group position={position} ref={buttonRef}>
-          <ThreeDButton text="Play" size="lg" onClick={playButton} color="primary" />
-        </group>
-      )}
+      {/* Appears after some seconds */}
+      <Message />
+      <group position={position} ref={buttonRef}>
+        <ThreeDButton text="Play" size="lg" onClick={playButton} color="primary" />
+      </group>
     </>
   );
 };
