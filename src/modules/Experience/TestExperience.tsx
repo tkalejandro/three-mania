@@ -22,7 +22,7 @@ import {
 import { useSpring, animated, config } from '@react-spring/three';
 import { Perf } from 'r3f-perf';
 import { useCamera, useDeveloperSettings } from '@/store';
-import { DebugButton } from './components';
+import { DebugButton, ThreeDButton } from './components';
 import { MainLight } from './lights';
 import * as THREE from 'three';
 import { MainCamera } from './camera';
@@ -31,6 +31,7 @@ import { imageLibrary } from '@/helpers';
 import { Gallery } from './scenes/ProjectsAwardsScene/components';
 import { SoundManager } from './sounds';
 import { Mesh } from 'three';
+import { Box, Flex } from '@react-three/flex';
 
 /**
  * Welcome to the TEST PAGE. Useful to build a 3D scene isolated from the project.
@@ -67,15 +68,44 @@ const TestExperience = () => {
           />
           {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
           <MainLight />
-          {/* <ambientLight intensity={0.5} /> */}
-          <Environment preset="sunset" />
+          <ambientLight intensity={0.5} />
+
+          {/* <Environment preset="sunset" /> */}
           <OrbitControls />
-          <animated.group scale={scale} onClick={() => setActive(!active)} ref={myMesh}>
+          {/* <animated.group scale={scale} onClick={() => setActive(!active)} ref={myMesh}>
             <animated.mesh>
               <boxGeometry />
               <meshStandardMaterial transparent opacity={o} />
             </animated.mesh>
-          </animated.group>
+          </animated.group> */}
+          <Flex size={[5, 5, 1]} flexDirection="column">
+            <Box centerAnchor marginBottom={0.05}>
+              <ThreeDButton text="Button 1" color="primary" />
+            </Box>
+
+            <Box centerAnchor marginBottom={0.05}>
+              <ThreeDButton text="Button 1" color="secondary" />
+            </Box>
+            <Box centerAnchor marginBottom={0.05}>
+              <ThreeDButton text="Button 1" color="danger" />
+            </Box>
+
+            <Box centerAnchor marginBottom={0.05}>
+              <ThreeDButton text="Button 1" color="success" />
+            </Box>
+            <Box centerAnchor marginBottom={0.05}>
+              <ThreeDButton text="Button 1" color="info" />
+            </Box>
+            <Box centerAnchor marginBottom={0.05}>
+              <ThreeDButton text="Button 1" color="white" />
+            </Box>
+            <Box centerAnchor marginBottom={0.05}>
+              <ThreeDButton text="Button 1" color="black" />
+            </Box>
+            <Box centerAnchor marginBottom={0.05}>
+              <ThreeDButton text="Button 1" />
+            </Box>
+          </Flex>
 
           {/* UNTIL HERE */}
         </Canvas>

@@ -33,9 +33,8 @@ const Message = () => {
    */
   const opacityText = (text: string, font: string, scale: number, color: string) => {
     return (
-      <Text font={font} scale={scale} color={color}>
+      <Text maxWidth={18} font={font} scale={scale} color={color}>
         {text}
-
         <animated.meshPhongMaterial transparent opacity={opacity} />
       </Text>
     );
@@ -71,7 +70,7 @@ const Message = () => {
         <Box centerAnchor marginBottom={0.075}>
           {opacityText(
             'Scroll down and Feel the cool tunes I made for you.',
-            fontLibrary.montserrat.light,
+            fontLibrary.montserrat.thin,
             0.1 * textScale,
             theme.colors.primary.main,
           )}
@@ -79,7 +78,7 @@ const Message = () => {
         <Box centerAnchor marginBottom={0.075}>
           {opacityText(
             'Enjoy the journey,',
-            fontLibrary.montserrat.light,
+            fontLibrary.montserrat.thin,
             0.1 * textScale,
             theme.colors.primary.main,
           )}
