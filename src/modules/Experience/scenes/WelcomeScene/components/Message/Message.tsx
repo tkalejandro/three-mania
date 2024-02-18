@@ -2,47 +2,45 @@ import { fontLibrary } from '@/helpers';
 import { useAppBreakpoints, useAppTheme } from '@/hooks';
 import { useAppSettings } from '@/store';
 import { Text, useAspect } from '@react-three/drei';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useThree } from '@react-three/fiber';
 import { Flex, Box } from '@react-three/flex';
 import React, { useEffect, useRef, useState } from 'react';
-import { MeshPhongMaterial } from 'three';
+import { useSpring, animated, config } from '@react-spring/three';
 
 const Message = () => {
   const theme = useAppTheme();
   const { isDesktop } = useAppBreakpoints();
   const { size } = useThree();
   const [vw, vh] = useAspect(size.width, size.height);
-
-  //TODO Can we make this better??
-  const transparentRef1 = useRef<MeshPhongMaterial>(null!);
-  const transparentRef2 = useRef<MeshPhongMaterial>(null!);
-  const transparentRef3 = useRef<MeshPhongMaterial>(null!);
-  const transparentRef4 = useRef<MeshPhongMaterial>(null!);
-  const transparentRef5 = useRef<MeshPhongMaterial>(null!);
-
+  const [opacity, setOpacity] = useState<number>(0);
   const experienceLoaded = useAppSettings((state) => state.experienceLoaded);
   const setExperienceLoaded = useAppSettings((state) => state.setExperienceLoaded);
 
-  useFrame((state, delta) => {
-    if (experienceLoaded && transparentRef1.current.opacity < 1.1) {
-      const speed = delta * 10;
-      transparentRef1.current.opacity += speed;
-      transparentRef2.current.opacity += speed;
-      transparentRef3.current.opacity += speed;
-      transparentRef4.current.opacity += speed;
-      transparentRef5.current.opacity += speed;
-    }
-  });
-
   useEffect(() => {
-    if (!experienceLoaded) {
-      setTimeout(() => {
-        setExperienceLoaded(true);
-      }, 250);
-    }
+    setExperienceLoaded(true);
   }, []);
 
+  useSpring({
+    config: config.gentle,
+    onChange: (props) => setOpacity(props.value.opacity),
+    opacity: experienceLoaded ? 1 : 0,
+  });
+
   const textScale = isDesktop ? 2 : 1;
+
+  /**
+   * Creates effect to work as opacity.
+   */
+  const opacityText = (text: string, font: string, scale: number, color: string) => {
+    return (
+      <Text font={font} scale={scale} color={color}>
+        {text}
+
+        <animated.meshPhongMaterial transparent opacity={opacity} />
+      </Text>
+    );
+  };
+
   return (
     <group>
       <Flex
@@ -52,84 +50,47 @@ const Message = () => {
         align={'flex-start'}
         size={[vw, vh, 1]}
         scale={0.95}
-        //TODO This is bugy when transforming from Desktop to Mobile. FIX ME.
         marginLeft={isDesktop ? 1 : 0}
       >
         <Box centerAnchor marginBottom={0.05}>
-          <Text
-            font={fontLibrary.montserrat.regular}
-            scale={0.17 * textScale}
-            color={theme.colors.primary.main}
-          >
-            Hello there!
-            <meshBasicMaterial
-              ref={transparentRef1}
-              color={theme.colors.primary.main}
-              opacity={0}
-              transparent
-            />
-          </Text>
+          {opacityText(
+            'Hello there!',
+            fontLibrary.montserrat.regular,
+            0.17 * textScale,
+            theme.colors.primary.main,
+          )}
         </Box>
         <Box centerAnchor marginBottom={0.075}>
-          <Text
-            font={fontLibrary.montserrat.bold}
-            scale={0.105 * textScale}
-            color={theme.colors.secondary[900]}
-          >
-            Welcome to my musical world!
-            <meshBasicMaterial
-              ref={transparentRef2}
-              color={theme.colors.secondary[900]}
-              opacity={0.1}
-              transparent
-            />
-          </Text>
+          {opacityText(
+            'Welcome to my musical world!',
+            fontLibrary.montserrat.bold,
+            0.105 * textScale,
+            theme.colors.secondary[900],
+          )}
         </Box>
         <Box centerAnchor marginBottom={0.075}>
-          <Text
-            maxWidth={18}
-            font={fontLibrary.montserrat.light}
-            scale={0.1 * textScale}
-            color={theme.colors.primary.main}
-          >
-            Scroll down and Feel the cool tunes I made for you.
-            <meshBasicMaterial
-              ref={transparentRef3}
-              color={theme.colors.primary.main}
-              opacity={0.1}
-              transparent
-            />
-          </Text>
+          {opacityText(
+            'Scroll down and Feel the cool tunes I made for you.',
+            fontLibrary.montserrat.light,
+            0.1 * textScale,
+            theme.colors.primary.main,
+          )}
         </Box>
         <Box centerAnchor marginBottom={0.075}>
-          <Text
-            font={fontLibrary.montserrat.light}
-            scale={0.1 * textScale}
-            color={theme.colors.primary.main}
-          >
-            Enjoy the journey,
-            <meshBasicMaterial
-              ref={transparentRef4}
-              color={theme.colors.primary.main}
-              opacity={0.1}
-              transparent
-            />
-          </Text>
+          {opacityText(
+            'Enjoy the journey,',
+            fontLibrary.montserrat.light,
+            0.1 * textScale,
+            theme.colors.primary.main,
+          )}
         </Box>
         <Box centerAnchor marginTop={0.075}>
-          <Text
-            font={fontLibrary.montserrat.medium}
-            scale={0.1 * textScale}
-            color={theme.colors.primary.main}
-          >
-            Sonia
-            <meshBasicMaterial
-              ref={transparentRef5}
-              color={theme.colors.primary.main}
-              opacity={0.1}
-              transparent
-            />
-          </Text>
+          {opacityText(
+            'Sonia',
+            fontLibrary.montserrat.medium,
+            0.1 * textScale,
+            theme.colors.primary.main,
+          )}
         </Box>
       </Flex>
     </group>

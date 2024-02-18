@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import {
   Environment,
@@ -19,7 +19,7 @@ import {
   ProjectsAwardsScene,
   WelcomeScene,
 } from './scenes';
-
+import { useSpring, animated, config } from '@react-spring/three';
 import { Perf } from 'r3f-perf';
 import { useCamera, useDeveloperSettings } from '@/store';
 import { DebugButton } from './components';
@@ -30,6 +30,7 @@ import { Message } from './scenes/WelcomeScene/components';
 import { imageLibrary } from '@/helpers';
 import { Gallery } from './scenes/ProjectsAwardsScene/components';
 import { SoundManager } from './sounds';
+import { Mesh } from 'three';
 
 /**
  * Welcome to the TEST PAGE. Useful to build a 3D scene isolated from the project.
@@ -41,6 +42,15 @@ const TestExperience = () => {
   const debugMode = useDeveloperSettings((state) => state.debugMode);
   const cameraPosition = useCamera((state) => state.cameraPosition);
   // ******************
+  const [active, setActive] = useState<boolean>(false);
+  const [o, setO] = useState<number>(0.2);
+  const { scale } = useSpring({
+    config: config.wobbly,
+    scale: active ? 1.5 : 1,
+    onChange: (props) => setO(props.value.opacity),
+    opacity: active ? 1 : 0.2,
+  });
+  const myMesh = useRef(null);
 
   return (
     <div id="experience">
@@ -56,11 +66,17 @@ const TestExperience = () => {
             far={4}
           />
           {/* ADD YOUR SCENE CONTROLS OR LIGHTS HERE */}
-          {/* <MainLight /> */}
+          <MainLight />
           {/* <ambientLight intensity={0.5} /> */}
           <Environment preset="sunset" />
-          {/* <OrbitControls /> */}
-          <AudioLibraryScene position={[0, 0, 0]} />
+          <OrbitControls />
+          <animated.group scale={scale} onClick={() => setActive(!active)} ref={myMesh}>
+            <animated.mesh>
+              <boxGeometry />
+              <meshStandardMaterial transparent opacity={o} />
+            </animated.mesh>
+          </animated.group>
+
           {/* UNTIL HERE */}
         </Canvas>
       </SoundManager>
