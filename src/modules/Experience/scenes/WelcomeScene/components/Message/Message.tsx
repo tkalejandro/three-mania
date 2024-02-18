@@ -14,14 +14,10 @@ const Message = () => {
   const [vw, vh] = useAspect(size.width, size.height);
   const [opacity, setOpacity] = useState<number>(0);
   const experienceLoaded = useAppSettings((state) => state.experienceLoaded);
-  const setExperienceLoaded = useAppSettings((state) => state.setExperienceLoaded);
-
-  useEffect(() => {
-    setExperienceLoaded(true);
-  }, []);
 
   useSpring({
     config: config.gentle,
+    // Trick because TS number type problem.
     onChange: (props) => setOpacity(props.value.opacity),
     opacity: experienceLoaded ? 1 : 0,
   });
