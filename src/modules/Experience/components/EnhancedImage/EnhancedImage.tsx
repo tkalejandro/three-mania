@@ -11,7 +11,7 @@ const EnhancedImage = ({ caption, ...props }: EnhancedImageProps) => {
   const { position, scale } = props;
   const { isBigTablet } = useAppBreakpoints();
   // Check if position exists and is a Vector3 object
-  if (!position || !(position instanceof Vector3) || !scale) return null; 
+  if (!position || !(position instanceof Vector3) || !scale) return null;
 
   const imageY = typeof scale === 'number' ? scale : scale[1] ?? 0;
 
@@ -21,8 +21,8 @@ const EnhancedImage = ({ caption, ...props }: EnhancedImageProps) => {
       <Image {...props} />
       <Text
         textAlign="center"
-        maxWidth={15}
-        font={fontLibrary.montserrat.bold}
+        maxWidth={14.6}
+        font={fontLibrary.montserrat.medium}
         scale={textSize}
         // Divide by 2 because is half of the image. and  65% of it we will use.  The lower the higher the text
         position={[position.x, position.y - (imageY / 2) * 0.65, position.z + 0.001]}
