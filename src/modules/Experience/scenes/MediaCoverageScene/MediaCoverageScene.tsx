@@ -4,6 +4,8 @@ import { MediaCard } from './components';
 import { useAppBreakpoints } from '@/hooks';
 import { Box, Flex } from '@react-three/flex';
 import { useAspect } from '@react-three/drei';
+import { mediaCoverageData } from '@/constants';
+
 interface MediaCoverageSceneProps {
   position: Vector3;
 }
@@ -22,11 +24,11 @@ const MediaCoverageScene = ({ position }: MediaCoverageSceneProps) => {
           justifyContent="center"
           flexWrap="wrap"
           width={'100%'}
+          padding={'10%'}
         >
-          <MediaCard title={'title 1'} image={'/images/theLastOfUS.jpg'} />
-          <MediaCard title={'title 2'} image={'/images/theLastOfUS2.jpg'} />
-          <MediaCard title={'title 3'} image={'/images/theLastOfUS2.jpg'} />
-          <MediaCard title={'title 4'} image={'/images/theLastOfUS.jpg'} />
+          {mediaCoverageData.map((i) => (
+            <MediaCard title={i.title} description={i.description} image={i.srcImg} />
+          ))}
         </Box>
       </Flex>
     </group>
