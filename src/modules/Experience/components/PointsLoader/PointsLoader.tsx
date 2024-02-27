@@ -58,7 +58,7 @@ const PointsLoader = ({ model, selectedColor, map, mousemove }: PointsLoaderProp
   const pointsMesh = new THREE.Points(model, pmaterial);
 
   /**
-   * Calculate mouse position seperatly
+   * Calculate mouse position separately
    * so we can animate the model while hovering
    * around it without worrying about it
    * sticking to the mouse :-)
@@ -67,7 +67,7 @@ const PointsLoader = ({ model, selectedColor, map, mousemove }: PointsLoaderProp
     'mousemove',
     (event) => {
       if (!mousemove) {
-        // Dont react to this event
+        // Don't react to this event
         return;
       }
       event.preventDefault();
