@@ -24,7 +24,8 @@ const MediaCoverageScene = ({ position }: MediaCoverageSceneProps) => {
           justifyContent="center"
           flexWrap="wrap"
           width={'100%'}
-          padding={'10%'}
+          //padding={'10%'}
+          //paddingLeft={'10%'}
         >
           {mediaCoverageData.map((i) => (
             <MediaCard title={i.title} description={i.description} image={i.srcImg} />

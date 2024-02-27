@@ -76,6 +76,7 @@ const MediaCard = ({ title, image, description }: MediaProps) => {
           maxWidth={20}
           scale={0.12}
           font={fontLibrary.montserrat.bold}
+          color={theme.colors.grey}
         >
           {title}
         </Text>
@@ -88,11 +89,12 @@ const MediaCard = ({ title, image, description }: MediaProps) => {
           maxWidth={20}
           scale={0.06}
           font={fontLibrary.montserrat.light}
+          color={theme.colors.grey}
         >
           {description}
         </Text>
       </Box>
-      <Box>
+      <Box marginTop={0.75}>
         <mesh
           //position={[0, 0, 0]}
           ref={ref}
