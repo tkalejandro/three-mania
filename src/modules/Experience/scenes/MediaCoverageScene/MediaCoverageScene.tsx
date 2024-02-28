@@ -28,7 +28,7 @@ const MediaCoverageScene = ({ position }: MediaCoverageSceneProps) => {
           //paddingLeft={'10%'}
         >
           {mediaCoverageData.map((i) => (
-            <MediaCard title={i.title} description={i.description} image={i.srcImg} />
+            <MediaCard title={i.title} description={i.description} image={i.srcImg} url={i.url} />
           ))}
         </Box>
       </Flex>

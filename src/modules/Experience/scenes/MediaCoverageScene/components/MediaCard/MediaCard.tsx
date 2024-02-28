@@ -1,20 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { extend, useFrame, useThree, Vector3 } from '@react-three/fiber';
+import { extend, useFrame, useThree } from '@react-three/fiber';
 import { mediaCardVertex, mediaCardFragment } from '../../../../shaders/mediaShader';
 import * as THREE from 'three';
-import { useTexture, Text, shaderMaterial, Text3D, useAspect } from '@react-three/drei';
+import { useTexture, Text, shaderMaterial } from '@react-three/drei';
 import { Mesh } from 'three';
 import { Box, Flex } from '@react-three/flex';
 import { fontLibrary } from '@/helpers';
 import { useAppTheme } from '@/hooks';
+import { EnhancedGroup } from '@/modules/Experience/components';
 
 interface MediaProps {
   title: string;
   description: string;
   image: string;
+  url: string;
 }
 
-const MediaCard = ({ title, image, description }: MediaProps) => {
+const MediaCard = ({ title, image, description, url }: MediaProps) => {
   const [hovered, setHover] = useState<boolean>(false);
   const [fixedElapse, setFixedElpase] = useState<number>(0);
   const theme = useAppTheme();
@@ -27,7 +29,7 @@ const MediaCard = ({ title, image, description }: MediaProps) => {
   const ref = useRef<Mesh | any>(null);
   const time = useRef<number>(0);
   const { viewport, size } = useThree();
-  const [vw, vh] = useAspect(size.width, size.height);
+
   const WaveMaterial = shaderMaterial(
     {
       uTime: 0,
@@ -58,61 +60,63 @@ const MediaCard = ({ title, image, description }: MediaProps) => {
     setFixedElpase(time.current);
   }, [hovered]);
 
+  const openNewTab = () => {
+    window.open(url, '_blank');
+  };
+
   return (
-    <Box
-      centerAnchor
-      dir="column"
-      margin={0.1}
-      scale={0.95}
-      //size={[vw, vh, 1]}
-      justify="flex-start"
-      align="flex-start"
-    >
-      <Box marginBottom={0.05} centerAnchor>
-        {/* position={[-0.68, 0.8, 0]} */}
-        <Text
-          position={[-0.859, 0, 0]}
-          textAlign="left"
-          maxWidth={20}
-          scale={0.12}
-          font={fontLibrary.montserrat.bold}
-          color={theme.colors.grey}
-        >
-          {title}
-        </Text>
+    <EnhancedGroup onClick={openNewTab}>
+      <Box
+        centerAnchor
+        dir="column"
+        margin={0.1}
+        scale={0.95}
+        justify="flex-start"
+        align="flex-start"
+      >
+        <Box marginBottom={0.05} centerAnchor>
+          <Text
+            position={[-0.859, 0, 0]}
+            textAlign="left"
+            maxWidth={20}
+            scale={0.12}
+            font={fontLibrary.montserrat.bold}
+            color={theme.colors.secondary[900]}
+          >
+            {title}
+          </Text>
+        </Box>
+        <Box centerAnchor>
+          <Text
+            position={[-0.859, 0, 0]}
+            textAlign="left"
+            maxWidth={20}
+            scale={0.06}
+            font={fontLibrary.montserrat.light}
+            color={theme.colors.grey}
+          >
+            {description}
+          </Text>
+        </Box>
+        <Box marginTop={0.75}>
+          <mesh
+            ref={ref}
+            onPointerEnter={(event) => setHover(true)}
+            onPointerOut={(event) => setHover(false)}
+          >
+            <planeGeometry args={[1.8, 1.2, 1]} />
+            {
+              // TODO: Fix this.
+              /* @ts-ignore */
+              <waveMaterial
+                key={WaveMaterial.key}
+                resolution={[size.width * viewport.dpr, size.height * viewport.dpr]}
+              />
+            }
+          </mesh>
+        </Box>
       </Box>
-      {/* position={[-0.63, 0.675, 0]} */}
-      <Box centerAnchor>
-        <Text
-          position={[-0.859, 0, 0]}
-          textAlign="left"
-          maxWidth={20}
-          scale={0.06}
-          font={fontLibrary.montserrat.light}
-          color={theme.colors.grey}
-        >
-          {description}
-        </Text>
-      </Box>
-      <Box marginTop={0.75}>
-        <mesh
-          //position={[0, 0, 0]}
-          ref={ref}
-          onPointerEnter={(event) => setHover(true)}
-          onPointerOut={(event) => setHover(false)}
-        >
-          <planeGeometry args={[1.8, 1.2, 1]} />
-          {
-            // TODO: Fix this.
-            /* @ts-ignore */
-            <waveMaterial
-              key={WaveMaterial.key}
-              resolution={[size.width * viewport.dpr, size.height * viewport.dpr]}
-            />
-          }
-        </mesh>
-      </Box>
-    </Box>
+    </EnhancedGroup>
   );
 };
 
