@@ -6,7 +6,7 @@ import { useTexture, Text, shaderMaterial } from '@react-three/drei';
 import { Mesh } from 'three';
 import { Box, Flex } from '@react-three/flex';
 import { fontLibrary } from '@/helpers';
-import { useAppTheme } from '@/hooks';
+import { useAppBreakpoints, useAppTheme } from '@/hooks';
 import { EnhancedGroup } from '@/modules/Experience/components';
 
 interface MediaProps {
@@ -20,6 +20,7 @@ const MediaCard = ({ title, image, description, url }: MediaProps) => {
   const [hovered, setHover] = useState<boolean>(false);
   const [fixedElapse, setFixedElpase] = useState<number>(0);
   const theme = useAppTheme();
+  const { isDesktop } = useAppBreakpoints();
   /**
    * TODO: Fix type issue.
    * - Using type Mesh alone throws
@@ -43,7 +44,7 @@ const MediaCard = ({ title, image, description, url }: MediaProps) => {
   extend({ WaveMaterial });
 
   useFrame((state, delta) => {
-    hovered
+    hovered || !isDesktop
       ? (ref.current.material.uTime = state.clock.elapsedTime)
       : (ref.current.material.uTime = fixedElapse);
     time.current = state.clock.elapsedTime;
