@@ -5,10 +5,10 @@ import { Group, ShaderMaterial } from 'three';
 import { Message } from './components';
 import { ThreeDButton } from '../../components';
 import { Phase } from '@/enums/Experience';
-import { audioLibrary } from '@/helpers';
 import gsap from 'gsap';
 import { loaderFragmentShader, loaderVertexShader } from '../../shaders/loaderShader';
 import { useAppTheme } from '@/hooks';
+import { useAppSettings } from '@/store';
 
 interface WelcomeSceneProps {
   position: Vector3;
@@ -24,39 +24,28 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
   const buttonRef = useRef<Group>(null!);
   const loaderShaderRef = useRef<ShaderMaterial>(null!);
 
-  const [action, setAction] = useState<Phase>(Phase.Ready);
-  const [messageOpen, setMessageOpen] = useState<boolean>(false);
+  const phase = useAppSettings((state) => state.phase);
+  const setPhase = useAppSettings((state) => state.setPhase);
+  const setExperienceLoaded = useAppSettings((state) => state.setExperienceLoaded);
 
   // This trick works because this scene doest need to render again.
   // Normal react this is criminal but we are in R3F.
   let time = 0;
 
-  const mainSound = audioLibrary.synthBase();
-  const guitarSound = audioLibrary.guitars();
   useEffect(() => {
     if (!distanceFactor) return;
     setDistanceFactor(undefined);
   }, []);
 
   const playButton = () => {
-    mainSound.currentTime = 0;
-    mainSound.volume = 1;
-    mainSound.loop = true;
-
-    guitarSound.currentTime = 0;
-    guitarSound.volume = 0;
-    guitarSound.loop = true;
-
-    mainSound.play();
-    guitarSound.play();
-    // Music experience starts
-    setAction(Phase.Playing);
+    // Music experience starts at SoundManager
+    setPhase(Phase.Playing);
   };
 
   useFrame((state, delta) => {
-    if (action === Phase.Playing) {
+    if (phase === Phase.Playing) {
       if (time > 2) {
-        setMessageOpen(true);
+        setExperienceLoaded(true);
         return;
       }
       const s = delta * 1.3;
@@ -110,13 +99,11 @@ const WelcomeScene = ({ position }: WelcomeSceneProps) => {
           }}
         />
       </mesh>
-      {messageOpen ? (
-        <Message />
-      ) : (
-        <group position={position} ref={buttonRef}>
-          <ThreeDButton text="Play" size="lg" onClick={playButton} color="primary" />
-        </group>
-      )}
+      {/* Appears after some seconds */}
+      <Message />
+      <group position={position} ref={buttonRef}>
+        <ThreeDButton text="Play" size="lg" onClick={playButton} color="primary" />
+      </group>
     </>
   );
 };

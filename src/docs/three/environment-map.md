@@ -35,3 +35,9 @@ const texture = textureHelpers.brick()
 
 <mesh {...texture}  />
 ```
+
+## CubeMap Generator
+
+Sometimes is very difficult to find Cube Map. Therefore if you would like to generate a cube map you could easiliy use the following:
+
+https://matheowis.github.io/HDRI-to-CubeMap/

@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { GroupProps } from '@react-three/fiber';
 import { Group, Mesh } from 'three';
-import { Text } from '@react-three/drei';
+import { RoundedBox, Text } from '@react-three/drei';
 import { ThreeColor, ThreeSize } from '@/types/ExperienceTypes';
 import { useAppTheme } from '@/hooks';
 import { fontLibrary } from '@/helpers';
@@ -114,7 +114,7 @@ const ThreeDButton = ({
   return (
     <group
       {...props}
-      scale={buttonScale}
+      scale={[buttonScale, buttonScale, 1]}
       onPointerEnter={() => {
         document.body.style.cursor = 'pointer';
       }}
@@ -124,16 +124,31 @@ const ThreeDButton = ({
     >
       {/* Button */}
 
-      <mesh ref={buttonRef} position={[0, 0, 0]}>
-        <boxGeometry args={[0.4, 0.14, 0.05, 1, 1, 1]} />
-        <meshStandardMaterial color={buttonColor} />
-      </mesh>
+      <RoundedBox
+        ref={buttonRef}
+        position={[0, 0, 0]}
+        radius={0.015}
+        smoothness={2}
+        bevelSegments={4}
+        creaseAngle={0.1}
+        scale={[1, 1, 0.1]}
+        args={[0.4, 0.14, 1]} // Width, height, depth
+      >
+        <meshPhysicalMaterial
+          transparent
+          roughness={0.1}
+          clearcoat={0.1}
+          reflectivity={0.9}
+          metalness={0.1}
+          color={buttonColor}
+        />
+      </RoundedBox>
 
       {/* Text */}
       <Text
-        position={[0, 0.004, 0.028]}
+        position={[0, 0.004, 0.051]}
         ref={textRef}
-        fontSize={0.07}
+        fontSize={0.055}
         font={fontLibrary.montserrat.regular}
         color={textColor}
       >

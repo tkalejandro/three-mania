@@ -1,15 +1,21 @@
-import { imageLibrary } from '@/helpers';
-import { useAppBreakpoints } from '@/hooks';
+import { fontLibrary, imageLibrary } from '@/helpers';
+import { useAppBreakpoints, useAppTheme } from '@/hooks';
+import { EnhancedImage } from '@/modules/Experience/components';
 import { GalleryTransform } from '@/types/ExperienceTypes';
-import { Image } from '@react-three/drei';
+import { Image, Text, useAspect } from '@react-three/drei';
+import { useThree } from '@react-three/fiber';
+import { Box, Flex } from '@react-three/flex';
 import React, { useEffect, useState } from 'react';
-import THREE, { Vector3 } from 'three';
+import { Vector3 } from 'three';
+import { SecretButton } from './components';
 
 const Gallery = () => {
   const [galleryContainerScale, setGalleryContainerScale] = useState<number>(1);
   const [galleryTransform, setGalleryTransform] = useState<GalleryTransform | null>(null);
-  const { isBase, isTablet, isBigTablet, isMobile } = useAppBreakpoints();
-
+  const { isBase, isTablet, isBigTablet, isMobile, isDesktop } = useAppBreakpoints();
+  const { size } = useThree();
+  const [vw, vh] = useAspect(size.width, size.height);
+  const theme = useAppTheme();
   useEffect(() => {
     if (isBigTablet) {
       // This makes the gallery match the items correctly
@@ -56,20 +62,77 @@ const Gallery = () => {
   }
 
   const { tlou2_1, tlou2_2, god_1, cod_1, cod_2, secret } = galleryTransform;
+  const textScale = isDesktop ? 2 : 1;
+
   return (
     <group position={[0, 0, -1]}>
-      <group scale={galleryContainerScale}>
-        <Image url={imageLibrary.tlou2_1()} scale={tlou2_1.scale} position={tlou2_1.position} />
-        <Image url={imageLibrary.cod_2()} scale={cod_2.scale} position={cod_2.position} />
-        <Image url={imageLibrary.tlou2_2()} scale={tlou2_2.scale} position={tlou2_2.position} />
-        <Image url={imageLibrary.god_1()} scale={god_1.scale} position={god_1.position} />
-        <Image url={imageLibrary.cod_1()} scale={cod_1.scale} position={cod_1.position} />
-        <mesh position={secret.position}>
-          <planeGeometry args={secret.scale} />
-          <meshStandardMaterial color="purple" />
-        </mesh>
-      </group>
-      {/* TODO - This could be an interactive hidden treasure that open more information */}
+      <Flex
+        centerAnchor
+        flexDirection="column"
+        justify={'center'}
+        align={'center'}
+        size={[vw * 2, vh * 0.5, 1]}
+        scale={1}
+      >
+        <Box centerAnchor marginBottom={0.35}>
+          <Text
+            textAlign="center"
+            maxWidth={15}
+            font={fontLibrary.montserrat.thin}
+            scale={0.2 * textScale}
+            color={theme.colors.primary.main}
+          >
+            Projects and Awards
+          </Text>
+        </Box>
+        <Box centerAnchor marginBottom={0.35}>
+          <Text
+            textAlign="center"
+            maxWidth={15}
+            font={fontLibrary.montserrat.bold}
+            scale={0.12 * textScale}
+            color={theme.colors.primary.main}
+          >
+            ... a secret ...
+          </Text>
+        </Box>
+        <Box centerAnchor marginTop={0.35}>
+          <group scale={galleryContainerScale}>
+            <EnhancedImage
+              url={imageLibrary.tlou2_1()}
+              scale={tlou2_1.scale}
+              position={tlou2_1.position}
+              caption="The Last of US Part 2"
+            />
+            {/* <Image url={imageLibrary.tlou2_1()} scale={tlou2_1.scale} position={tlou2_1.position} /> */}
+            <EnhancedImage
+              url={imageLibrary.cod_2()}
+              scale={cod_2.scale}
+              position={cod_2.position}
+              caption="Call of Duty: Modern Warfare"
+            />
+            <EnhancedImage
+              url={imageLibrary.tlou2_3()}
+              scale={tlou2_2.scale}
+              position={tlou2_2.position}
+              caption="The Last of Us Part: 2"
+            />
+            <EnhancedImage
+              url={imageLibrary.god_1()}
+              scale={god_1.scale}
+              position={god_1.position}
+              caption="God of War: Ragnarok"
+            />
+            <EnhancedImage
+              url={imageLibrary.cod_1()}
+              scale={cod_1.scale}
+              position={cod_1.position}
+              caption="Call of Duty: Modern Warfare"
+            />
+            <SecretButton element={secret} />
+          </group>
+        </Box>
+      </Flex>
     </group>
   );
 };

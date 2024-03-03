@@ -1,10 +1,9 @@
 import React, { useRef, useState } from 'react';
-import { Color, useFrame } from '@react-three/fiber';
+import { Color, useFrame, Vector3 } from '@react-three/fiber';
 import { Center, Text } from '@react-three/drei';
 import { MovingFace } from './components';
 import { ThreeDButton } from '../../components';
 import { useAppBreakpoints, useAppTheme } from '@/hooks';
-import { Vector3 } from 'three';
 
 interface AboutSceneProps {
   position: Vector3;
@@ -46,35 +45,31 @@ const AboutScene = ({ position, scenePositionY }: AboutSceneProps) => {
         <group position={[0, -1, 0]}>
           <ThreeDButton
             onClick={() => selectButton(theme.colors.success.main)}
-            isSelected={selectedColor === theme.colors.success.main}
             position={isBigTablet ? [-1.5, 0.5, 0] : [-0.7, 0.5, 0]}
             text="Succcess"
-            color="primary"
+            color={selectedColor === theme.colors.success.main ? 'success' : 'primary'}
             size="xl"
           />
 
           <ThreeDButton
             onClick={() => selectButton(theme.colors.warning.main)}
-            isSelected={selectedColor === theme.colors.warning.main}
             position={isBigTablet ? [-0.5, 0.5, 0] : [0.7, 0.5, 0]}
             text="Warning"
-            color="primary"
+            color={selectedColor === theme.colors.warning.main ? 'warning' : 'primary'}
             size="xl"
           />
           <ThreeDButton
             onClick={() => selectButton(theme.colors.danger.main)}
-            isSelected={selectedColor === theme.colors.danger.main}
             position={isBigTablet ? [0.5, 0.5, 0] : [-0.7, 0, 0]}
             text="Danger"
-            color="primary"
+            color={selectedColor === theme.colors.danger.main ? 'danger' : 'primary'}
             size="xl"
           />
           <ThreeDButton
             onClick={() => selectButton(theme.colors.info.main)}
-            isSelected={selectedColor === theme.colors.info.main}
             position={isBigTablet ? [1.5, 0.5, 0] : [0.7, 0, 0]}
             text="Info"
-            color="primary"
+            color={selectedColor === theme.colors.info.main ? 'info' : 'primary'}
             size="xl"
           />
         </group>

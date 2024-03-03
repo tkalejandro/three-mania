@@ -17,6 +17,14 @@ class TextureLibrary {
       aoMap: 'textures/pavingStones1K/pavingStones_ambientOcclusion.png',
     };
   }
+  /**
+   * Music note used for PointerLoader
+   */
+  musicNote() {
+    return {
+      map: '/textures/musicNote/note_map.png',
+    };
+  }
 }
 
 const textureLibrary = new TextureLibrary();
