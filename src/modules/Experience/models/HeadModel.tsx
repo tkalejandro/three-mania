@@ -15,42 +15,38 @@ const HeadModel = ({ selectedColor, map, mousemove = true, ...props }: HeadModel
   const [gltfScene, setGltfScene] = useState<Group<Object3DEventMap> | null>(null);
   const [gltfScene1, setGltfScene1] = useState<Group<Object3DEventMap> | null>(null);
 
-  const { scene } = useGLTF('/models/head-3.glb');
-  const { scene1 } = useGLTF('/models/cone.glb')
+  const { scene } = useGLTF('/models/head-4.glb');
+  const head = useGLTF('/models/cone.glb')
+  // console.log(gltfScene)
 
   useEffect(() => {
     setGltfScene(scene);
-    setGltfScene1(scene1)
+    // setGltfScene1(scene1)
   }, []);
   const cachedModel = useMemo(() => {
-    // if (gltfScene) {
-    //   /**
-    //    * Model created by @Hicham2012 and
-    //    * inspired from this tutorial ↓
-    //    * https://youtu.be/AlPPYkZg9D4?si=L_chsWglPCB2DAGk
-    //    */
-    //   // Let's ignore the issue for now
-    //   // @ts-ignore
-    //   const head = gltfScene.children[0].geometry.clone();
-    //   return (
-    //     <group {...props}>
-    //       <PointsLoader
-    //         model={head}
-    //         selectedColor={selectedColor}
-    //         map={map}
-    //         mousemove={mousemove}
-    //       />
-    //     </group>
-    //   );
-    // } else {
-    //   return null;
-    // }
-    if (gltfScene1) {
-      const head = gltfScene1.children[0].geometry.clone();
+    if (gltfScene) {
+      /**
+       * Model created by @Hicham and
+       * inspired from this tutorial ↓
+       * https://youtu.be/AlPPYkZg9D4?si=L_chsWglPCB2DAGk
+       */
+      // Let's ignore the issue for now
+      // @ts-ignore
+      const head = gltfScene.children[0].geometry.clone();
+      // @ts-ignore
+      const eyes = gltfScene.children[2].geometry.clone();
+      console.log(gltfScene)
+
       return (
         <group {...props}>
           <PointsLoader
             model={head}
+            selectedColor={selectedColor}
+            map={map}
+            mousemove={mousemove}
+          />
+          <PointsLoader
+            model={eyes}
             selectedColor={selectedColor}
             map={map}
             mousemove={mousemove}
@@ -60,7 +56,7 @@ const HeadModel = ({ selectedColor, map, mousemove = true, ...props }: HeadModel
     } else {
       return null;
     }
-  }, [props, gltfScene1]);
+  }, [props, gltfScene]);
 
   return cachedModel;
 };

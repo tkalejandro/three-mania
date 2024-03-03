@@ -56,6 +56,7 @@ const PointsLoader = ({ model, selectedColor, map, mousemove }: PointsLoaderProp
     );
   };
   const pointsMesh = new THREE.Points(model, pmaterial);
+  pointsMesh.rotation.y = 3
 
   /**
    * Calculate mouse position separately
@@ -71,7 +72,7 @@ const PointsLoader = ({ model, selectedColor, map, mousemove }: PointsLoaderProp
         return;
       }
       event.preventDefault();
-      cursor.x = -(event.clientX / window.innerWidth - 0.5);
+      cursor.x = (event.clientX / window.innerWidth - 0.5);
       cursor.y = event.clientY / window.innerHeight - 0.5;
       uniforms.mousePos.value.set(cursor.x, cursor.y, 0);
     },
