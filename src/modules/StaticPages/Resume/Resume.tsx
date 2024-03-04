@@ -34,7 +34,6 @@ const Resume = () => {
     try {
       e.preventDefault();
 
-
       const fullName = fullNameRef.current?.value;
       const email = emailRef.current?.value;
       const description = textAreaRef.current?.value;
@@ -50,9 +49,17 @@ const Resume = () => {
       console.log(e);
     }
   };
+
+  const Section = ({ children }: { children: React.ReactNode }) => (
+    <Box maxW="100%" py={8} px={0}>
+      {' '}
+      {children}
+    </Box>
+  );
+
   return (
     <>
-      <Box maxW="100%" py={8}>
+      <Section>
         <Heading
           as="h1"
           mb={6}
@@ -64,9 +71,9 @@ const Resume = () => {
           {sonia.name}
         </Heading>
         <Text>{sonia.summary}</Text>
-      </Box>
+      </Section>
 
-      <Box maxW="100%" py={8}>
+      <Section>
         <Heading as="h2" size="lg" fontWeight="normal">
           Skills
         </Heading>
@@ -84,9 +91,9 @@ const Resume = () => {
             </ListItem>
           ))}
         </UnorderedList>
-      </Box>
+      </Section>
 
-      <Box maxW="100%" py={8}>
+      <Section>
         <Heading as="h2" size="lg">
           Experience
         </Heading>
@@ -105,9 +112,9 @@ const Resume = () => {
             </ListItem>
           ))}
         </UnorderedList>
-      </Box>
+      </Section>
 
-      <Box maxW="100%" py={8}>
+      <Section>
         <Heading as="h2" size="lg">
           Education
         </Heading>
@@ -131,9 +138,9 @@ const Resume = () => {
             </ListItem>
           ))}
         </UnorderedList>
-      </Box>
+      </Section>
 
-      <Box maxW="100%" py={8}>
+      <Section>
         <Heading as="h2" size="lg">
           Projects
         </Heading>
@@ -175,9 +182,9 @@ const Resume = () => {
             </ListItem>
           ))}
         </UnorderedList>
-      </Box>
+      </Section>
 
-      <Box maxW="100%" py={8}>
+      <Section>
         <Heading as="h2" size="lg">
           Contact
         </Heading>
@@ -204,7 +211,7 @@ const Resume = () => {
             Send
           </Button>
         </form>
-      </Box>
+      </Section>
     </>
   );
 };
