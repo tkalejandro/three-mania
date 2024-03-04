@@ -11,17 +11,18 @@ import {
   FormLabel,
   Input,
   Textarea,
-  Container as Box,
-  Link,
   Container,
+  Link,
   VStack,
   Accordion,
   AccordionItem,
   AccordionButton,
   AccordionPanel,
   AccordionIcon,
+  Box,
 } from '@chakra-ui/react';
-import { useAppTheme } from '@/hooks';
+import { useAppBreakpoints, useAppTheme } from '@/hooks';
+import { EmailIcon, LinkIcon, PhoneIcon } from '@chakra-ui/icons';
 
 const Resume = () => {
   const sonia = soniaCoronado;
@@ -51,10 +52,10 @@ const Resume = () => {
   };
 
   const Section = ({ children }: { children: React.ReactNode }) => (
-    <Box maxW="100%" py={8} px={0}>
+    <Container maxW="100%" py={8} px={0} fontWeight={300}>
       {' '}
       {children}
-    </Box>
+    </Container>
   );
 
   return (
@@ -77,7 +78,7 @@ const Resume = () => {
         <Heading as="h2" size="lg" fontWeight="normal">
           Skills
         </Heading>
-        <UnorderedList styleType="none" margin={0}>
+        <UnorderedList styleType="none" margin={0} my={4}>
           {sonia.skills.map((skill, i) => (
             <ListItem
               key={i}
@@ -85,6 +86,8 @@ const Resume = () => {
               bg={theme.colors.secondary[100]}
               p={2}
               m={2}
+              mr={4}
+              ml={0}
               rounded="lg"
             >
               {skill.title}
@@ -97,18 +100,16 @@ const Resume = () => {
         <Heading as="h2" size="lg">
           Experience
         </Heading>
-        <UnorderedList styleType="none" color={theme.colors.primary[700]} margin={0}>
+        <UnorderedList styleType="none" mx={0} my={4}>
           {sonia.experience.map((xp) => (
             <ListItem key={xp.id}>
-              <Box color="#000000" m={0} p={0}>
+              <Text fontWeight={600} fontSize="md" color={theme.colors.primary.main}>
                 {xp.title}
-              </Box>
-              <Box m={0} p={0}>
+              </Text>
+              <Text fontWeight={700} fontSize="lg" color={theme.colors.secondary.main}>
                 {xp.entity}
-              </Box>
-              <Box m={0} p={0}>
-                {xp.startDate.toLocaleDateString()} - Present{' '}
-              </Box>
+              </Text>
+              <Text>{xp.startDate.toLocaleDateString()} - Present </Text>
             </ListItem>
           ))}
         </UnorderedList>
@@ -118,23 +119,30 @@ const Resume = () => {
         <Heading as="h2" size="lg">
           Education
         </Heading>
-        <UnorderedList styleType="none" color={theme.colors.primary[700]} margin={0}>
+        <UnorderedList
+          styleType="none"
+          color={theme.colors.primary[700]}
+          mx={0}
+          my={4}
+          maxWidth={'100%'}
+        >
           {sonia.education.map((education) => (
-            <ListItem key={education.id}>
-              <Box color={theme.colors.black} m={0} p={0}>
+            <ListItem key={education.id} mb={4} width={'100%'}>
+              <Text fontWeight={600} fontSize="md" color={theme.colors.primary.main}>
                 {education.title}
-              </Box>
-              <Box m={0} p={0}>
+              </Text>
+              <Text fontWeight={700} fontSize="lg" color={theme.colors.secondary.main}>
                 {education.entity}
-              </Box>
-              <Box m={0} p={0} display="flex" alignItems="center">
-                <Box whiteSpace="nowrap" padding={0}>
+              </Text>
+              <Text m={0} p={0} display="flex" alignItems="center" justifyContent="space-between">
+                <Text as="span" whiteSpace="nowrap" padding={0}>
                   {education.startDate.toLocaleDateString()} -{' '}
                   {education.endDate?.toLocaleDateString()}{' '}
-                </Box>
-                <Box color="gray.500">{education.country}</Box>
-              </Box>
-              <br />
+                </Text>
+                <Text as="span" color={theme.colors.primary.main}>
+                  {`${education.city}, ${education.country}`}
+                </Text>
+              </Text>
             </ListItem>
           ))}
         </UnorderedList>
@@ -144,41 +152,42 @@ const Resume = () => {
         <Heading as="h2" size="lg">
           Projects
         </Heading>
-        <UnorderedList styleType="none" margin={0} padding={0}>
+        <UnorderedList styleType="none" margin={0} padding={0} my={4}>
           {sonia.projects.map((project) => (
-            <ListItem key={project.id}>
-              <Box color={theme.colors.black} m={0} p={0}>
+            <ListItem key={project.id} width={'100%'} my={8}>
+              <Text as="h3" fontWeight={600} fontSize="md" color={theme.colors.primary.main}>
                 {project.title}
-              </Box>
-              <Box m={0} p={0}>
+              </Text>
+              <Text fontWeight={700} fontSize="lg" color={theme.colors.secondary.main}>
                 {project.entity}
-              </Box>
-              <Box m={0} p={0} display="flex" alignItems="center">
-                <Box whiteSpace="nowrap" padding={0}>
+              </Text>
+              <Text display="flex" alignItems="center" justifyContent="space-between">
+                <Text as="span" whiteSpace="nowrap" padding={0}>
                   {project.startDate.toLocaleDateString()} - {project.endDate?.toLocaleDateString()}{' '}
-                </Box>
-                <Box color="gray.500">
-                  {project.city} - {project.country}
-                </Box>
-              </Box>
+                </Text>
+                <Text as="span">{`${project.city}, ${project.country}`}</Text>
+              </Text>
 
-              <Accordion defaultIndex={[0]} allowMultiple>
-                <AccordionItem width="500px">
-                  <h2>
-                    <AccordionButton>
-                      <Box as="span" flex="1" textAlign="left">
-                        Highlights
-                      </Box>
-                      <AccordionIcon />
-                    </AccordionButton>
-                  </h2>
+              <Accordion allowMultiple>
+                <AccordionItem>
+                  <AccordionButton justifyContent="space-between" px={0}>
+                    <Text as="h3">Highlights</Text>
+                    <AccordionIcon />
+                  </AccordionButton>
+
                   <AccordionPanel pb={4}>
-                    <Box>{project.highlights}</Box>
+                    <UnorderedList>
+                      {project.highlights?.map((item, i) => {
+                        return (
+                          <ListItem my={2} key={i}>
+                            {item}
+                          </ListItem>
+                        );
+                      })}
+                    </UnorderedList>
                   </AccordionPanel>
                 </AccordionItem>
               </Accordion>
-
-              <br />
             </ListItem>
           ))}
         </UnorderedList>
@@ -188,13 +197,23 @@ const Resume = () => {
         <Heading as="h2" size="lg">
           Contact
         </Heading>
-        <address className="">
-          <VStack align="start" mb={12}>
+
+        <VStack as="address" align="start" my={4}>
+          <Box my={2}>
+            <EmailIcon color={theme.colors.secondary.main} fontSize="xl" mr={2} />
             <Link href={`mailto:${sonia.email}`}>{sonia.email}</Link>
+          </Box>
+          <Box my={2}>
+            <PhoneIcon color={theme.colors.secondary.main} fontSize="xl" mr={2} />
             <Link href={`phone:${sonia.phone}`}>{sonia.phone}</Link>
-          </VStack>
-        </address>
-        <form action="" onSubmit={onSubmit}>
+          </Box>
+          <Box my={2}>
+            <LinkIcon color={theme.colors.secondary.main} fontSize="xl" mr={2} />
+            <Link href={soniaCoronado.linkedin} target="_blank">{`LinkedIn - Sonia Coronado`}</Link>
+          </Box>
+        </VStack>
+
+        <Box as="form" action="" onSubmit={onSubmit} my={4}>
           <FormControl my={6}>
             <FormLabel>Full Name</FormLabel>
             <Input type="text" placeholder="Full Name" ref={fullNameRef} />
@@ -207,10 +226,8 @@ const Resume = () => {
             <FormLabel htmlFor="">Description</FormLabel>
             <Textarea placeholder="Enter your description" ref={textAreaRef} />
           </FormControl>
-          <Button colorScheme="primary" variant="outline" type="submit">
-            Send
-          </Button>
-        </form>
+          <Button type="submit">Send</Button>
+        </Box>
       </Section>
     </>
   );
