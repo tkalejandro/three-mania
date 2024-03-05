@@ -20,7 +20,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Container maxW="container.xl">
             <Flex direction="column" minH="100vh" p="2">
               <Header />
-              <Box flex="1">{children}</Box>
+              <Box flex="1" pt={10}>
+                {children}
+              </Box>
               <Footer />
             </Flex>
           </Container>
