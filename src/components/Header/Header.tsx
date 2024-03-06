@@ -24,7 +24,7 @@ const Header = () => {
             Sonia Coronado
           </Heading>
           <ButtonGroup gap="2">
-            <Button colorScheme="primary">
+            <Button>
               <Link href="/">Music Experience</Link>
             </Button>
           </ButtonGroup>

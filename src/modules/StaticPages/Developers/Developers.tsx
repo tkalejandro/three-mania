@@ -10,7 +10,12 @@ import {
   CardFooter,
   Flex,
   Container,
+  Tag,
+  HStack,
+  Stack,
+  Badge,
 } from '@chakra-ui/react';
+import React from 'react';
 
 const devTeamInfo = [
   {
@@ -24,7 +29,7 @@ const devTeamInfo = [
     id: 1,
     fullName: 'Hicham-Zaadla',
     img: 'https://avatars.githubusercontent.com/u/99765449?v=4',
-    role: ['Frontend Development', 'Three Development'],
+    role: ['Frontend Development', 'Three Development', 'Shaders'],
     linkedinUrl: 'https://www.linkedin.com/in/hicham-zaadla/',
   },
   {
@@ -47,10 +52,11 @@ const tools = [
   'Javascript',
   'Typescript',
   'React',
-  'NextJs',
-  'ThreeJs',
+  'Next Js',
+  'Three Js',
   'React Three Fiber',
-  'ChakraUI',
+  'Drei',
+  'Chakra UI',
   'Github',
   'Discord',
 ];
@@ -60,15 +66,15 @@ export const Developers = () => {
       <Heading as="h1" my={10}>
         About Development
       </Heading>
-      <Text>
+      <Text textAlign="justify">
         If you've found your way to this section, it's probably because you're curious about the
         brilliant minds behind the creation of this composer portfolio. Below, you'll find an
-        extensive overview of our dedicated development team, each member contributing their unique
-        skills and expertise to bring this project to life. If you're interested in reaching out to
-        any of our team members directly, their LinkedIn profiles are provided for your convenience.
-        Whether you stumbled upon this page intentionally or by chance, we extend a hearty welcome
-        to you! Take a moment to delve into the details and discover more about our team and the
-        collaborative efforts that have shaped this composer portfolio.
+        overview of our dedicated development team and their contribution.
+      </Text>
+      <Text textAlign="justify" mt={2}>
+        If you're interested in reaching out to any of our team members directly, their LinkedIn
+        profiles are provided for your convenience. Take a moment to delve into the details and
+        discover more about our team and the collaborative efforts.
       </Text>
       <Flex justify="space-between" my="12" gap="10" direction={{ base: 'column', md: 'row' }}>
         {devTeamInfo.map((member) => (
@@ -89,18 +95,19 @@ export const Developers = () => {
           </Card>
         ))}
       </Flex>
-      <Container my={10}>
+      <Box>
         <Heading as="h2" size="lg" my={10}>
           Tools
         </Heading>
-        <UnorderedList listStyleType="none">
-          {tools.map((tool, i) => (
-            <ListItem key={i} m={4}>
+
+        <Stack direction="row">
+          {tools.map((tool) => (
+            <Badge size={'md'} p={2} key={tool} colorScheme="gray" variant="subtle" rounded="5px">
               {tool}
-            </ListItem>
+            </Badge>
           ))}
-        </UnorderedList>
-      </Container>
+        </Stack>
+      </Box>
     </>
   );
 };
