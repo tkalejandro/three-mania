@@ -21,7 +21,7 @@ const Header = () => {
       <Container maxW="container.xl" px={6}>
         <Flex justifyContent="space-between" alignItems="center">
           <Heading size="md" fontWeight={700}>
-            Sonia Coronado
+            <Link href="/resume">Sonia Coronado</Link>
           </Heading>
           <ButtonGroup gap="2">
             <Button>
