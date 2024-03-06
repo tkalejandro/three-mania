@@ -14,6 +14,8 @@ import {
   HStack,
   Stack,
   Badge,
+  Button,
+  CardHeader,
 } from '@chakra-ui/react';
 import React from 'react';
 
@@ -29,7 +31,7 @@ const devTeamInfo = [
     id: 1,
     fullName: 'Hicham-Zaadla',
     img: 'https://avatars.githubusercontent.com/u/99765449?v=4',
-    role: ['Frontend Development', 'Three Development', 'Shaders'],
+    role: ['Frontend Development', 'Three Development', 'Shaders', 'Blender'],
     linkedinUrl: 'https://www.linkedin.com/in/hicham-zaadla/',
   },
   {
@@ -43,7 +45,7 @@ const devTeamInfo = [
     id: 3,
     fullName: 'João Tápparo',
     img: 'https://avatars.githubusercontent.com/u/51871292?v=4',
-    role: ['Frontend Development', 'Three Development'],
+    role: ['Frontend Development'],
     linkedinUrl: 'https://www.linkedin.com/in/joao-tapparo/',
   },
 ];
@@ -59,10 +61,11 @@ const tools = [
   'Chakra UI',
   'Github',
   'Discord',
+  'Zustand',
 ];
 export const Developers = () => {
   return (
-    <>
+    <Box fontWeight="300">
       <Heading as="h1" my={10}>
         About Development
       </Heading>
@@ -77,30 +80,39 @@ export const Developers = () => {
         discover more about our team and the collaborative efforts.
       </Text>
       <Flex justify="space-between" my="12" gap="10" direction={{ base: 'column', md: 'row' }}>
-        {devTeamInfo.map((member) => (
-          <Card key={member.id} w={{ base: '100%', md: '30vw' }} boxShadow="md">
-            <CardBody padding="0">
-              <Image src={member.img} alt={`${member.fullName} portrait`} mb="5" />
-              <UnorderedList mx="4" listStyleType="none">
-                {member.role.map((task, i) => (
-                  <ListItem key={i} mb="2" mx={{ base: '0', md: '4' }}>
-                    {task}
-                  </ListItem>
-                ))}
-              </UnorderedList>
-            </CardBody>
-            <CardFooter>
-              <a href={member.linkedinUrl}>MORE ON LINKEDIN</a>
-            </CardFooter>
-          </Card>
-        ))}
+        {devTeamInfo.map((member) => {
+          return (
+            <Card key={member.id} w={{ base: '100%', md: '30vw' }} boxShadow="md">
+              <CardBody padding="0">
+                <Image src={member.img} alt={`${member.fullName} portrait`} mb="5" />
+                <Box mx="2">
+                  <Text as="h2" variant="lg" fontWeight="600">
+                    {member.fullName}
+                  </Text>
+                  <UnorderedList listStyleType="square" my={2}>
+                    {member.role.map((task, i) => (
+                      <ListItem key={i} mb="2">
+                        {task}
+                      </ListItem>
+                    ))}
+                  </UnorderedList>
+                </Box>
+              </CardBody>
+              <CardFooter>
+                <Button size="sm" as="a" href={member.linkedinUrl}>
+                  MORE ON LINKEDIN
+                </Button>
+              </CardFooter>
+            </Card>
+          );
+        })}
       </Flex>
       <Box>
         <Heading as="h2" size="lg" my={10}>
           Tools
         </Heading>
 
-        <Stack direction="row">
+        <Stack direction="row" wrap="wrap" gap={4}>
           {tools.map((tool) => (
             <Badge size={'md'} p={2} key={tool} colorScheme="gray" variant="subtle" rounded="5px">
               {tool}
@@ -108,6 +120,6 @@ export const Developers = () => {
           ))}
         </Stack>
       </Box>
-    </>
+    </Box>
   );
 };
