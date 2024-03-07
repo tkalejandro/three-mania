@@ -1,41 +1,29 @@
-# About the project
+# Welcome to Three Mania - The Ultimate Microgame Collection!
 
-The goal of this project is to build a portfolio for the client Sonia Coronado, who is a music composer from the video game industry.
+## What is Three Mania?
 
-## Purpose
+Three Mania is a thrilling and ever-expanding collection of microgames. These bite-sized, lightning-fast challenges are designed to test your skills and keep you entertained. With a diverse range of microgames, Three Mania offers a unique and exciting gaming experience for players of all kinds.
 
-- Showcase their work: Display a curated selection of their music compositions and sound designs for various video games.
+## Microgames Galore
 
-- Highlight Experience: Share their experience, collaborations, and achievements in the video game industry.
+Get ready to dive into a whirlwind of microgames that will keep you on the edge of your seat. Each microgame is a quick burst of fun, designed to be enjoyed in a matter of seconds. Whether it's tapping, swiping, jumping, or dodging, these games cover a wide spectrum of challenges to keep you engaged.
 
-- Attract Collaborations: Attract potential clients, game developers, and industry professionals for future collaborations.
+## Calling All Developers!
 
-## Keywords
+Three Mania is not just about playing games; it's also about creating them. We invite developers from around the world to contribute their own microgames to our ever-expanding collection. Sharing your creativity is easy: fork our repository, create your microgame, and submit a pull request. Once it's reviewed and approved, your creation will become a part of the Three Mania experience.
 
-- Neutral
-- Calm
-- Fair / Correct
-- Reserve
-- Adventorous
-- Music
-- Films
-- Clean
+## Why Join Three Mania as a Developer?
 
-## Technical requirements
+1. **Showcase Your Skills:** Display your game development talent and gain recognition within the gaming community.
 
-The project should show case this 3 features
+2. **Connect with a Creative Community:** Collaborate with like-minded developers, learn from others, and create exciting new projects together.
 
-- 3D Portfolio (R3F)
-- HTML Portfolio (Next UI)
-- Contact (Next/api)
-- SEO friendly
+3. **Endless Possibilities:** Experiment with the infinite potential of Three.js. Your microgames can range from casual puzzles to thrilling challenges – let your creativity shine.
 
-The user should have the ability to experience the portfolio in a 3D or normal environment.
+4. **Visibility and Recognition:** Get your work out there and be appreciated by players worldwide.
 
-The project should be able to be render in Safari (HIGH PRIORITY) and Google Chrome.
+## Get Started Today
 
-Mobile First Approach.
+Ready to embark on your journey into the world of Three Mania? Explore our collection of microgames, try out the ones that catch your eye, and perhaps even submit your very own microgame to our ever-growing library.
 
-## 3D World requirments
-
-...
+Join us in revolutionizing the world of microgaming with Three Mania. The excitement has just begun! Let's build the future of gaming together.
