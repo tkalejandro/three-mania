@@ -18,11 +18,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={inter.className}>
         <Providers>
           <Flex direction="column" minH="100vh" p="2">
-            <Header />
             <Box flex="1" pt={10}>
               <Container maxW="container.xl">{children}</Container>
             </Box>
-            <Footer />
           </Flex>
         </Providers>
       </body>

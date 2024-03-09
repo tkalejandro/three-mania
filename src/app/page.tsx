@@ -7,23 +7,20 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Sonia Coronado - Music Portfolio</title>
-        <meta
-          name="description"
-          content="Immerse yourself in Sonia Coronado's captivating music portfolio. Explore a unique blend of creativity, innovation, and musical mastery."
-          key="desc"
-        />
-        <meta property="og:title" content="Sonia Coronado - Music Portfolio" />
-        <meta
-          property="og:description"
-          content="Immerse yourself in Sonia Coronado's captivating music portfolio. Explore a unique blend of creativity, innovation, and musical mastery."
-        />
-        <meta
-          property="og:image"
-          content="https://media.licdn.com/dms/image/C5603AQFFkALXGQDtfA/profile-displayphoto-shrink_800_800/0/1598900964195?e=1709769600&v=beta&t=rxBatjiyd0-pUfSojY_vv9PW5oJmP7AVQ2249wSisfg"
-        />
-        <meta name="robots" content="index, follow" />
-        <link rel="canonical" href="https://example.com" />
+      <title>Three Mania</title>
+        <meta name="description" content="Three Mania, developed by the Three Dev community, is a thrilling and ever-expanding collection of microgames. Dive into a world of quick thinking, reflexes, and endless fun!" />
+        <meta name="keywords" content="Three Mania, microgames, gaming, developers, challenges" />
+        <meta name="author" content="Three Mania Team" />
+        <meta property="og:title" content="Three Mania" />
+        <meta property="og:description" content="Dive into a world of quick thinking, reflexes, and endless fun with Three Mania, developed by the Three Dev community!" />
+        <meta property="og:image" content="https://example.com/three-mania-thumbnail.jpg" />
+        <meta property="og:url" content="https://example.com" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Three Mania" />
+        <meta name="twitter:description" content="Dive into a world of quick thinking, reflexes, and endless fun with Three Mania, developed by the Three Dev community!" />
+        <meta name="twitter:image" content="https://example.com/three-mania-thumbnail.jpg" />
+
+        
       </Head>
       <Experience />
     </>
