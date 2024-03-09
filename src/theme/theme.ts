@@ -29,18 +29,18 @@ const customTheme = {
     white: '#F5F5F5', // A slightly off-white for elegance
     grey: '#CCCCCC',
     primary: {
-      50: '#e6f2ff',
-      100: '#b3d9ff',
-      200: '#80c2ff',
-      300: '#4da6ff',
-      400: '#1a8cff',
-      500: '#220632', // Very dark purple (adjust as needed)
-      600: '#361142',
-      700: '#4a1a52',
-      800: '#5e2362',
-      900: '#722d72',
-      main: '#220632', // Use the same main shade for consistency
-      contrastText: '#f5f5f5',
+      50: '#FFF6E0',
+      100: '#FFEAC1',
+      200: '#FFDEA1',
+      300: '#FFD281',
+      400: '#FFC561',
+      500: '#FFB941', // Vibrant gold color
+      600: '#DB9734',
+      700: '#B77E2C',
+      800: '#936524',
+      900: '#6F4C1C',
+      main: '#FFB941', // Use the same main shade for consistency
+      contrastText: '#1C1C1C',
     },
     secondary: {
       50: '#f2f0f4', // Very light purple (adjust as needed)

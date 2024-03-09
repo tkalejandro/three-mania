@@ -7,7 +7,7 @@ const Footer = () => {
 
   return (
     <Box as="footer" textAlign="center" p={4} borderTop="2px solid #f2f0f4" mt={10}>
-      &copy; Sonia Coronado {year} | Crafted with ❤️ by the amazing{' '}
+      &copy; J. Alejandro Coronado {year} | Crafted with ❤️ by the amazing{' '}
       <Link href="/developers">
         <Text fontWeight="700" color={'#9679db'} textDecoration="underline">
           Three Mania Team
