@@ -8,7 +8,7 @@ import { Box, Container, Flex, Grid, GridItem } from '@chakra-ui/react';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Sonia Coronado',
+  title: 'Three Mania',
   description: 'Music composer Portfolio',
 };
 

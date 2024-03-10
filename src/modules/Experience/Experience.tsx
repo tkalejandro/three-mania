@@ -10,6 +10,9 @@ import { MainCamera } from './camera';
 import { MainLight } from './lights';
 import { SoundManager } from './sounds';
 import { Loader } from './loader';
+import * as THREE from 'three';
+import MainEnvironment from './environment/MainEnvironment';
+import { GameMenu } from './layout';
 
 /**
  * Heart of the 3D App
@@ -22,19 +25,17 @@ const Experience = () => {
   return (
     <>
       <div id="experience">
+        {/* Experience Related */}
         <Suspense fallback={<Loader />}>
           <Canvas flat dpr={dpr}>
             <PerformanceMonitor onIncline={() => setDpr(2)} onDecline={() => setDpr(1)}>
               <MainCamera />
-              {/* <MainLight /> */}
-              <Environment preset="forest" background blur={0.95} />
-              <mesh>
-                <boxGeometry />
-                <meshStandardMaterial />
-              </mesh>
-              <OrbitControls />
+              <MainLight />
+              <MainEnvironment />
             </PerformanceMonitor>
           </Canvas>
+          {/* Layouts Over */}
+          <GameMenu />
         </Suspense>
 
         <DebugButton />

@@ -41,3 +41,10 @@ const texture = textureHelpers.brick()
 Sometimes is very difficult to find Cube Map. Therefore if you would like to generate a cube map you could easiliy use the following:
 
 https://matheowis.github.io/HDRI-to-CubeMap/
+
+## Interesting Links
+
+- AI Generated EnvMaps Collection - https://envmaps.wtlstudio.com/
+- Prompt AI Generated EnvMaps - https://skybox.blockadelabs.com/
+- HDRI EnvMAps - https://polyhaven.com/hdris
+- Paint with AI EnvMaps (windows) - https://www.nvidia.com/en-us/studio/canvas/

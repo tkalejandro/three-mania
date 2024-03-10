@@ -5,7 +5,7 @@ import { useFrame } from '@react-three/fiber';
 
 const MainCamera = () => {
   const cameraPosition = useCamera((state) => state.cameraPosition);
-  const cameraRef = useRef<any>(null);
+  const cameraRef = useRef<THREE.PerspectiveCamera>(null);
 
   return (
     <group>
@@ -13,10 +13,10 @@ const MainCamera = () => {
         position={cameraPosition}
         makeDefault
         ref={cameraRef}
-        fov={120}
+        fov={130}
         aspect={1}
         near={0.1}
-        far={100}
+        far={1000}
       />
     </group>
   );
