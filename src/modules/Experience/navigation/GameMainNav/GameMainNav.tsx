@@ -6,7 +6,7 @@ import React from 'react';
  * Menu of the game
  * Located at the center
  */
-export const GameMenu = () => {
+const GameMainNav = () => {
   return (
     <Flex
       zIndex={0}
@@ -46,3 +46,5 @@ export const GameMenu = () => {
     </Flex>
   );
 };
+
+export default GameMainNav;

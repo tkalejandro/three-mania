@@ -12,7 +12,8 @@ import { SoundManager } from './sounds';
 import { Loader } from './loader';
 import * as THREE from 'three';
 import MainEnvironment from './environment/MainEnvironment';
-import { GameMenu } from './navigation';
+import { GameMainNav } from './navigation';
+import { Navigation } from './navigation/Navigation';
 
 /**
  * Heart of the 3D App
@@ -35,7 +36,7 @@ const Experience = () => {
             </PerformanceMonitor>
           </Canvas>
           {/* Layouts Over */}
-          <GameMenu />
+          <Navigation />
         </Suspense>
 
         <DebugButton />
