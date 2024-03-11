@@ -43,6 +43,7 @@ const MainEnvironment = () => {
           />
         </meshBasicMaterial>
       </mesh>
+      {/* DECORATIONS */}
       <group ref={decorationContainerRef}>
         {tempArray.map((value, index) => {
           const getRandomGeometry = () => {

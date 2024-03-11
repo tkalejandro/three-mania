@@ -12,7 +12,7 @@ import { SoundManager } from './sounds';
 import { Loader } from './loader';
 import * as THREE from 'three';
 import MainEnvironment from './environment/MainEnvironment';
-import { GameMenu } from './layout';
+import { GameMenu } from './navigation';
 
 /**
  * Heart of the 3D App
