@@ -1,1 +1,2 @@
-export { default as SoundManager } from './SoundManager/SoundManager';
+// export { default as SoundManager } from './SoundManager/SoundManager';
+export {};

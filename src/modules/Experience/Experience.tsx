@@ -8,7 +8,7 @@ import { useControls } from 'leva';
 import { DebugButton } from './components';
 import { MainCamera } from './camera';
 import { MainLight } from './lights';
-import { SoundManager } from './sounds';
+// import { SoundManager } from './sounds';
 import { Loader } from './loader';
 import * as THREE from 'three';
 import MainEnvironment from './environment/MainEnvironment';
